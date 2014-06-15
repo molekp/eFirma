@@ -14,24 +14,24 @@ namespace BussinessLogic.Mappers.Warehouse.Distributions
             Mapper.CreateMap<Distribution, SearchDistributionDto>()
                   .ForMember(desc => desc.IdDistribution, s => s.MapFrom(src => src.IdDistribution))
                   .ForMember(desc => desc.DistributionCreateTime, s => s.MapFrom(src => src.DistributionCreateTime))
-                  .ForMember(desc => desc.DistributionCreatorName, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.DistributionCreatorName, s => s.ResolveUsing(src =>
                       {
                           if (src.DistributionCreator == null) return null;
                           return src.DistributionCreator.UserName;
                       }))
                   .ForMember(desc => desc.DistributionTime, s => s.MapFrom(src => src.DistributionTime))
                   .ForMember(desc => desc.State, s => s.MapFrom(src => src.State))
-                  .ForMember(desc => desc.CustomerName, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.CustomerName, s => s.ResolveUsing(src =>
                       {
                           if (src.DistributionCreator == null) return null;
                           return src.DistributionCustomer.Name;
                       }))
-                  .ForMember(desc => desc.CustomerAddress, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.CustomerAddress, s => s.ResolveUsing(src =>
                       {
                           if (src.DistributionCreator == null) return null;
                           return src.DistributionCustomer.Address;
                       }))
-                  .ForMember(desc => desc.ItemsCount, s => s.MapFrom(src => src.ProductItems.Count + src.ServiceItems.Count));
+                  .ForMember(desc => desc.ItemsCount, s => s.ResolveUsing(src => src.ProductItems.Count + src.ServiceItems.Count));
 
         }
 

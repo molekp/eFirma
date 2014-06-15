@@ -19,7 +19,7 @@ namespace BussinessLogic.Mappers.Store
                   .ForMember(i => i.Price, s => s.MapFrom(src => src.Price))
                   .ForMember(i => i.Quantity, s => s.MapFrom(src => src.Quantity))
                   .ForMember(i => i.SaleTypeName, s => s.MapFrom(src => src.SaleType.Name))
-                  .ForMember(i => i.TotalPrice, s => s.MapFrom(src =>
+                  .ForMember(i => i.TotalPrice, s => s.ResolveUsing(src =>
                       {
                           decimal price = src.Price * (decimal) src.Quantity;
                           if (src.Discount != null) price *= (decimal) src.Discount;

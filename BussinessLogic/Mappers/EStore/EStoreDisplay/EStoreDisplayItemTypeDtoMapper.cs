@@ -14,7 +14,7 @@ namespace BussinessLogic.Mappers.EStore.EStoreDisplay
             Mapper.CreateMap<IItemType, EStoreDisplayItemTypeDto>()
                   .ForMember(desc => desc.IdItemType, s => s.MapFrom(src => src.IdItemType))
                   .ForMember(desc => desc.Name, s => s.MapFrom(src => src.Name))
-                  .ForMember(desc => desc.ItemTypeNodes, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.ItemTypeNodes, s => s.ResolveUsing(src =>
                       {
                           if (src is ProductType)
                           {

@@ -12,7 +12,7 @@ namespace BussinessLogic.Mappers.Admin
             Mapper.CreateMap<SafetyPointGroup, DisplaySafetyPointGroupDto>()
                   .ForMember(desc => desc.NameOfsafetyPointGroup, s => s.MapFrom(src => src.GroupName))
                   .ForMember(desc => desc.IdSafetyPointGroup, s => s.MapFrom(src => src.IdSafetyPointGroup))
-                  .ForMember(desc => desc.NumberOfSafetyPointsInGroup, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.NumberOfSafetyPointsInGroup, s => s.ResolveUsing(src =>
                       {
                           if (src.SafetyPoints == null) return 0;
                           return src.SafetyPoints.Count();

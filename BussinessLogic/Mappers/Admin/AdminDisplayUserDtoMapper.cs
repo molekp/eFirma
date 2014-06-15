@@ -17,7 +17,7 @@ namespace BussinessLogic.Mappers.Admin
                   .ForMember(desc => desc.IdUser, s => s.MapFrom(src => src.IdUser))
                   .ForMember(desc => desc.UserName, s => s.MapFrom(src => src.UserName))
                   .ForMember(desc => desc.EMail, s => s.MapFrom(src => src.EMail))
-                  .ForMember(desc => desc.RoleName, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.RoleName, s => s.ResolveUsing(src =>
                       {
                           if (src.Role == null) return "";
                           return src.Role.NameRole;

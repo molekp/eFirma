@@ -12,7 +12,7 @@ namespace BussinessLogic.Mappers.Warehouse
             Mapper.CreateMap<ProductWarehouse, DisplaySpecyficWarehouse>()
                   .ForMember(desc => desc.IdProductWarehouse, s => s.MapFrom(src => src.IdProductWarehouse))
                   .ForMember(desc => desc.Name, s => s.MapFrom(src => src.Name))
-                  .ForMember(desc => desc.HowManyItems, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.HowManyItems, s => s.ResolveUsing(src =>
                       {
                           if (src.ProductItems != null)
                           {
@@ -24,7 +24,7 @@ namespace BussinessLogic.Mappers.Warehouse
             Mapper.CreateMap<ServiceWarehouse, DisplaySpecyficWarehouse>()
                   .ForMember(desc => desc.IdProductWarehouse, s => s.MapFrom(src => src.IdServiceWarehouse))
                   .ForMember(desc => desc.Name, s => s.MapFrom(src => src.Name))
-                  .ForMember(desc => desc.HowManyItems, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.HowManyItems, s => s.ResolveUsing(src =>
                   {
                       if (src.ServiceItems != null)
                       {

@@ -22,7 +22,7 @@ namespace BussinessLogic.Mappers.Warehouse.Distributions
                   .ForMember(desc => desc.DistributionCreateTime, s => s.MapFrom(src => src.DistributionCreateTime))
                   .ForMember(desc => desc.DistributionCreatorName, s => s.MapFrom(src => src.DistributionCreator.UserName))
                   .ForMember(desc => desc.DistributionTime, s => s.MapFrom(src => src.DistributionTime))
-                  .ForMember(desc => desc.IsPerformed, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.IsPerformed, s => s.ResolveUsing(src =>
                       {
                           if (src.State == DistributionState.Performed)
                           {
@@ -30,7 +30,7 @@ namespace BussinessLogic.Mappers.Warehouse.Distributions
                           }
                           return false;
                       }))
-                  .ForMember(desc => desc.Items, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.Items, s => s.ResolveUsing(src =>
                       {
                           var list = src.ProductItems.Select(item => itemsMapper.MapEntityToDto(item)).ToList();
                           list.AddRange(src.ServiceItems.Select(item => itemsMapper.MapEntityToDto(item)).ToList());

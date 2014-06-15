@@ -15,7 +15,7 @@ namespace BussinessLogic.Mappers.Inventary
                     .ForMember(i => i.ItemName, s => s.MapFrom(src => src.Name))
                     .ForMember(i => i.ItemTypeName, s => s.MapFrom(src => src.ItemType.Name))
                     .ForMember(i => i.ItemPrice, s => s.MapFrom(src => src.Price))
-                    .ForMember(i => i.ItemState, s => s.MapFrom(src =>
+                    .ForMember(i => i.ItemState, s => s.ResolveUsing(src =>
                                                                     {
                                                                         switch (src.ItemState)
                                                                         {

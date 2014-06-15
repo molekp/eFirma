@@ -18,7 +18,7 @@ namespace BussinessLogic.Mappers.Store
                   .ForMember(i => i.ItemId, s => s.MapFrom(src => src.IdItem))
                   .ForMember(i => i.Name, s => s.MapFrom(src => src.Name))
                   .ForMember(i => i.Price, s => s.MapFrom(src => src.Price))
-                  .ForMember(i => i.ItemType, s => s.MapFrom(src =>
+                  .ForMember(i => i.ItemType, s => s.ResolveUsing(src =>
                       {
                           if (src is ProductItem)
                           {

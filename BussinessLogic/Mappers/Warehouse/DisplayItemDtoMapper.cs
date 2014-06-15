@@ -12,7 +12,7 @@ namespace BussinessLogic.Mappers.Warehouse
             Mapper.CreateMap<IItem, DisplayItemDto>()
                   .ForMember(desc => desc.IdItem, s => s.MapFrom(src => src.IdItem))
                   .ForMember(desc => desc.Name, s => s.MapFrom(src => src.Name))
-                  .ForMember(desc => desc.ItemType, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.ItemType, s => s.ResolveUsing(src =>
                       {
                           if (src is ProductItem) return ItemTypeEnum.Product;
                           return ItemTypeEnum.Service;

@@ -24,12 +24,12 @@ namespace BussinessLogic.Mappers.Warehouse.Distributions
                   .ForMember(desc => desc.DistributionCreatorName, s => s.MapFrom(src => src.DistributionCreator.UserName))
                   .ForMember(desc => desc.DistributionTime, s => s.MapFrom(src => src.DistributionTime))
                   .ForMember(desc => desc.State, s => s.MapFrom(src => src.State))
-                  .ForMember(desc => desc.Customer, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.Customer, s => s.ResolveUsing(src =>
                       {
                           if (src.DistributionCustomer == null) return null;
                           return customerMapper.MapEntityToDto(src.DistributionCustomer);
                       }))
-                  .ForMember(desc => desc.Items, s => s.MapFrom(src =>
+                  .ForMember(desc => desc.Items, s => s.ResolveUsing(src =>
                       {
                           var list = src.ProductItems.Select(item => itemsMapper.MapEntityToDto(item)).ToList();
                           list.AddRange(src.ServiceItems.Select(item => itemsMapper.MapEntityToDto(item)).ToList());
