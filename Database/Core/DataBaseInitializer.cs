@@ -21,7 +21,9 @@ using Database.Entities.WarehouseEntities.Service;
 namespace Database.Core
 {
     //public class DataBaseInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
-    public class DataBaseInitializer : DropCreateDatabaseAlways<DataBaseContext>
+    //public class DataBaseInitializer : DropCreateDatabaseAlways<DataBaseContext>
+
+    public class DataBaseInitializer  :IDatabaseInitializer<DataBaseContext>
     {
         #region list getters
         private List<RoleEntity> CreateListWithRoles()
@@ -349,6 +351,14 @@ namespace Database.Core
                 };
         }
         #endregion
+
+        public void InitializeDatabase(DataBaseContext a_context)
+        {
+            if (!a_context.Roles.Any())
+            {
+                this.Seed(a_context);
+            }
+        }
 
         /// <summary>
         /// Metoda używana do wypełniania bazy danych podstawowymi i przykładowymi informacjami.
