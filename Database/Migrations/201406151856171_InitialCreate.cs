@@ -1,7 +1,10 @@
 namespace Database.Migrations
 {
+    using Database.Entities;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Web.Security;
     
     public partial class InitialCreate : DbMigration
     {
@@ -666,8 +669,8 @@ namespace Database.Migrations
                 .PrimaryKey(t => t.IdCustomer)
                 .ForeignKey("dbo.Customer", t => t.IdCustomer)
                 .Index(t => t.IdCustomer);
-            
         }
+
         
         public override void Down()
         {
