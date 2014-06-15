@@ -20,8 +20,8 @@ using Database.Entities.WarehouseEntities.Service;
 
 namespace Database.Core
 {
-    public class DataBaseInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
-    //public class DataBaseInitializer : DropCreateDatabaseAlways<DataBaseContext>
+    //public class DataBaseInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
+    public class DataBaseInitializer : DropCreateDatabaseAlways<DataBaseContext>
     {
         #region list getters
         private List<RoleEntity> CreateListWithRoles()
