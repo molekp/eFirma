@@ -1,0 +1,61 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Admin.UserForManageSafetyPointGroups
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>You can manage User's Safety Point Groups</h2>
+
+@Html.ActionLink("<--- Back", "Users", "Admin")
+
+ @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x=>x.IdUser)
+        <fieldset id="formFieldset">
+            <legend><b>Dane uzytkownika</b></legend>
+            <table id="formTable">
+                <tr>
+                    <td>@Html.LabelFor(model => model.UserName)</td>
+                    <td>@Html.TextBoxFor(model => model.UserName, htmlAttributes: new { @readonly = "readonly" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.UserName)</td>
+                </tr>
+             @if (Model.UserCurrentSafetyPointGroups.Any())
+             {
+                 <text>Curent user's safety point Groups</text>
+                 <tr>
+                     <td>@Html.LabelFor(model => model.UserCurrentSafetyPointGroups)</td>
+                     <td>@Html.LabelFor(model => model.UserCurrentSafetyPointGroups.First().IdSafetyPointGroup)</td>
+                     <td>@Html.LabelFor(model => model.UserCurrentSafetyPointGroups.First().NameOfsafetyPointGroup)</td>
+                 </tr>
+                 foreach (var safetyPointGroup in Model.UserCurrentSafetyPointGroups)
+                 {
+                     <tr>
+                         <td>@safetyPointGroup.IdSafetyPointGroup</td>
+                         <td>@safetyPointGroup.NameOfsafetyPointGroup</td>
+                         <td>@Html.ActionLink(Resource.RemoveUserFromSafetyPointGroup, "RemoveUserFromSafetyPointGroup", new { a_idUser = Model.IdUser, a_idSafetyPointGroup =safetyPointGroup.IdSafetyPointGroup})</td>
+                     </tr>
+                 }
+             }
+             else
+             {
+                 <tr>
+                     <td>No user's Safety Point Groups</td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+             }
+             <tr>
+                 <td>@Html.LabelFor(model => model.UserCurrentSafetyPointGroups)</td>
+                 <td>@Html.DropDownListFor(model => model.IdAddToGroup, Model.SafetyPointGroupChoicesToAdd) </td>
+                 <td><input type="submit" class="button" value=@Resource.saveChanges/></td>
+             </tr>
+                
+            </table>
+            @Html.ValidationMessage("ManageUserSafetyPointGroups")
+        </fieldset>
+    }
+
+
+

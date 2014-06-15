@@ -1,0 +1,37 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.WarehouseDtos.AddWarehouseDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+<h2>You can create new Base Warehouse. Later you can add products or services warehouses to This warehouse.</h2>
+
+@Html.ActionLink("<--- Back", "DisplayWarehouses", "Warehouse")
+
+ @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <fieldset id="formFieldset">
+            <legend><b>Dodaj użytkownika</b></legend>
+            <table id="formTable">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Address)</td>
+                    <td>@Html.EditorFor(model => model.Address)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Address)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="button" value=@Resource.createButton /></td>
+                    <td></td>
+                </tr>
+            </table>
+             @Html.ValidationMessage("AddWarehouse")
+        </fieldset>
+    }

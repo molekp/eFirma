@@ -1,0 +1,252 @@
+﻿@using BussinessLogic.DTOs
+@using BussinessLogic.DTOs.Factures
+@model BussinessLogic.DTOs.Factures.FactureDto
+
+@{
+    ViewBag.Title = "Invoice details";
+　　Layout = "~/Views/Shared/_LayoutFacture.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {       
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Name', 'PKWiU', 'Quantity','Sale Type', 'Price Per Unit', 'Net of Tax', 'Tax', 'Tax Price', 'Price'],
+            colModel: [
+                { name: 'IdItem', index: 'IdItem', width: 20, align: "right", sorttype: "text" },
+                { name: 'Name', index: 'Name', width: 200, align: "center", sorttype: "text" },
+                { name: 'PKWiU', index: 'Price', width: 70, align: "right", sorttype: "text" },
+                { name: 'Quantity', index: 'Quantity', width: 70, sorttype: "float", align: "center" },
+                { name: 'SaleTypeName', index: 'SaleTypeName', width: 70, sorttype: "text", align: "center" },
+                { name: 'PricePerUnit', index: 'PricePerUnit', width: 100, sorttype: "text", align: "center" },
+                { name: 'PriceWithoutTax', index: 'PriceWithoutTax', width: 70, sorttype: "text", align: "center" },
+                { name: 'Tax', index: 'Tax', width: 30, sorttype: "text", align: "center" },
+                { name: 'PriceTax', index: 'PriceTax', width: 70, sorttype: "text", align: "center" },
+                { name: 'PriceWithTax', index: 'PriceWithTax', width: 70, sorttype: "text", align: "center" },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Products"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (FactureItemDto item in Model.Items)
+        {
+            <text>
+                mydata.push({
+                    IdItem: "@item.IdItem",
+                    Name: "@item.Name",
+                    PKWiU: "@item.PKWiU",
+                    Quantity: "@item.Quantity",
+                    SaleTypeName: "@item.SaleTypeName",
+                    PricePerUnit: "@item.PricePerUnit",
+                    PriceWithoutTax: "@item.PriceWithoutTax",
+                    Tax: "@item.TaxValue",
+                    PriceTax: "@item.PriceTax",
+                    PriceWithTax: "@item.PriceWithTax",
+
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+    function pdf() {
+        var currency = jQuery("#currency").attr('selected', 'selected').val();
+        window.location.href = "@Url.Action("PrintFacture", "Facture", new{idFacture = Model.IdFacture})"+"&idCurrency="+currency;
+    }
+</script>
+
+
+<article>
+    
+    <fieldset>
+        <ol style="float: left">
+            <li>
+                <b>Id</b><br/>
+                @Model.IdFacture
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.FactureNr)
+                @Model.FactureNr
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ProviderName)
+                @Model.ProviderName
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ProviderAddress)
+                @Model.ProviderAddress
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ProviderNIP)
+                @Model.ProviderNIP
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ProviderInfo)
+                @Model.ProviderInfo
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ProviderBankAccountNumber)
+                @Model.ProviderBankAccountNumber
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ProviderBankInfo)
+                @Model.ProviderBankInfo
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.Issuer)
+                @Model.Issuer
+            </li>
+        </ol>
+        <ol style="float: right">
+            <li>
+                @Html.LabelFor(m => Model.CreationTime)
+                @Model.CreationTime
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.CreationPlace)
+                @Model.CreationPlace
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.RealizationTime)
+                @Model.RealizationTime
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ExpirationTime)
+                @Model.ExpirationTime
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ClientName)
+                @Model.ClientName
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ClientAddress)
+                @Model.ClientAddress
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ClientNIP)
+                @Model.ClientNIP
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.ClientInfo)
+                @Model.ClientInfo
+            </li>
+            <li>
+                @Html.LabelFor(m => Model.Reciver)
+                @Model.Reciver
+            </li>
+        </ol>
+    </fieldset>
+
+    <div id="pager" ></div>
+    <br />
+    <br />
+    <table id="list1" ></table>
+    <div id="pager1" ></div>
+    <fieldset>
+        <table style="float: left">
+            <tr>
+                <td>
+                    @Html.LabelFor(m => Model.Payment)
+                </td>
+                <td>
+                    @Model.Payment
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => Model.Paid)
+                </td>
+                <td>
+                    @Model.Paid PLN
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => Model.Remain)
+                </td>
+                <td>
+                    @Model.Remain PLN
+                </td>
+            </tr>
+        </table>
+        <table style="float: right">
+            <tr>
+                <td>
+                    @Html.LabelFor(m => Model.SumOfTax)
+                </td>
+                <td>
+                    @Model.SumOfTax PLN
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => Model.SumWithoutTax)
+                </td>
+                <td>
+                    @Model.SumWithoutTax PLN
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => Model.SumWithTax)
+                </td>
+                <td style="color: green; font-weight: bold">
+                    @Model.SumWithTax PLN
+                </td>
+            </tr>
+        </table>
+        <table style="float: left">
+            <tr>
+                <td>
+                    @Html.LabelFor(m => Model.SumString)
+                </td>
+                <td>
+                    @Model.SumString
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</article>
+
+    <div style="float: right">
+    @if(ViewBag.a_returnUrl != null && ViewBag.a_returnUrl != ""){
+        <a href="@ViewBag.a_returnUrl">Next</a>
+    }
+    @Html.LabelFor(m => m.Currencies)
+    @Html.DropDownListFor(m => m.Currency, Model.Currencies, new {@id="currency"})
+    <button onclick="pdf()">Get PDF</button>
+    </div>

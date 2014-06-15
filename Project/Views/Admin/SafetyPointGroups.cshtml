@@ -1,0 +1,33 @@
+﻿@using ResourceLibrary
+@model IEnumerable<BussinessLogic.DTOs.Admin.DisplaySafetyPointGroupDto>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>This page shows all Safety Point Groups. You can add new or edit group here.</h2>
+
+@Html.ActionLink("Create new Group", "AddSafetyPointGroup", "Admin");
+
+
+@if (Model.Any())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => Model.First().NameOfsafetyPointGroup)</td>
+            <td>@Html.LabelFor(m => Model.First().NumberOfSafetyPointsInGroup)</td>
+            <td>@Html.LabelFor(m => Model.First().NumberOfUsersInGroup)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var safetyPoint in Model)
+        {
+            <tr>
+                <td>@safetyPoint.NameOfsafetyPointGroup</td>
+                <td>@safetyPoint.NumberOfSafetyPointsInGroup</td>
+                <td>@safetyPoint.NumberOfUsersInGroup</td>
+                <td>@Html.ActionLink(Resource.DeleteButton,"DeleteSafetyPointGroup", new { a_idSafetyPointGroup =safetyPoint.IdSafetyPointGroup })</td>
+                <td>@Html.ActionLink(Resource.EditButton, "EditSafetyPointGroup",  new { a_idSafetyPointGroup=safetyPoint.IdSafetyPointGroup })</td>
+            </tr>
+        }
+    </table>
+}

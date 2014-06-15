@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BussinessLogic.DTOs.WarehouseDtos.Supplies.SupplyDto>
+@using BussinessLogic.DTOs
+@using BussinessLogic.DTOs.WarehouseDtos.Supplies
+@{
+　　Layout = "~/Views/Shared/_LayoutSupply.cshtml";
+}
+@{
+    ViewBag.Title = "Supply";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Firm', 'Realization Time', 'Creation Time', 'Delivered Time', 'State','details'],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 20, align: "right", sorttype: "text" },
+                { name: 'firm', index: 'firm', width: 300, align: "center", sorttype: "text" },
+                { name: 'realizationTime', index: 'realizationTime', width: 110, align: "right", sorttype: "float" },
+                { name: 'creationTime', index: 'creationTime', width: 110, sorttype: "text", align: "center" },
+                { name: 'deliveredTime', index: 'deliveredTime', width: 110, sorttype: 'text', align: "center" },
+                { name: 'state', index: 'state', width: 40, align: "center", sorttype: "text" },
+                { name: 'Open', width: 50,
+        formatter: function (cellvalue, options, rowObject) {
+            return '<a href="/Supply/ViewSupply?idSupply=' + rowObject.itemId + '">' + "details" + '</a>';
+        } 
+    },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Supplies"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (SupplyDto item in Model)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@item.IdSupply",
+                    firm: "@item.Firm",
+                    realizationTime: "@item.RealizationTime",
+                    creationTime: "@item.CreationTime",
+                    deliveredTime: "@item.DeliveredTime",
+                    state: "@item.State",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+<article>
+    
+<div id="pager" ></div>
+    <br />
+    <br />
+<table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>

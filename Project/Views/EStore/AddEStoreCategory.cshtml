@@ -1,0 +1,40 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.EStore.EStoreCategoryDto.AddEStoreCategoryDto
+
+@{
+    ViewBag.Title = "AddEStore";
+    Layout = "~/Views/Shared/_LayoutEStore.cshtml";
+}
+
+<h2>You can create new category of eStore.</h2>
+
+<a href="#" onclick="history.go(-1)"> Go Back</a>
+
+ @using (Html.BeginForm("AddEStoreCategoryWithModel","EStore"))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset id="formFieldset">
+            <legend><b>Dodaj nową kategorię</b></legend>
+            <table id="formTable">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.SortOrder)</td>
+                    <td>@Html.EditorFor(model => model.SortOrder)</td>
+                    <td>@Html.ValidationMessageFor(model => model.SortOrder)</td>
+                </tr>
+                <tr>
+                    <td>@Html.HiddenFor(model => Model.IdEStore)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="button" value="@Resource.createButton" /></td>
+                    <td></td>
+                </tr>
+            </table>
+             @*@Html.ValidationMessage("AddEStore")*@
+        </fieldset>
+    }

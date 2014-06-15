@@ -1,0 +1,33 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Store.ReturnDto
+
+@{
+    ViewBag.Title = "Returns";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@using (Html.BeginForm())
+{
+     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x=>x.DistributionId)
+    @Html.HiddenFor(x=>x.ItemId)
+    @Html.HiddenFor(x=>x.ItemType)
+    @Html.HiddenFor(x=>x.StoreId)
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                    @Html.LabelFor(x=>x.ChoicesWarehouses)
+                    @Html.DropDownListFor(x => x.SelectedWarehouse, Model.ChoicesWarehouses)                                                                  
+                
+            </li>
+        </ol>
+        <input type="submit" value="@Resource.createButton" />
+    </fieldset>
+}

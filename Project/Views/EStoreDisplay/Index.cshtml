@@ -1,0 +1,30 @@
+﻿@model BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayIndexDto
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/EStoreDisplay/_LayoutEStoreDisplay.cshtml";
+}
+
+<div class="left">
+    <div class="menu">        
+        @{
+            Html.RenderPartial("MainMenu", Model.EStoreDisplayMenu);
+        }
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<div class="right">
+    <div class="menu background-294a85">
+        <div class="padding-top-20"></div>
+    </div>
+    <div class="clear">
+    </div>
+
+    <div>
+        @{
+            Html.RenderPartial("DisplayItemList", Model.EStoreDisplayItemsDto);
+        }
+        <div class="clear" ></div>
+    </div>
+</div>
+

@@ -1,0 +1,33 @@
+﻿@using ResourceLibrary
+@model IEnumerable<BussinessLogic.DTOs.EStore.EStoreDto>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutEStore.cshtml";
+}
+
+
+@Html.ActionLink("Add eStore", "AddEStore", "EStore")
+
+@if (Model.Any())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => Model.First().Name)</td>
+            <td>eShop Products</td>
+            <td>eShop Services</td>
+            <td>Manage</td>
+            <td>Delete</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@Html.ActionLink(Resource.displayButton, "Index", "EStoreDisplay", new { eStore = item.IdEStore, type = 1 }, null)</td>
+                <td>@Html.ActionLink(Resource.displayButton, "Index", "EStoreDisplay", new { eStore = item.IdEStore, type = 2 }, null)</td>
+                <td>@Html.ActionLink(Resource.manageButton, "ManageEStore",  new { a_idEStore = item.IdEStore})</td>
+                <td>@Html.ActionLink(Resource.DeleteButton, "DeleteEStore",  new { a_idEStore = item.IdEStore})</td>
+            </tr>
+        }
+    </table>
+}
+

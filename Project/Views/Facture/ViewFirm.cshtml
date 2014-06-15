@@ -1,0 +1,92 @@
+﻿@using BussinessLogic.DTOs
+@model BussinessLogic.DTOs.Factures.FirmDto
+
+@{
+    ViewBag.Title = "Firm details";
+　　Layout = "~/Views/Shared/_LayoutFacture.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<script>
+    function remove() {
+        if (confirm('Are you sure to remove Firm?')) {
+            window.location.href = "@Url.Action("DeleteFirm", "Facture", new { idFirm = Model.IdFirm })";
+        }
+    }
+
+</script>
+
+<article>
+    <table>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                @Model.IdFirm
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => Model.Name)
+            </td>
+            <td>
+                @Model.Name 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => Model.Address)
+            </td>
+            <td>
+                @Model.Address 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => Model.Phone)
+            </td>
+            <td>
+                @Model.Phone 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => Model.Info)
+            </td>
+            <td>
+                @Model.Info 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => Model.NIP)
+            </td>
+            <td>
+                @Model.NIP 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => Model.BankAccountNumber)
+            </td>
+            <td>
+                @Model.BankAccountNumber 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => Model.BankInfo)
+            </td>
+            <td>
+                @Model.BankInfo 
+            </td>
+        </tr>
+    </table>
+    @Html.ActionLink("Edit", "EditFirm", "Facture", new { idFirm = Model.IdFirm }, null)
+    <button onclick="remove()">Delete</button>
+</article>

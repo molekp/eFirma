@@ -1,0 +1,95 @@
+﻿@model System.Collections.Generic.IEnumerable<BussinessLogic.DTOs.Store.SoldItemDto>
+
+@{
+    ViewBag.Title = "Sold items";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+ 
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        var mydata = new Array();
+        @foreach (var distribution in Model)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@distribution.ItemId",
+                    itemName: "@distribution.Name",
+                    vin: "@distribution.Vin",
+                    itemType: "@distribution.ItemType",
+                    saleType: "@distribution.SaleTypeName",
+                    price: "@distribution.Price",
+                    quantity: "@distribution.Quantity",
+                    dustomerName: "@distribution.CustomerName",
+                    distributionTime: "@distribution.DistributionTime",
+                    distributionId: "@distribution.DistributionId",
+                });
+            
+            </text>
+        };
+         
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            data: mydata,
+            colNames: ['Id', 'Item name', 'Item type','Vin', 'Sale type', 'Price','Quantity', 'Customer name','Distribution time','Distribution id',"Complaint", "Returns" ],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 60, align: "right", sorttype: "integer", editable: false, searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'itemName', index: 'itemName', width: 120, align: "center", sorttype: "text", editable: false, searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'itemType', index: 'itemType', width: 100, align: "center", sorttype: "text", editable: false, searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'vin', index: 'vin', width: 110, align: "center", sorttype: "integer", editable: false, searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}  },
+                { name: 'saleType', index: 'saleType', width: 80, sorttype: "text", align: "center", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'price', index: 'price', width: 80, sorttype: 'float', align: "center", editable: false , searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}  },
+                { name: 'quantity', index: 'quantity', width: 80, sorttype: 'float', align: "center", editable: true, searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'dustomerName', index: 'dustomerName', width: 150, align: "center", sorttype: "text", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'distributionTime', index: 'distributionTime', width: 150, align: "center", sorttype: "text", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'distributionId', index: 'distributionId', width: 150, align: "center", sorttype: "text", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'Open', width: 80,align: "center",search: false,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="/Store/Complaint?a_distributionId=' + rowObject.distributionId+'&a_storeId='+ @ViewBag.StoreId+ '&a_itemId='+ rowObject.itemId+'&a_itemType='+rowObject.itemType+'">' + "complaint" + '</a>';
+                    },
+                },
+                { name: 'Open', width: 80,align: "center",search: false,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="/Store/Returns?a_distributionId=' + rowObject.distributionId+'&a_storeId='+ @ViewBag.StoreId+ '&a_itemId='+ rowObject.itemId+'&a_itemType='+rowObject.itemType+'">' + "return" + '</a>';
+                    },
+                }
+                
+            ],
+            editurl: "clientArray",
+            loadonce: true,
+            multiselect: true,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            cellEdit: true,
+            cellsubmit: "clientArray",
+            sortname: 'itemId',
+            sortorder: "asc",
+            height: "auto",
+            viewrecords: true,
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Items"
+        });
+        
+        
+        jQuery("#list1").jqGrid('filterToolbar',{searchOperators : true,stringResult: true, searchOnEnter: false, defaultSearch : "cn"});
+        
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true, search: true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+    });
+    
+</script>
+
+ <table id="list1" ><tr><td></td></tr></table>
+                 <div id="pager1" ></div>

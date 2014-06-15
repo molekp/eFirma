@@ -1,0 +1,48 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.EStore.EStoreWarehouseDto.EStoreManageWarehousesDto
+@{
+    ViewBag.Title = "ManageWarehouseEStore";
+    Layout = "~/Views/Shared/_LayoutEStore.cshtml";
+}
+
+<a href="#" onclick="history.go(-1)"> Go Back</a>
+
+@if (Model.WarehousesWhichIsActive.Any())
+{
+    <div>Magazyny aktywne</div>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Option</td>
+        </tr>
+        @foreach (var item in Model.WarehousesWhichIsActive)
+        {
+            <tr>
+                <td>@item.Name</td>                
+                <td>@Html.ActionLink(Resource.DeleteButton, "DeleteEStoreWarehouse",  new { a_idEStore = Model.IdEStore, a_idWarehouse = item.IdWarehouse})</td>
+            </tr>
+        }
+    </table>
+}
+
+<br />
+<br />
+<br />
+
+@if (Model.WarehousesWhichIsNotActive.Any())
+{
+    <div>Magazyny nieaktywne</div>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Option</td>
+        </tr>
+        @foreach (var item in Model.WarehousesWhichIsNotActive)
+        {
+            <tr>
+                <td>@item.Name</td>                
+                <td>@Html.ActionLink(Resource.addButton, "AddEStoreWarehouse", new { a_idEStore = Model.IdEStore, a_idWarehouse = item.IdWarehouse })</td>
+            </tr>
+        }
+    </table>
+}

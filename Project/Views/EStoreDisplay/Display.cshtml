@@ -1,0 +1,66 @@
+﻿@model BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayDetailDto
+@{
+    ViewBag.Title = "Display";
+    Layout = "~/Views/EStoreDisplay/_LayoutEStoreDisplay.cshtml";
+}
+
+<div class="left">
+    <div class="menu">        
+        @{
+            Html.RenderPartial("MainMenu", Model.EStoreDisplayMenu);
+        }
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<div class="right">
+    <div class="menu background-294a85">
+        <div class="padding-top-20"></div>
+    </div>
+    <div class="clear">
+    </div>
+
+    <div class="detail">
+        <div id="detail-left" class="padding-top-40">
+
+            <div id="detail-box">
+                <div id="detail-box-left">
+                    <article class=" border-294a85" >
+                        <div class="photo" >    
+                            <a class="jqzoom" href="#" title="@Model.EStoreDisplayDetailItemDto.Name" >
+                                MIEJSCE NA FOTO
+                            </a>
+
+                        </div>
+
+                    </article>
+                </div>
+                <div id="detail-box-right">
+                    <div class="block-detail-box">
+                        <div class="title color-font-294a85">@Model.EStoreDisplayDetailItemDto.Name.ToUpper()</div>
+ 
+                    </div>
+
+
+                    <div class="block-detail-box">
+                         <div class="color-font-294a85" id="price">Cena: @Model.EStoreDisplayDetailItemDto.Price zł</div>
+                    </div>
+
+                    <div class="block-detail-box">
+                        <div id="addToBasket">dodaj do koszyka</div>    
+                    </div>
+
+
+                </div>
+            <div class="clear"></div>
+            </div>
+        
+        </div>
+        <div id="detail-right">
+
+        </div>
+        
+
+        <div class="clear" ></div>
+    </div>
+</div>

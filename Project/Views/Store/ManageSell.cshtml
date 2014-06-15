@@ -1,0 +1,91 @@
+﻿@model BussinessLogic.DTOs.Store.StoreSellDto
+
+@{
+    ViewBag.Title = "New sell results";
+    Layout = "~/views/shared/_LayoutStore.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+ 
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Item name', 'Price', 'Sale type', 'Quantity', 'Total price' ],
+            colModel: [
+                { name: 'itemName', index: 'itemName', width: 150, align: "center", sorttype: "text" },
+                { name: 'itemPrice', index: 'itemPrice', width: 80, align: "center", sorttype: "float"  },
+                { name: 'saleType', index: 'saleType', width: 80, align: "center", sorttype: "text"  },
+                { name: 'quantity', index: 'quantity', width: 80, sorttype: "float", align: "center"  },
+                { name: 'totalPrice', index: 'totalPrice', width: 100, sorttype: "float", align: "center"  }
+            ],
+            editurl: "clientArray",
+            loadonce: true,
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            cellEdit: false,
+            cellsubmit: "clientArray",
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Supplies"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true, }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (var distribution in Model.Items)
+        {
+            <text>
+                mydata.push({
+                    itemName: "@distribution.Name",
+                    itemPrice: "@distribution.Price",
+                    saleType: "@distribution.SaleTypeName",
+                    quantity: "@distribution.Quantity",
+                    totalPrice: "@distribution.TotalPrice"
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+    });
+    
+</script>
+
+<article>
+    <table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>
+@if (Model.Items.Any())
+    {
+<table>
+    
+        <tr>
+            <td>@Html.LabelFor(x => x.TotalPrice)</td>
+            <td>@Html.DisplayFor(x => x.TotalPrice)</td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Accept", "PerformDistribution", "Distribution", new {a_distributionId = Model.DistributionId, a_returnUrl = Url.Action("ManageSell", new {a_storeId = Model.StoreId, a_distributionId = Model.DistributionId})}, null)</td>
+            <td>@Html.ActionLink("Print facture", "PerformDistribution", "Distribution", new { a_distributionId = Model.DistributionId, a_returnUrl = Url.Action("ManageSell", new { a_storeId = Model.StoreId, a_distributionId = Model.DistributionId }) }, null)</td>
+        </tr>
+        
+        </table>
+    }

@@ -1,0 +1,35 @@
+﻿@model BussinessLogic.DTOs.WarehouseDtos.Supplies.SupplyAddDto
+@{
+　　Layout = "~/Views/Shared/_LayoutSupply.cshtml";
+}
+@{
+    ViewBag.Title = "Add Supply";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>    
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+        <fieldset>
+            <legend>Add Suppply form</legend>
+            <ol>
+                    <li>
+                        @Html.LabelFor(m => m.Firm)
+                        @Html.TextBoxFor(m => m.Firm)
+                    </li>
+                <li>
+                    @Html.LabelFor(m => m.RealizationTime)
+                    @Html.EditorFor(m => Model.RealizationTime)
+                </li>
+                <input type="submit" value="Add" />
+               
+            </ol>
+        </fieldset>
+    }
+
+</article>

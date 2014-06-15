@@ -1,0 +1,81 @@
+﻿@using BussinessLogic.DTOs.Inventary
+@model IEnumerable<SearchItemByAttributeDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var mydata = new Array();
+
+        @foreach (SearchItemByAttributeDto item in Model)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@item.ItemId",
+                    itemName: "@item.ItemName",
+                    itemTypeName: "@item.ItemTypeName",
+                    itemPrice: "@item.ItemPrice",
+                    itemState: "@item.ItemState",
+                    attributeTypeName: "@item.AttributeTypeName",
+                    attributeValue: "@item.AttributeValue",
+                });
+            
+            </text>
+        };
+        
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            data: mydata,
+            colNames: ['Id', 'Item Name','Item type Name', 'Price', 'State', 'attribute type', 'attribute values','details'],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 60, align: "right", sorttype: "text", searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'itemName', index: 'itemName', width: 200, align: "center", sorttype: "text", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'itemTypeName', index: 'itemTypeName', width: 150, align: "center", sorttype: "text", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'itemPrice', index: 'itemPrice', width: 80, align: "right", sorttype: "float", searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'itemState', index: 'itemState', width: 80, align: "center", sorttype: "text", searchoptions: { sopt: ['eq', 'bw', 'bn', 'cn', 'nc', 'ew', 'en'] } },
+                { name: 'attributeTypeName', index: 'attributeTypeName', width: 150, sorttype: "text", align: "center", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'attributeValue', index: 'attributeValue', width: 150, sorttype: 'text', align: "center", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                 { name: 'details', width: 50,search: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            return '<a href="/Inventary/DisplayItem?a_itemId=' + rowObject.itemId + '">' + "details" + '</a>';
+                        } 
+                    }
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'itemId',
+            sortorder: "asc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Items"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        jQuery("#list1").jqGrid('filterToolbar',{searchOperators : true,stringResult: true, searchOnEnter: false, defaultSearch : "cn"});
+       
+    });
+    
+</script>
+
+<div id="pager" ></div>
+    <br />
+    <br />
+<table id="list1" ></table>
+<div id="pager1" ></div>
+

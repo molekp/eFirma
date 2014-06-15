@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BussinessLogic.DTOs.Employee.SearchEmployeeDto>
+
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ActionLink("Add employee", "AddEmployee")
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@section scripts
+{
+@Styles.Render("~/Content/multiselect")
+        @Styles.Render("~/Content/themes/base/css")
+        
+      @Styles.Render("~/Content/jqGrid") 
+@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+  @Scripts.Render("~/bundles/modernizr")
+       
+    @Scripts.Render("~/bundles/jqGrid")
+   
+    @Scripts.Render("~/bundles/multiselect")
+     
+ }
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'login', 'First Name', 'Last Name', 'Role Name','Email', 'Andress','Details' ],
+            colModel: [
+                { name: 'employeeId', index: 'employeeId', width: 20, align: "right", sorttype: "integer" },
+                { name: 'login', index: 'login', width: 100, align: "center", sorttype: "text" },
+                { name: 'firstName', index: 'firstName', width: 110, align: "center", sorttype: "text" },
+                { name: 'lastName', index: 'lastName', width: 110, sorttype: "text", align: "center" },
+                { name: 'roleName', index: 'roleName', width: 110, sorttype: 'text', align: "center" },
+                { name: 'email', index: 'email', width: 150, sorttype: 'text', align: "center" },
+                { name: 'adress', index: 'adress', width: 100, align: "center", sorttype: "text" },
+                { name: 'Open', width: 80,align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                            return '<a href="/Employee/DisplayEmployee?a_employeeId=' + rowObject.employeeId + '">' + "details" + '</a>';
+                    },
+                }
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Supplies"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (var distribution in Model)
+        {
+            <text>
+                mydata.push({
+                    employeeId: "@distribution.IdEmployee",
+                    login: "@distribution.UserName",
+                    roleName: "@distribution.NameRole",
+                    email: "@distribution.EMail",
+                    lastName: "@distribution.LastName",
+                    firstName: "@distribution.FirstName",
+                    adress: "@distribution.Adress",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+<article>
+    
+<div id="pager" ></div>
+    <br />
+    <br />
+<table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>
+

@@ -1,0 +1,27 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.ViewModelsOnly.RemoteAttributeModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+@Html.ActionLink("<--- Back", "ManageProduct", new { a_idProduct = Model.IdItem})
+
+
+ @using (Html.BeginForm())
+    {
+     @Html.HiddenFor(p => p.IdAttribute)
+     @Html.HiddenFor(p => p.IdItem)
+        <fieldset id="formFieldset">
+            Are you sure to Delete this group ?
+            <table id="formTable">
+                <tr>
+                    
+                    <td>@Html.ActionLink(Resource.noButton, "ManageProduct",new { a_idProduct = Model.IdItem }, htmlAttributes: new { @class = "button", @type = "submit" })</td>
+                    <td><input type="submit" class="button" value=@Resource.yesButton  /></td>
+                </tr>
+            </table>
+            @Html.ValidationMessage("RemoveAttributeFromProduct")
+        </fieldset>
+}

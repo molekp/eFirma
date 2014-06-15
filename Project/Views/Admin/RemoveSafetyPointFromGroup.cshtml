@@ -1,0 +1,27 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.ViewModelsOnly.RemoveSafetyPointFromGroup
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Html.ActionLink("<--- Back", "EditSafetyPointGroup", "Admin", new { a_idSafetyPointGroup = Model.IdSafetyPointGroup})
+
+
+ @using (Html.BeginForm())
+    {
+     @Html.HiddenFor(p => p.IdSafetyPointGroup)
+     @Html.HiddenFor(p => p.IdSafetyPoint)
+        <fieldset id="formFieldset">
+            Are you sure to Delete this group ?
+            <table id="formTable">
+                <tr>
+                    
+                    <td>@Html.ActionLink(Resource.noButton, "EditSafetyPointGroup", "Admin", new { a_idSafetyPointGroup = Model.IdSafetyPointGroup }, htmlAttributes: new { @class = "button", @type = "submit" })</td>
+                    <td><input type="submit" class="button" value=@Resource.yesButton  /></td>
+                </tr>
+            </table>
+            @Html.ValidationMessage("RemoveSafetyPointFromGroupInfo")
+        </fieldset>
+}

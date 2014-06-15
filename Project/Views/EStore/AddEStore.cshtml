@@ -1,0 +1,32 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.EStore.AddEStoreDto
+
+@{
+    ViewBag.Title = "AddEStore";
+    Layout = "~/Views/Shared/_LayoutEStore.cshtml";
+}
+
+<h2>You can create new eStore.</h2>
+
+@Html.ActionLink("<--- Back", "Index", "EStore")
+
+ @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <fieldset id="formFieldset">
+            <legend><b>Dodaj sklep internetowy</b></legend>
+            <table id="formTable">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="button" value="@Resource.createButton" /></td>
+                    <td></td>
+                </tr>
+            </table>
+             @*@Html.ValidationMessage("AddEStore")*@
+        </fieldset>
+    }

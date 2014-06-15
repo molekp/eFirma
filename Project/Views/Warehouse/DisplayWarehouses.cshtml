@@ -1,0 +1,30 @@
+﻿@using ResourceLibrary
+
+@model IEnumerable<BussinessLogic.DTOs.WarehouseDtos.DisplayWarehouseDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+
+@Html.ActionLink("Add warehouse", "AddWarehouse", "Warehouse")
+
+@if (Model.Any())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => Model.First().Name)</td>
+            <td>@Html.LabelFor(m => Model.First().Address)</td>
+            <td>Manage</td>
+        </tr>
+        @foreach (var warehouseDto in Model)
+        {
+            <tr>
+                <td>@warehouseDto.Name</td>
+                <td>@warehouseDto.Address</td>
+                <td>@Html.ActionLink(Resource.manageButton, "ManageWarehouse",  new { a_idWarehouse = warehouseDto.IdWarehouse})</td>
+            </tr>
+        }
+    </table>
+}

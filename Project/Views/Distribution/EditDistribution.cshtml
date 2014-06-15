@@ -1,0 +1,141 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.WarehouseDtos.Distributions.EditDistributionDto
+
+@{
+    ViewBag.Title = "Edit distribution";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <p>@ViewBag.Message</p>
+</hgroup>
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Item Name','Item type', 'Price', 'Quantity', 'Vin','Item state','Expiration time','Sale type','Remove from distribution'],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 20, align: "right", sorttype: "text" },
+                { name: 'itemName', index: 'itemName', width: 200, align: "center", sorttype: "text" },
+                { name: 'itemType', index: 'itemType', width: 80, align: "center", sorttype: "float" },
+                { name: 'price', index: 'price', width: 80, sorttype: "float", align: "center" },
+                { name: 'quantity', index: 'quantity', width: 80, sorttype: 'text', align: "center" },
+                { name: 'vin', index: 'vin', width: 110, sorttype: 'text', align: "center" },
+                { name: 'itemState', index: 'itemState', width: 80, sorttype: 'text', align: "center" },
+                { name: 'expirationTime', index: 'expirationTime', width: 120, align: "center", sorttype: "text" },
+                { name: 'saleType', index: 'SaleTypeName', width: 80, align: "center", sorttype: "text" },
+                { name: 'Open', width: 100,align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                        
+                        var idDistribution = @Model.IdDistribution;
+                        return '<a href="/Distribution/RemoveProductItemFromDistribution?a_distributionId=' + idDistribution + '&a_itemId=' + rowObject.itemId + '&a_itemType='+rowObject.itemType+'">' + "remove" + '</a>';
+                    },
+                },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Supplies"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (var item in Model.Items)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@item.IdItem",
+                    itemName: "@item.Name",
+                    itemType: "@item.ItemType",
+                    price: "@item.Price",
+                    quantity: "@item.Quantity",
+                    vin: "@item.Vin",
+                    itemState: "@item.ItemState",
+                    expirationTime: "@item.ExpirationTime",
+                    saleType: "@item.SaleType",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+<article>
+    @if (Model.IsPerformed)
+    {
+        Html.TextBox(Resource.performedDistributionEditError);
+    }
+    else
+    {
+        using (Html.BeginForm())
+         {
+             @Html.ValidationSummary(true)
+             @Html.HiddenFor(x => x.IdDistribution)
+             <table>
+                 <tr>
+                     <td>@Html.LabelFor(x => x.IdDistribution)</td>
+                     <td>@Html.DisplayTextFor(x => x.IdDistribution)</td>
+                     <td></td>
+                 </tr>
+                 <tr>
+                     <td>@Html.LabelFor(x => x.ChoicesCustomer)</td>
+                     <td>@Html.DropDownListFor(x => x.SelectedChoiceCustomer, Model.ChoicesCustomer)</td>
+                     <td></td>
+                 </tr>
+                 <tr>
+                     <td>@Html.LabelFor(x => x.DistributionCreatorName)</td>
+                     <td>@Html.DisplayTextFor(x => x.DistributionCreatorName)</td>
+                     <td></td>
+                 </tr>
+                 <tr>
+                     <td>@Html.LabelFor(x => x.DistributionCreateTime)</td>
+                     <td>@Html.EditorFor(x => x.DistributionCreateTime)</td>
+                     <td></td>
+                 </tr>
+                 <tr>
+                     <td>@Html.LabelFor(x => x.DistributionTime)</td>
+                     <td>@Html.EditorFor(x => x.DistributionTime)</td>
+                     <td></td>
+                 </tr>
+                 <tr>
+                     <td></td>
+                     <td><input type="submit" class="EditButton" value=@Resource.saveChanges/></td>
+                 </tr>
+             </table>
+             @Html.ValidationMessage("EditDistribution")
+         }
+        <div id="pager" ></div>
+        <br />
+        <br />
+        <table id="list1" ></table>
+        <div id="pager1" ></div>
+    }
+</article>
+

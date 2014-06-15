@@ -1,0 +1,27 @@
+﻿@model BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayItemsDto
+<div class="detail">
+    <div id="product">
+        @{
+            foreach (var item in Model.Items)
+            {
+
+            <article class="border-294a85">
+                <div class="photo">
+                    <a href="#">MIEJSCE NA FOTO </a>
+                </div>
+                <div class="title color-font-294a85">
+                    <div class="left-title">
+                        <a href="@Url.Action("Display", "EStoreDisplay", new { eStore = Model.IdEStore, type = Model.TypeOfItem, item = @item.IdItem })">@Html.DisplayFor(modelItem => item.Name)</a>
+                    </div>
+                </div>
+                <div class="price-shop color-font-294a85">
+                    Cena: @item.Price zł
+                </div>
+            </article>
+            
+            }
+        }
+        <div class="clear">
+        </div>
+    </div>
+</div>

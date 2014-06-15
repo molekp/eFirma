@@ -1,0 +1,30 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Admin.AddSafetyPointGroup
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Create new safety point Group</h2>
+
+@Html.ActionLink("<--- Back", "SafetyPointGroups", "Admin")
+
+ @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <fieldset id="formFieldset">
+            <legend><b>Dodaj użytkownika</b></legend>
+            <table id="formTable">
+                <tr>
+                    <td>@Html.LabelFor(model => model.GroupName)</td>
+                    <td>@Html.EditorFor(model => model.GroupName)</td>
+                    <td>@Html.ValidationMessageFor(model => model.GroupName)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="button" value=@Resource.createButton /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </fieldset>
+    }

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <link href="@Url.Content("~/Content/eShop.css")" rel="stylesheet" type="text/css" />
+
+    @*@Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+</head>
+<body>
+    @Html.Partial("_Login")
+    <div class="wrapper">
+        @Html.Partial("_Logo")
+        <div id="box-container-1">
+            <div id="box-container-2" class="background-294a85">
+                @RenderBody()
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

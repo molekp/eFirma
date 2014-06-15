@@ -1,0 +1,173 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.WarehouseDtos.EditWarehouseDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+@*<script src="/Scripts/multiselect/jquery.multiselect.js" type="text/javascript"></script>
+<link href="/Scripts/multiselect/jquery.multiselect.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/Scripts/multiselect/jquery-ui-1.8.21.custom.css" />*@
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $("#CreateProductWarehouseLabel").css('display', 'none');
+        $("#CreateServiceWarehouseLabel").css('display', 'none');
+
+        $("#CreateProductWarehouse").click(function() {
+            $("#CreateProductWarehouseLabel").show();
+            $("#CreateProductWarehouseTextBox").attr("hidden", false);
+            $("#saveButton").attr("hidden", false);
+        });
+
+        $("#CreateServiceWarehouse").click(function () {
+            $("#CreateServiceWarehouseLabel").show();
+            $("#CreateServiceWarehouseTextBox").attr("hidden", false);
+            $("#saveButton").attr("hidden", false);
+        });
+
+        $("#editButton").click(function () {
+            $("#editButton").attr("hidden", true);
+            $("#saveButton").attr("hidden", false);
+            $("#editName").attr("readonly", false);
+            $("#editAddress").attr("readonly", false);
+        });
+
+        $("#AddProductWarehouse").bind("change", function () {
+            $("#saveButton").attr("hidden", false);
+        });
+
+        $("#AddServiceWarehouse").bind("change", function () {
+            $("#saveButton").attr("hidden", false);
+        });
+    });
+</script>
+<h2>Manage Warehouse</h2>
+
+@Html.ActionLink("<--- Back", "DisplayWarehouses", "Warehouse")
+
+@using (Html.BeginForm())
+ {
+        @Html.ValidationSummary(true)
+     <fieldset id="formFieldset">
+         @Html.HiddenFor(x=>x.IdWarehouse)
+         <legend><b>Dodaj użytkownika</b></legend>
+         <table id="formTable">
+             <tr>
+                 <td>@Html.LabelFor(model => model.Name)</td>
+                 <td>@Html.TextBoxFor(model => model.Name,htmlAttributes:new {@readonly="readonly", id="editName"})</td>
+                 <td>@Html.ValidationMessageFor(model => model.Name)</td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+             <tr>
+                 <td>@Html.LabelFor(model => model.Address)</td>
+                 <td>@Html.TextBoxFor(model => model.Address,htmlAttributes:new {@readonly="readonly", id="editAddress"})</td>
+                 <td>@Html.ValidationMessageFor(model => model.Address)</td>
+                 <td><input type="button" value=@Resource.EditButton id="editButton"/></td>
+                 <td><input type="submit" class="button" hidden="true" id="saveButton" value=@Resource.saveChanges/></td>
+                 <td></td>
+             </tr>
+             @if (Model.ProductWarehouses.Any())
+             {
+                 <tr>
+                     <td>@Html.LabelFor(model => model.ProductWarehouses.First().Name)</td>
+                     <td>@Html.LabelFor(model => model.ProductWarehouses.First().HowManyItems)</td>
+                     <td>Manage</td>
+                     <td>Remove</td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+                 foreach (var productWarehouse in Model.ProductWarehouses)
+                 {
+                     <tr>
+                         <td>@productWarehouse.Name</td>
+                         <td>@productWarehouse.HowManyItems</td>
+                         <td>@Html.ActionLink(Resource.Manage, "ManageProductWarehouse", new { a_idProductWarehouse = productWarehouse.IdProductWarehouse, a_idWarehouse = Model.IdWarehouse })</td>
+                         <td>@Html.ActionLink(Resource.Remove, "RemoveProductWarehouseFromWarehouse", new { a_idWarehouse = Model.IdWarehouse, a_idProductWarehouse =productWarehouse.IdProductWarehouse})</td>
+                         <td></td>
+                         <td></td>
+                     </tr>
+                 }
+             }
+             else
+             {
+                 <tr>
+                     <td>No Product warehouses in this Warehouse</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+             }
+             <tr>
+                 <td>@Html.LabelFor(model => model.ChoicesProductWarehouses)</td>
+                 <td>@Html.DropDownListFor(model => model.ChoiceIdProductWarehouse, Model.ChoicesProductWarehouses, htmlAttributes: new { id = "AddProductWarehouse" }) </td>
+                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+             </tr>
+             <tr><td><input type="button" id="CreateProductWarehouse" value=@Resource.CreateProductWarehouse/></td>
+                 <td>@Html.LabelFor(model => model.CreateProductWarehouseName, htmlAttributes: new { display = "none", id = "CreateProductWarehouseLabel" })</td>
+                 <td>@Html.TextBoxFor(model => model.CreateProductWarehouseName, htmlAttributes: new {hidden=true, id = "CreateProductWarehouseTextBox" })</td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+             @if (Model.ServiceWarehouses.Any())
+             {
+                 <tr>
+                     <td>@Html.LabelFor(model => model.ServiceWarehouses.First().Name)</td>
+                     <td>@Html.LabelFor(model => model.ServiceWarehouses.First().HowManyItems)</td>
+                     <td>Manage</td>
+                     <td>Remove</td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+                 foreach (var serviceWarehouse in Model.ServiceWarehouses)
+                 {
+                     <tr>
+                         <td>@serviceWarehouse.Name</td>
+                         <td>@serviceWarehouse.HowManyItems</td>
+                         <td>manage</td>
+                         <td>@Html.ActionLink(Resource.Remove, "RemoveServiceWarehouseFromWarehouse", new { a_idWarehouse = Model.IdWarehouse, a_idServiceWarehouse =serviceWarehouse.IdProductWarehouse})</td>
+                         <td></td>
+                         <td></td>
+                     </tr>
+                 }
+             }
+             else
+             {
+                 <tr>
+                     <td>No Service warehouses in this Warehouse</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+             }
+             <tr>
+                 <td>@Html.LabelFor(model => model.ChoicesServicesWarehouses)</td>
+                 <td>@Html.DropDownListFor(model => model.ChoiceIdServiceWarehouse, Model.ChoicesServicesWarehouses, htmlAttributes: new { id = "AddServiceWarehouse" }) </td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td><input type="submit" class="button" hidden="true" id="saveButton"value=@Resource.saveChanges/></td>
+             </tr>
+              <tr><td><input type="button" id="CreateServiceWarehouse" value=@Resource.CreateServiceWarehouse/></td>
+                 <td>@Html.LabelFor(model => model.CreateServiceWarehouseName, htmlAttributes: new { display = "none", id = "CreateServiceWarehouseLabel" })</td>
+                 <td>@Html.TextBoxFor(model => model.CreateServiceWarehouseName, htmlAttributes: new {hidden=true, id = "CreateServiceWarehouseTextBox" })</td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+         </table>
+         @Html.ValidationMessage("ManageWarehouse")
+     </fieldset>
+ }

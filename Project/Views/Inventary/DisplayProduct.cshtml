@@ -1,0 +1,75 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Inventary.DisplayProductDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+<table>
+    <tr>
+        <td>@Html.LabelFor(x=>x.IdProduct)</td>
+        <td>@Html.DisplayTextFor(x=>x.IdProduct)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.Name)</td>
+        <td>@Html.DisplayTextFor(x=>x.Name)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.ProductTypeName)</td>
+        <td>@Html.DisplayTextFor(x=>x.ProductTypeName)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.Price)</td>
+        <td>@Html.DisplayTextFor(x=>x.Price)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.ItemState)</td>
+        <td>@Html.DisplayTextFor(x=>x.ItemState)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.ExpirationTime)</td>
+        <td>@Html.DisplayTextFor(x=>x.ExpirationTime)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.Quantity)</td>
+        <td>@Html.DisplayTextFor(x=>x.Quantity)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.TaxName)</td>
+        <td>@Html.DisplayTextFor(x=>x.TaxName)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.TaxValue)</td>
+        <td>@Html.DisplayTextFor(x=>x.TaxValue)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(x=>x.SaleTypeName)</td>
+        <td>@Html.DisplayTextFor(x=>x.SaleTypeName)</td>
+    </tr>
+    @if (Model.DisplayProductAttributeDtos.Any())
+    {
+        foreach(var attribute in Model.DisplayProductAttributeDtos){
+            <tr>
+                <td>@Html.LabelFor(x => attribute.AttributeTypeName)</td>
+                <td>@Html.DisplayTextFor(x => attribute.AttributeTypeName)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => attribute.AttributeValue)</td>
+                <td>@Html.DisplayTextFor(x => attribute.AttributeValue)</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td>Product don't have any attribute</td>
+            <td></td>
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td>@Html.ActionLink(Resource.manageButton,"ManageProduct",new{a_idProduct = Model.IdProduct})</td>
+       
+    </tr>
+</table>

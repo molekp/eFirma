@@ -1,0 +1,73 @@
+﻿@model BussinessLogic.DTOs.Employee.DisplayEmployeeDto
+
+@{
+    ViewBag.Title = "Display Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+
+
+<article>
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x=>x.IdEmployee)</td>
+            <td>@Html.DisplayFor(x=>x.IdEmployee)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.UserName)</td>
+            <td>@Html.DisplayFor(x=>x.UserName)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.FirstName)</td>
+            <td>@Html.DisplayFor(x=>x.FirstName)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.LastName)</td>
+            <td>@Html.DisplayFor(x=>x.LastName)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.Adress)</td>
+            <td>@Html.DisplayFor(x=>x.Adress)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.EMail)</td>
+            <td>@Html.DisplayFor(x=>x.EMail)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.Phone)</td>
+            <td>@Html.DisplayFor(x=>x.Phone)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.Salary)</td>
+            <td>@Html.DisplayFor(x=>x.Salary)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.BankAccountNumber)</td>
+            <td>@Html.DisplayFor(x=>x.BankAccountNumber)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.NameRole)</td>
+            <td>@Html.DisplayFor(x=>x.NameRole)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Edit","EditEmployee",new {a_employeeId = Model.IdEmployee})</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</article>

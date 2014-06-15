@@ -1,0 +1,67 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.WarehouseDtos.Supplies.ProductDto
+@{
+　　Layout = "~/Views/Shared/_LayoutSupply.cshtml";
+}
+@{
+    ViewBag.Title = "Supply";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+<script>
+    jQuery(document).ready(function() {
+        $("#WarehousesDD").bind("change", function() {
+            window.location.href = window.location.href.split("?")[0] + "?idProduct=" + @Model.IdProduct + "&idWarehouse=" + $(this).val();
+        });
+
+    });
+</script>
+<article>    
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(x=>x.IdProduct)
+    @Html.HiddenFor(x=>x.IdSupply)
+        <fieldset>
+            <legend>Add Item form</legend>
+            <ol>
+                <li>
+                    @Html.DisplayFor(m => m.Warehouses)
+                    @Html.DropDownListFor(x=>x.IdWarehouse, Model.Warehouses,htmlAttributes:new { id = "WarehousesDD"})
+                </li>
+                @if(Model.ProductWarehouses.Any())
+                {
+                    <li>
+                        @Html.DisplayFor(m => m.Warehouses)
+                        @Html.DropDownListFor(m => m.IdProductWarehouse, Model.ProductWarehouses)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => Model.Name)
+                        @Html.TextBoxFor(m => m.Name)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => Model.Price)
+                        @Html.TextBoxFor(m => m.Price)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => Model.Quantity)
+                        @Html.TextBoxFor(m => m.Quantity)
+                    </li>
+                    <li>
+                    @foreach (var attr in Model.Attributes)
+                    {
+                        
+                            @Html.LabelFor(m => attr.Name)
+                            @Html.TextBoxFor(m => attr.Value)
+                        
+                    }
+                    </li>
+                    <input type="submit" value="Add" />
+                }
+            </ol>
+        </fieldset>
+    }
+</article>

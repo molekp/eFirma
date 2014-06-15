@@ -1,0 +1,159 @@
+﻿@using BussinessLogic.DTOs
+@using BussinessLogic.DTOs.WarehouseDtos.Supplies
+@model BussinessLogic.DTOs.WarehouseDtos.Supplies.SupplyViewDto
+
+@{
+    ViewBag.Title = "Supply details";
+　　Layout = "~/Views/Shared/_LayoutSupply.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        var state = @Model.State      
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Name', 'Price', 'Quantity','options'],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 20, align: "right", sorttype: "text" },
+                { name: 'name', index: 'name', width: 400, align: "center", sorttype: "text" },
+                { name: 'price', index: 'price', width: 70, align: "right", sorttype: "float" },
+                { name: 'quantity', index: 'quantity', width: 70, sorttype: "text", align: "center" },
+                { name: 'Open', width: 100,
+                formatter: function (cellvalue, options, rowObject) {
+                    var out = '<a href="/Inventary/DisplayItem?a_itemId=' + rowObject.itemId + '">' + "details" + '</a>';
+                    switch(state) {
+                        case 2:
+                            out += ' <a href="@Url.Action("RemoveProduct", "Supply", new{ idSupply = Model.IdSupply})' + '&idProduct=' + rowObject.itemId + '">' + "remove" + '</a>';
+                            break;
+                        case 3:
+                            out += ' <a href="@Url.Action("StoreProduct", "Supply", new{ idSupply = Model.IdSupply})' + '&idProduct=' + rowObject.itemId + '">' + "store" + '</a>';
+                    }
+                    return out;
+                    }
+                },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Products"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (ProductViewDto item in Model.Products)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@item.IdProduct",
+                    name: "@item.Name",
+                    price: "@item.Price",
+                    quantity: "@item.Quantity",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+<article>
+    <table>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                @Html.LabelFor(m => Model.Firm)
+            </td>
+            <td>
+                @Html.LabelFor(m => Model.RealizationTime)
+            </td>
+            <td>
+                @Html.LabelFor(m => Model.CreationTime)
+            </td>
+            <td>
+                @Html.LabelFor(m => Model.DeliveredTime)
+            </td>
+            <td>
+                @Html.LabelFor(m => Model.State)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Model.IdSupply
+            </td>
+            <td>
+                @Model.Firm 
+            </td>
+            <td>
+                @Model.RealizationTime 
+            </td>
+            <td>
+                @Model.CreationTime 
+            </td>
+            <td>
+                @Model.DeliveredTime 
+            </td>
+            <td>
+                @Model.State
+            </td>
+        </tr>
+    </table> 
+    <table>
+        <tr>
+            <td>
+                @Ajax.ActionLink("Edit", "EditSupply", new { idSupply = Model.IdSupply }, new AjaxOptions { HttpMethod = "POST" })
+            </td>
+            <td>
+                @Ajax.ActionLink("Delete", "DeleteSupply", new { idSupply = Model.IdSupply }, new AjaxOptions { HttpMethod = "POST" })
+            </td>
+            @if(Model.State < 3)
+            {
+                <td>
+                    @Ajax.ActionLink("Add Product", "AddProduct", new {idSupply = Model.IdSupply}, new AjaxOptions {HttpMethod = "POST"})
+                </td>
+            }
+            @if(Model.State == 2){
+                    <td>
+                        @Ajax.ActionLink("Send", "SendSupply", new { idSupply = Model.IdSupply }, new AjaxOptions { HttpMethod = "POST" })
+                    </td>
+            }
+        </tr>
+    </table>
+    <div id="pager" ></div>
+        <br />
+        <br />
+    <table id="list1" ></table>
+        <div id="pager1" ></div>
+    
+</article>

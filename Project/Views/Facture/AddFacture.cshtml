@@ -1,0 +1,235 @@
+﻿@using BussinessLogic.DTOs.Factures
+@model BussinessLogic.DTOs.Factures.FactureAddDto
+
+@{
+    ViewBag.Title = "Creating Invoice";
+  　Layout = "~/Views/Shared/_LayoutFacture.cshtml";
+}
+
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+
+    var lastId = @Model.ItemIds.ToList().Count - 1;
+
+    function removeItem(idItem, rowid) {
+        if (confirm('Are you sure to remove Id : ' + idItem + ' ?')) {
+            var index = lastId;
+            for (var i = 0; i <= lastId; i++) {
+                if (document.getElementById('ItemIds_' + i + '_').value == idItem) {
+                    index = i;
+                    break;
+                }
+            }
+            var element = document.getElementById('ItemIds_' + index + '_');
+            var last = document.getElementById('ItemIds_' + lastId + '_');
+            element.value = last.value;
+            last.parentNode.removeChild(last);
+            lastId--;
+            $('#list1').jqGrid('delRowData', rowid);
+        }
+    }
+
+    $(document).ready(function () {       
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Name', 'PKWiU', 'Quantity','Sale Type', 'Price Per Unit', 'Net of Tax', 'Tax', 'Tax Price', 'Price', 'Remove'],
+            colModel: [
+                { name: 'IdItem', index: 'IdItem', width: 20, align: "right", sorttype: "text" },
+                { name: 'Name', index: 'Name', width: 200, align: "center", sorttype: "text" },
+                { name: 'PKWiU', index: 'Price', width: 70, align: "right", sorttype: "text" },
+                { name: 'Quantity', index: 'Quantity', width: 70, sorttype: "float", align: "center" },
+                { name: 'SaleTypeName', index: 'SaleTypeName', width: 70, sorttype: "text", align: "center" },
+                { name: 'PricePerUnit', index: 'PricePerUnit', width: 100, sorttype: "text", align: "center" },
+                { name: 'PriceWithoutTax', index: 'PriceWithoutTax', width: 70, sorttype: "text", align: "center" },
+                { name: 'Tax', index: 'Tax', width: 30, sorttype: "text", align: "center" },
+                { name: 'PriceTax', index: 'PriceTax', width: 70, sorttype: "text", align: "center" },
+                { name: 'PriceWithTax', index: 'PriceWithTax', width: 70, sorttype: "text", align: "center" },
+                { name: 'Remove', width: 60,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<button onclick="removeItem(' + rowObject.IdItem + ',' + options.rowId + ')">remove</button>';
+                    }
+                },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Products",
+            editurl: "clientArray",
+            loadonce: true,
+            cellsubmit: "clientArray"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (FactureItemDto item in Model.Items)
+        {
+            <text>
+                mydata.push({
+                    IdItem: "@item.IdItem",
+                    Name: "@item.Name",
+                    PKWiU: "@item.PKWiU",
+                    Quantity: "@item.Quantity",
+                    SaleTypeName: "@item.SaleTypeName",
+                    PricePerUnit: "@item.PricePerUnit",
+                    PriceWithoutTax: "@item.PriceWithoutTax",
+                    Tax: "@item.TaxValue",
+                    PriceTax: "@item.PriceTax",
+                    PriceWithTax: "@item.PriceWithTax",
+
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+
+
+<article>    
+    @using (Html.BeginForm("SaveFacture", "Facture", new { a_returnUrl = ViewBag.a_returnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+        <fieldset>
+            <legend>Create Invoice form</legend>
+            <ol style="float: left">
+                @Html.HiddenFor(m => m.IdDistribution)
+                @foreach(int itemId in Model.ItemIds)
+                {
+                    var index = Model.ItemIds.ToList().FindIndex(v => v == itemId);
+                    @Html.HiddenFor(x => x.ItemIds[index], itemId);
+                }
+                <li>
+                    @Html.LabelFor(m => Model.CreationTime)
+                    @Html.EditorFor(m => Model.CreationTime)
+                </li>
+                <li>
+                    @Html.LabelFor(m => Model.CreationPlace)
+                    @Html.EditorFor(m => Model.CreationPlace)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ProviderName)
+                    @Html.TextBoxFor(m => m.ProviderName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ProviderAddress)
+                    @Html.TextBoxFor(m => m.ProviderAddress)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ProviderNIP)
+                    @Html.TextBoxFor(m => m.ProviderNIP)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ProviderInfo)
+                    @Html.TextBoxFor(m => m.ProviderInfo)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Issuer)
+                    @Html.TextBoxFor(m => m.Issuer)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ProviderBankAccountNumber)
+                    @Html.TextBoxFor(m => m.ProviderBankAccountNumber)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ProviderBankInfo)
+                    @Html.TextBoxFor(m => m.ProviderBankInfo)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Paid)
+                    @Html.EditorFor(m => m.Paid)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Payment)
+                    @Html.DropDownListFor(m => m.Payment, Model.PaymentList)
+                </li>
+            </ol> 
+            <ol style="float:right">
+                <li>
+                    @Html.LabelFor(m => m.RealizationTime)
+                    @Html.EditorFor(m => Model.RealizationTime)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ExpirationTime)
+                    @Html.EditorFor(m => Model.ExpirationTime)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ClientName)
+                    @Html.TextBoxFor(m => m.ClientName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ClientAddress)
+                    @Html.TextBoxFor(m => m.ClientAddress)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ClientNIP)
+                    @Html.TextBoxFor(m => m.ClientNIP)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ClientInfo)
+                    @Html.TextBoxFor(m => m.ClientInfo)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Reciver)
+                    @Html.TextBoxFor(m => m.Reciver)
+                </li>
+                <li>
+                    @Html.LabelFor(m => Model.SumWithoutTax)
+
+                    @Model.SumWithoutTax PLN
+                </li>
+                <li>
+                    @Html.LabelFor(m => Model.SumOfTax)
+
+                    @Model.SumOfTax PLN
+                </li>
+                <li>
+                    @Html.LabelFor(m => Model.SumWithTax)
+
+                    @Model.SumWithTax PLN
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.SumString)
+                    @Html.EditorFor(m => m.SumString)
+                </li>
+            </ol>
+            <input type="submit" value="Create" />
+        </fieldset>
+    }
+    <div id="pager" ></div>
+        <br />
+        <br />
+    <table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>
+

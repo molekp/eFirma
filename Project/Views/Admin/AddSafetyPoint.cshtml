@@ -1,0 +1,106 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Admin.AddNewSafetyPointDto
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="/Scripts/multiselect/jquery.multiselect.js" type="text/javascript"></script>
+<link href="/Scripts/multiselect/jquery.multiselect.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/Scripts/multiselect/jquery-ui-1.8.21.custom.css" />
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        $("#TypesOfSafetyPoints").multiselect({        
+            selectedList: 1,
+            header: false,
+            noneSelectedText: 'Chose type',
+            multiple: false,
+            height: 300,
+        });
+        $("#TypesOfSafetyPoints").multiselect("uncheckAll");
+
+        $("#TypesOfSafetyPoints").bind("change", function () {
+            var sel = jQuery('#TypesOfSafetyPoints').val();
+            if (sel != null) {
+                sel = parseInt(sel);
+                jQuery.ajax({
+                    url: "/Admin/TypeOfSafetyPointChanged",
+                    type: 'POST',
+                    data: { a_idTypeOfSafetyPoint: sel },
+                    datatype: 'json',
+                    success: function (data) {
+                        var elements = '';
+                        jQuery.each(data, function () {
+                            elements = elements + '<option selected="selected" value="' + this.Value + '">' + this.Text + '</option>';
+                        });
+                        $("#TableDD").empty().append(elements);
+                        jQuery("#TableDD").multiselect({ 
+                            selectedList: 1,
+                            header: false,
+                            noneSelectedText: 'Chose Record',
+                            multiple: false,
+                            height: 300,
+                        });
+                        jQuery("#TableDD").multiselect('refresh');
+                        jQuery("#TableDD").multiselect('uncheckAll');
+                    }
+                });
+
+            }
+        });
+    });
+</script>
+
+
+<h2>Add new Safety Point</h2>
+
+@Html.ActionLink("<--- Back", "SafetyPoints", "Admin")
+
+ @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <fieldset id="formFieldset">
+            <legend><b>Dodaj użytkownika</b></legend>
+            <table id="formTable">
+                <tr>
+                    <td>@Html.LabelFor(model => model.NameOfsafetyPoint)</td>
+                    <td>@Html.EditorFor(model => model.NameOfsafetyPoint)</td>
+                    <td>@Html.ValidationMessageFor(model => model.NameOfsafetyPoint)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.IdTypeOfSafetyPoint)</td>
+                    <td>
+                        @Html.DropDownListFor(model => model.IdTypeOfSafetyPoint, (IEnumerable<SelectListItem>)ViewData[Resource.SelectListTypesOfSafetyPoints], htmlAttributes: new { id = "TypesOfSafetyPoints" }) 
+                    </td>
+                    <td>@Html.ValidationMessageFor(model => model.IdTypeOfSafetyPoint)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.IdOfPointInTable)</td>
+                    <td>@Html.DropDownListFor(model => model.IdOfPointInTable, Enumerable.Empty<SelectListItem>(), null, new { id = "TableDD" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.IdOfPointInTable)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Read)</td>
+                    <td>@Html.EditorFor(model => model.Read)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Write)</td>
+                    <td>@Html.EditorFor(model => model.Write)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="button" id="createUserButton" value=@Resource.createButton /></td>
+                </tr>
+            </table>
+            @Html.ValidationMessage("SafetyPointCreateInfo")
+        </fieldset>
+    }
+
+
+

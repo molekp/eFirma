@@ -1,0 +1,97 @@
+﻿@model IEnumerable<BussinessLogic.DTOs.WarehouseDtos.Distributions.SearchDistributionDto>
+
+@{
+    ViewBag.Title = "Distribution";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+@Html.ActionLink("Add distribution", "AddDistribution")
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Item Count', 'Realiation Time', 'Creation Time', 'Customer name','Customer address', 'State','Manage','Perform' ],
+            colModel: [
+                { name: 'distributionId', index: 'distributionId', width: 20, align: "right", sorttype: "text" },
+                { name: 'itemCount', index: 'itemCount', width: 80, align: "center", sorttype: "text" },
+                { name: 'realizationTime', index: 'realizationTime', width: 110, align: "right", sorttype: "float" },
+                { name: 'creationTime', index: 'creationTime', width: 110, sorttype: "float", align: "center" },
+                { name: 'customerName', index: 'customerName', width: 110, sorttype: 'text', align: "center" },
+                { name: 'customerAddress', index: 'customerAddress', width: 110, sorttype: 'text', align: "center" },
+                { name: 'state', index: 'state', width: 40, align: "center", sorttype: "text" },
+                { name: 'Open', width: 80,align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                            return '<a href="/Distribution/DisplayDistribution?a_distributionId=' + rowObject.distributionId + '">' + "manage" + '</a>';
+                    },
+                },
+                { name: 'Open', width: 80,align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                            return '<a href="/Distribution/PerformDistribution?a_distributionId=' + rowObject.distributionId + '">' + "perform" + '</a>';
+                    },
+                },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Supplies"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (var distribution in Model)
+        {
+            <text>
+                mydata.push({
+                    distributionId: "@distribution.IdDistribution",
+                    itemCount: "@distribution.ItemsCount",
+                    realizationTime: "@distribution.DistributionTime",
+                    creationTime: "@distribution.DistributionCreateTime",
+                    customerName: "@distribution.CustomerName",
+                    customerAddress: "@distribution.CustomerAddress",
+                    state: "@distribution.State",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+<article>
+    
+<div id="pager" ></div>
+    <br />
+    <br />
+<table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>

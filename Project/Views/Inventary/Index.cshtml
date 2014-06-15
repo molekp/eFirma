@@ -1,0 +1,10 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+@Html.ActionLink("Search items", "SearchItems", "Inventary")
+
+@Html.ActionLink("Search items by attributes", "SearchItemsByAttribute", "Inventary")

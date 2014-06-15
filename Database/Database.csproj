@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ADDDD59C-E53B-4041-A52E-2090B9239306}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Database</RootNamespace>
+    <AssemblyName>Database</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Core\DataBaseContext.cs" />
+    <Compile Include="Core\DataBaseInitializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Interfaces\IDataBaseContext.cs" />
+    <Compile Include="Entities\Customers\Customer.cs" />
+    <Compile Include="Entities\EmployeeEntity.cs" />
+    <Compile Include="Entities\EStore\Category\EStoreCategory.cs" />
+    <Compile Include="Entities\EStore\EStore.cs" />
+    <Compile Include="Entities\EStore\EStoreShipmentType.cs" />
+    <Compile Include="Entities\Factures\Facture.cs" />
+    <Compile Include="Entities\Safety\SafetyPointGroup.cs" />
+    <Compile Include="Entities\Customers\Firm.cs" />
+    <Compile Include="Entities\Factures\FactureItem.cs" />
+    <Compile Include="Entities\Stores\Complaint.cs" />
+    <Compile Include="Entities\Stores\StoreEntity.cs" />
+    <Compile Include="Entities\WarehouseEntities\Currencies\Currency.cs" />
+    <Compile Include="Entities\WarehouseEntities\Currencies\CurrencyExchange.cs" />
+    <Compile Include="Entities\WarehouseEntities\IItemType.cs" />
+    <Compile Include="Entities\WarehouseEntities\SimpleAttributeType.cs" />
+    <Compile Include="Entities\WarehouseEntities\ValueAttributeType.cs" />
+    <Compile Include="Entities\WarehouseEntities\IAttributeType.cs" />
+    <Compile Include="Entities\WarehouseEntities\Distribution.cs" />
+    <Compile Include="Entities\Customers\SimpleCustomer.cs" />
+    <Compile Include="Entities\WarehouseEntities\IItem.cs" />
+    <Compile Include="Entities\WarehouseEntities\Supply.cs" />
+    <Compile Include="Entities\WarehouseEntities\Product\ProductItem.cs" />
+    <Compile Include="Entities\WarehouseEntities\Product\ProductType.cs" />
+    <Compile Include="Entities\Safety\SafetyPoint.cs" />
+    <Compile Include="Entities\WarehouseEntities\Product\ProductWarehouse.cs" />
+    <Compile Include="Entities\WarehouseEntities\SaleType.cs" />
+    <Compile Include="Entities\WarehouseEntities\Service\ServiceItem.cs" />
+    <Compile Include="Entities\WarehouseEntities\Service\ServiceType.cs" />
+    <Compile Include="Entities\WarehouseEntities\Service\ServiceWarehouse.cs" />
+    <Compile Include="Entities\WarehouseEntities\TaxEntity.cs" />
+    <Compile Include="Entities\Safety\TypeOfSafetyPoint.cs" />
+    <Compile Include="Entities\WarehouseEntities\Warehouse.cs" />
+    <Compile Include="Entities\RoleEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

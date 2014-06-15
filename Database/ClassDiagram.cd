@@ -1,0 +1,1167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Database.Entities.Customers.Customer" Collapsed="true">
+    <Position X="71.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Customers.Firm" Collapsed="true">
+    <Position X="70.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Customers.SimpleCustomer" Collapsed="true">
+    <Position X="72.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.EmployeeEntity" Collapsed="true">
+    <Position X="82" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.RoleEntity" Collapsed="true">
+    <Position X="75" Y="14.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.UserEntity" Collapsed="true">
+    <Position X="75" Y="16.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.EStore.Category.EStoreCategory" Collapsed="true">
+    <Position X="75" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.EStore.EStore" Collapsed="true">
+    <Position X="83.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Factures.Facture" Collapsed="true">
+    <Position X="76.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Factures.FactureItem" Collapsed="true">
+    <Position X="78.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Safety.SafetyPoint" Collapsed="true">
+    <Position X="76.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Safety.SafetyPointGroup" Collapsed="true">
+    <Position X="78.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Safety.TypeOfSafetyPoint" Collapsed="true">
+    <Position X="83.75" Y="15.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Stores.Complaint" Collapsed="true">
+    <Position X="74.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.Stores.StoreEntity" Collapsed="true">
+    <Position X="78.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Currencies.Currency" Collapsed="true">
+    <Position X="76.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Currencies.CurrencyExchange" Collapsed="true">
+    <Position X="78.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Distribution" Collapsed="true">
+    <Position X="80.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.SaleType" Collapsed="true">
+    <Position X="80.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.SimpleAttributeType" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="76.75" Y="15.25" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Supply" Collapsed="true">
+    <Position X="80.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.TaxEntity" Collapsed="true">
+    <Position X="82" Y="15.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.ValueAttributeType" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="76.75" Y="16.25" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Warehouse" Collapsed="true">
+    <Position X="78.5" Y="16.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Product.ProductItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="80.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Product.ProductType" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="82" Y="13.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Product.ProductWarehouse" Collapsed="true">
+    <Position X="83.75" Y="13.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Service.ServiceItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="82" Y="14.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Service.ServiceType" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="83.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Database.Entities.WarehouseEntities.Service.ServiceWarehouse" Collapsed="true">
+    <Position X="75" Y="15.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Account.DetailsUserDto" Collapsed="true">
+    <Position X="5.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Account\DetailsUserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Account.EditUserDto" Collapsed="true">
+    <Position X="0.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>DTOs\Account\EditUserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Account.RegisterUserDto" Collapsed="true">
+    <Position X="0.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAQAAAAAgIAA=</HashCode>
+      <FileName>DTOs\Account\RegisterUserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.LogOnDto" Collapsed="true">
+    <Position X="0.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAACAQAAAAAgAAA=</HashCode>
+      <FileName>DTOs\Account\LogOnDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.AttributeDto" Collapsed="true">
+    <Position X="0.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgBAAAAAA=</HashCode>
+      <FileName>DTOs\AttributeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.AttributeTypeDto" Collapsed="true">
+    <Position X="2.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>DTOs\AttributeTypeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.SearchItemDto" Collapsed="true">
+    <Position X="0.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQBAACAAAAAAACAAACAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\SearchItemDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.AddNewSafetyPointDto" Collapsed="true">
+    <Position X="11" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAMACAA=</HashCode>
+      <FileName>DTOs\Admin\AddNewSafetyPointDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.AddSafetyPointGroup" Collapsed="true">
+    <Position X="12.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>DTOs\Admin\AddSafetyPointGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.AdminDisplayUserDto" Collapsed="true">
+    <Position X="16.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAACAAAAAAAQAAEAAAAAA=</HashCode>
+      <FileName>DTOs\Admin\AdminDisplayUserDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.DisplaySafetyPointDto" Collapsed="true">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAACAAAAAAAAAoAAAAAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>DTOs\Admin\DisplaySafetyPointDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.DisplaySafetyPointGroupDto" Collapsed="true">
+    <Position X="2.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAABAgAAAA=</HashCode>
+      <FileName>DTOs\Admin\DisplaySafetyPointGroupDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.EditSafetyPointGroupDto" Collapsed="true">
+    <Position X="16.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAQAAAACAAAAAAAQAAAABAAAAAA=</HashCode>
+      <FileName>DTOs\Admin\EditSafetyPointGroupDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.SafetyPointGroupForUserManage" Collapsed="true">
+    <Position X="11" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>DTOs\Admin\SafetyPointGroupForUserManage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Admin.UserForManageSafetyPointGroups" Collapsed="true">
+    <Position X="9.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAQAAAAAAAAAAAAAAAACAAAAAQAAAAAAAAg=</HashCode>
+      <FileName>DTOs\Admin\UserForManageSafetyPointGroups.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Customers.DisplayCustomerDto" Collapsed="true">
+    <Position X="7.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAAAAAAAACAAAAAAAAAAI=</HashCode>
+      <FileName>DTOs\Customers\DisplayCustomerDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Employee.AddEmployeeDto" Collapsed="true">
+    <Position X="5.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIAGAAAAAAAAAAAAAAAAAAASAAAAACAQAAIAAAIAg=</HashCode>
+      <FileName>DTOs\Employee\AddEmployeeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Employee.DisplayEmployeeDto" Collapsed="true">
+    <Position X="11" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAGAAAAAAAAAAAAAAAAAAACgAIAAAAQAAoAAAAAg=</HashCode>
+      <FileName>DTOs\Employee\DisplayEmployeeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Employee.EditEmployeeDto" Collapsed="true">
+    <Position X="12.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIAGAAAAAAAAAAAAAAAAAAASAAIAACAAAAIAAAIAg=</HashCode>
+      <FileName>DTOs\Employee\EditEmployeeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Employee.SearchEmployeeDto" Collapsed="true">
+    <Position X="14.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAACgAIAAAAQAAoAAAAAg=</HashCode>
+      <FileName>DTOs\Employee\SearchEmployeeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.AddEStoreDto" Collapsed="true">
+    <Position X="9.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\EStore\AddEStoreDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreDto" Collapsed="true">
+    <Position X="0.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAQACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreCategoryDto.AddEStoreCategoryDto" Collapsed="true">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreCategoryDto\AddEStoreCategoryDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreCategoryDto.EditEStoreCategoryDto" Collapsed="true">
+    <Position X="14.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreCategoryDto\EditEStoreCategoryDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreCategoryDto.EStoreCategoryDto" Collapsed="true">
+    <Position X="4" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAICAAAAAAAQAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>DTOs\EStore\EStoreCategoryDto\EStoreCategoryDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreCategoryDto.EStoreCategoryManageDto" Collapsed="true">
+    <Position X="5.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreCategoryDto\EStoreCategoryManageDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayDetailDto" Collapsed="true">
+    <Position X="7.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreDisplayDto\EStoreDisplayDetailDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayDetailItemDto" Collapsed="true">
+    <Position X="9.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAQAAAAAAAJAAAAQABAAAAAAAAAACgAAAAgA=</HashCode>
+      <FileName>DTOs\EStore\EStoreDisplayDto\EStoreDisplayDetailItemDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayIndexDto" Collapsed="true">
+    <Position X="11" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreDisplayDto\EStoreDisplayIndexDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayItemsDto" Collapsed="true">
+    <Position X="12.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreDisplayDto\EStoreDisplayItemsDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayItemTypeDto" Collapsed="true">
+    <Position X="14.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>DTOs\EStore\EStoreDisplayDto\EStoreDisplayItemTypeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayMenuDto" Collapsed="true">
+    <Position X="16.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAiA=</HashCode>
+      <FileName>DTOs\EStore\EStoreDisplayDto\EStoreDisplayMenuDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreWarehouseDto.EStoreManageWarehousesDto" Collapsed="true">
+    <Position X="2.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DTOs\EStore\EStoreWarehouseDto\EStoreManageWarehousesDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.EStore.EStoreWarehouseDto.EStoreWarehouseDto" Collapsed="true">
+    <Position X="4" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>DTOs\EStore\EStoreWarehouseDto\EStoreWarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Factures.FactureAddDto" Collapsed="true">
+    <Position X="7.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AlFAQEhACEBkCQQAAIAABAhADCQqAAYAaAACgFARAEQ=</HashCode>
+      <FileName>DTOs\Factures\FactureAddDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Factures.FactureDto" Collapsed="true">
+    <Position X="9.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEBQEhAAAAgCQQAAIAABAgADCAgIAIAQAACgEAQAEA=</HashCode>
+      <FileName>DTOs\Factures\FactureDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Factures.FactureItemDto" Collapsed="true">
+    <Position X="11" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAQAAAAAIBAAAAAAARAAAAAAAAAAAAAgABEACA=</HashCode>
+      <FileName>DTOs\Factures\FactureItemDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Factures.FactureViewDto" Collapsed="true">
+    <Position X="12.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQQAAAAAAAAAAAAAIAAAQAACgAAQAAA=</HashCode>
+      <FileName>DTOs\Factures\FactureViewDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Factures.FirmDto" Collapsed="true">
+    <Position X="14.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAQAAAAAAAAAAAAAAQAAAAAAAACAAAAIEAAABI=</HashCode>
+      <FileName>DTOs\Factures\FirmDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Factures.FirmViewDto" Collapsed="true">
+    <Position X="16.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAIEAAABA=</HashCode>
+      <FileName>DTOs\Factures\FirmViewDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Factures.ExchangeDto" Collapsed="true">
+    <Position X="5.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Currencies\ExchangeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Inventary.AddAttributeDto" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAABA=</HashCode>
+      <FileName>DTOs\Inventary\AddAttributeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Inventary.DisplayProductAttributeDto" Collapsed="true">
+    <Position X="14.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Inventary\DisplayProductAttributeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Inventary.DisplayProductDto" Collapsed="true">
+    <Position X="16.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAQAAAAAAABQAAARABAAAAAAAAAACgCAACAA=</HashCode>
+      <FileName>DTOs\Inventary\DisplayProductDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Inventary.DisplayServiceDto" Collapsed="true">
+    <Position X="4" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Inventary\DisplayServiceDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Inventary.ManageProductAttributeDto" Collapsed="true">
+    <Position X="2.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAgAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Inventary\ManageProductAttributeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Inventary.ManageProductDto" Collapsed="true">
+    <Position X="4" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAABQAAAAAAABQAAAxARGAAAAAAAAADgAQACAA=</HashCode>
+      <FileName>DTOs\Inventary\ManageProductDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Inventary.SearchItemByAttributeDto" Collapsed="true">
+    <Position X="16.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABAAAAAAAgAAiAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Inventary\SearchItemByAttributeDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.ComplaintDto" Collapsed="true">
+    <Position X="4" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAgAIAEAAARAAAAAAAAAAAAAAAAgg=</HashCode>
+      <FileName>DTOs\Store\ComplaintDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.DisplayStoreDto" Collapsed="true">
+    <Position X="7.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAACAAAAAAAAIAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Store\DisplayAllStoreDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.ReturnDto" Collapsed="true">
+    <Position X="9.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAgAIAEAAAAABAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>DTOs\Store\ReturnDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.SimpleDisplayStoreDto" Collapsed="true">
+    <Position X="5.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIgQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Store\SimpleDisplayStoreDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.SellDto" Collapsed="true">
+    <Position X="4" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAIAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Store\SimpleDisplayStoreDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.SimpleSellItemDto" Collapsed="true">
+    <Position X="9.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAQAAAAAAAAAAAAQAAAAAQAAAAAAAgAAAAAA=</HashCode>
+      <FileName>DTOs\Store\SimpleSellItemDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.SoldItemDto" Collapsed="true">
+    <Position X="11" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAQAAAAAAgIIAAAQAQQAAAAAAAAAAgAAAAgA=</HashCode>
+      <FileName>DTOs\Store\SoldItemDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.Store.StoreSellDto" Collapsed="true">
+    <Position X="12.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAIAEAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Store\StoreSellDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.ViewModelsOnly.RemoteAttributeModel" Collapsed="true">
+    <Position X="2.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\ViewModelsOnly\RemoteAttributeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.ViewModelsOnly.RemoveItemFromSpecyficWarehouse" Collapsed="true">
+    <Position X="4" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\ViewModelsOnly\RemoveItemFromSpecyficWarehouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.ViewModelsOnly.RemoveSafetyPointFromGroup" Collapsed="true">
+    <Position X="5.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>DTOs\ViewModelsOnly\RemoveSafetyPointFromGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.ViewModelsOnly.RemoveSafetyPointGroupModel" Collapsed="true">
+    <Position X="7.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>DTOs\ViewModelsOnly\RemoveSafetyPointGroupModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.AddWarehouseDto" Collapsed="true">
+    <Position X="14.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\AddWarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.DisplaySpecyficWarehouse" Collapsed="true">
+    <Position X="5.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAIAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\DisplaySpecyficWarehouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.DisplayWarehouseDto" Collapsed="true">
+    <Position X="9.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAIAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\DisplayWarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.EditWarehouseDto" Collapsed="true">
+    <Position X="2.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAQAQAAAAAgERAIAAAAAAiAAAIAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\EditWarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.ManageProductWarehouseDto" Collapsed="true">
+    <Position X="5.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAgAAQAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\ManageProductWarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.ProductItemForManageProductWarehouseDto" Collapsed="true">
+    <Position X="12.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAQAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\ProductItemForManageProductWarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.ProductWarehouseDto" Collapsed="true">
+    <Position X="16.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\ProductWarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.WarehouseDto" Collapsed="true">
+    <Position X="11" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\WarehouseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Distributions.AddDistributionComplete" Collapsed="true">
+    <Position X="2.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Distributions\AddDistributionComplete.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Distributions.AddDistributionDto" Collapsed="true">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgACAAJAAAAAQAABQAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Distributions\AddDistributionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Distributions.SelectedItem" Collapsed="true">
+    <Position X="2.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAgAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Distributions\AddDistributionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Distributions.DisplayDistributionDto" Collapsed="true">
+    <Position X="9.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAQCAAAAAAAAABAAQAAAAAAAAAABAAAAQA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Distributions\DisplayDistributionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Distributions.EditDistributionDto" Collapsed="true">
+    <Position X="11" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAQCAAAAAAAAABABSAAAAAAAAAAAAAAAQE=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Distributions\EditDistributionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Distributions.PerformDistributionDto" Collapsed="true">
+    <Position X="7.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAQCAABAAAAAABAASAAAAAAAAAABAAAAQA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Distributions\PerformDistributionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Distributions.SearchDistributionDto" Collapsed="true">
+    <Position X="12.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAgAAAAAAABAQQAAAAAAAAAABAABAQA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Distributions\SearchDistributionDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Items.DisplayItemDto" Collapsed="true">
+    <Position X="12.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAQAAAAAAAJAAAAQABAAAAAAAAAACgAAAAgA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Items\DisplayItemDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Items.SimpleItemDto" Collapsed="true">
+    <Position X="7.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAQAQAQACAAAAAJAAAAQAAAAAAAAAAAAAgAAAAgA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Items\SimpleItemDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Supplies.ProductAddDto" Collapsed="true">
+    <Position X="9.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAQAAAABAARAAAAQQAAAAAAAACAACgAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Supplies\ProductAddDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Supplies.ProductDto" Collapsed="true">
+    <Position X="11" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAIAAQAAAABAAJAAAAQQIAAAAAAACAAIhAAQAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Supplies\ProductDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Supplies.ProductViewDto" Collapsed="true">
+    <Position X="14.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAABAAAAQAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Supplies\ProductViewDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Supplies.SupplyAddDto" Collapsed="true">
+    <Position X="14.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Supplies\SupplyAddDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Supplies.SupplyDto" Collapsed="true">
+    <Position X="16.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAABAAACAAAhAAgAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Supplies\SupplyDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Supplies.SupplyEditDto" Collapsed="true">
+    <Position X="0.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAABAAACAAAhAAgAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Supplies\SupplyEditDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Supplies.SupplyViewDto" Collapsed="true">
+    <Position X="2.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAABAAACAAAhAAgAAQ=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Supplies\SupplyViewDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Taxes.TaxAddDto" Collapsed="true">
+    <Position X="4" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Taxes\TaxAddDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Taxes.TaxDto" Collapsed="true">
+    <Position X="5.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Taxes\TaxDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLogic.DTOs.WarehouseDtos.Taxes.TaxEditDto" Collapsed="true">
+    <Position X="7.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Taxes\TaxEditDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Admin.ISafetyPointsLogic">
+    <Position X="32.25" Y="7.25" Width="2.5" />
+    <Members>
+      <Property Name="AddSafetyPointGroupMapper" Hidden="true" />
+      <Property Name="DispalySafetyPointDtoMapper" Hidden="true" />
+      <Property Name="EditSafetyPointGroupDtoMapper" Hidden="true" />
+      <Property Name="SafetyPointGroupsRepository" Hidden="true" />
+      <Property Name="SafetyPointMapper" Hidden="true" />
+      <Property Name="SafetyPointRepository" Hidden="true" />
+      <Property Name="TypesOfSafetyPointsRepository" Hidden="true" />
+      <Property Name="WarehouseRepository" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQBSAAAEAEAgAAACACBAIgARQAAAAAACAIAAAAAAUE=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Admin\ISafetyPointsLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Admin.IUserManagementAdminLogic">
+    <Position X="32.5" Y="11.25" Width="2.75" />
+    <Members>
+      <Property Name="AdminDisplayUserDtoMapper" Hidden="true" />
+      <Property Name="SafetyPointGroupForUserManageMapper" Hidden="true" />
+      <Property Name="SafetyPointGroupsRepository" Hidden="true" />
+      <Property Name="UserDataBaseRepository" Hidden="true" />
+      <Property Name="UserForManageSafetyPointGroupsMapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQBAAAAAAAAAAABAAAAAAAAAYAAAAAAAgAAAGQAA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Admin\IUserManagementAdminLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Employee.IEmployeeLogic">
+    <Position X="29.75" Y="10" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAADAASAAAAAAAAAAAAAAAAIAgAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Employee\IEmployeeLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.EStore.IEStoreDisplayLogic">
+    <Position X="35.25" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\EStore\IEStoreDisplayLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.EStore.IEStoreManagementLogic">
+    <Position X="32.5" Y="13.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAQAAAAYAAAAgAAAkAAQAAEQYIAICAg=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\EStore\IEStoreManagementLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Factures.IFactureLogic">
+    <Position X="27.25" Y="13" Width="1.5" />
+    <Members>
+      <Property Name="CurrencyRepository" Hidden="true" />
+      <Property Name="ExchangeMapper" Hidden="true" />
+      <Property Name="FactureItemMapper" Hidden="true" />
+      <Property Name="FactureMapper" Hidden="true" />
+      <Property Name="FactureRepository" Hidden="true" />
+      <Property Name="FactureViewMapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAEAAIQAAAAAAAAAABaAAEAAEAQAAAEgAoAAEAAAAA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Factures\IFactureLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.IItemManagementLogic">
+    <Position X="29.25" Y="13.25" Width="2.75" />
+    <Members>
+      <Property Name="AttributeRepository" Hidden="true" />
+      <Property Name="AttributeTypeRepository" Hidden="true" />
+      <Property Name="DisplayProductAttributeDtoMapper" Hidden="true" />
+      <Property Name="DisplayProductDtoMapper" Hidden="true" />
+      <Property Name="ItemRepository" Hidden="true" />
+      <Property Name="ManageProductAttributeDtoMapper" Hidden="true" />
+      <Property Name="ManageProductDtoMapper" Hidden="true" />
+      <Property Name="ProductTypeRepository" Hidden="true" />
+      <Property Name="ProductWarehouseRepository" Hidden="true" />
+      <Property Name="SaleTypeRepository" Hidden="true" />
+      <Property Name="SearchItemByAttributeDtoMapper" Hidden="true" />
+      <Property Name="SearchProductItemDtoMapper" Hidden="true" />
+      <Property Name="ServiceWarehouseRepository" Hidden="true" />
+      <Property Name="TaxRepository" Hidden="true" />
+      <Property Name="WarehouseRepository" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>MUABAACAAJBQCAAAAAAEAAAIBEBAABUAAAAIQABAgAA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\IItemManagementLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.IUserManagementLogic">
+    <Position X="35.5" Y="10.75" Width="2.25" />
+    <Members>
+      <Property Name="LogOnMapper" Hidden="true" />
+      <Property Name="RoleDataBaseRepository" Hidden="true" />
+      <Property Name="UserDataBaseRepository" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAQAAAAQAAAAQAAAAAAAAAAAARAAAAAEABAAAAAgA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\IUserManagementLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Store.IStoreLogic">
+    <Position X="35.25" Y="13.75" Width="2" />
+    <Members>
+      <Property Name="DisplayStoreDtoMapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQgAgAAAAIAAAAAAAAAAAAgAAAAACAEQQ=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Store\IStoreLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Warehouse.IDistributionLogic">
+    <Position X="29.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAgAEAACAAAAIAAAAAAAAAAAAAAAAIAAABgA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Warehouse\IDistributionLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Warehouse.IWarehouseLogic">
+    <Position X="33.5" Y="18.25" Width="3.25" />
+    <Members>
+      <Property Name="AddWarehouseDtoMapper" Hidden="true" />
+      <Property Name="DisplaySpecyficWarehouseMapper" Hidden="true" />
+      <Property Name="DisplayWarehouseMapper" Hidden="true" />
+      <Property Name="EditWarehouseDtoMapper" Hidden="true" />
+      <Property Name="ProductWarehouseRepository" Hidden="true" />
+      <Property Name="ServiceWarehouseRepository" Hidden="true" />
+      <Property Name="WarehouseRepository" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABABACAAIIAA0AAAAgAAAIAAQAAAQBAAAAAAABAEAAg=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Warehouse\IWarehouseLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Warehouse.Supplies.ISupplyLogic">
+    <Position X="27.25" Y="7.5" Width="2.25" />
+    <Members>
+      <Property Name="AttributeMapper" Hidden="true" />
+      <Property Name="AttributesRepository" Hidden="true" />
+      <Property Name="AttributeTypeMapper" Hidden="true" />
+      <Property Name="ProductAddMapper" Hidden="true" />
+      <Property Name="ProductMapper" Hidden="true" />
+      <Property Name="ProductTypesRepository" Hidden="true" />
+      <Property Name="ProductWarehousesMapper" Hidden="true" />
+      <Property Name="SaleTypesRepository" Hidden="true" />
+      <Property Name="SupplyAddMapper" Hidden="true" />
+      <Property Name="SupplyEditMapper" Hidden="true" />
+      <Property Name="SupplyMapper" Hidden="true" />
+      <Property Name="SupplyRepository" Hidden="true" />
+      <Property Name="SupplyViewMapper" Hidden="true" />
+      <Property Name="WarehouseRepository" Hidden="true" />
+      <Property Name="WarehousesMapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>SEEBaAAAACAKgAhgERHIQAAAABSEgAAAAAAABAAAAAI=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Warehouse\Supplies\ISupplyLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Warehouse.Taxes.ITaxManagementLogic">
+    <Position X="30.25" Y="16.5" Width="2" />
+    <Members>
+      <Property Name="TaxAddMapper" Hidden="true" />
+      <Property Name="TaxEditMapper" Hidden="true" />
+      <Property Name="TaxMapper" Hidden="true" />
+      <Property Name="TaxRepository" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IgAAAAAAEAAAAAEAAgAAAAAAAAkAAAQAAAAAAAAACAA=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Warehouse\Taxes\ITaxManagementLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.Customer.ICustomerRepository">
+    <Position X="35.25" Y="8.75" Width="1.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgQAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\Customer\ICustomerRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.Employee.IEmployeeRepository">
+    <Position X="54.75" Y="13.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\Employee\IEmployeeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.EStore.EStoreCategory.IEStoreCategoryRepository">
+    <Position X="55.5" Y="19.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIYAAAAAAAAAAABAAAAABAAAgAAAABAGAgAAAAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\EStore\EStoreCategory\IEStoreCategoryRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.EStore.EStoreDisplay.IEStoreDisplayRepository">
+    <Position X="49.25" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQCACAAAAAAAAAAAAAQAAACAAAAEA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\EStore\EStoreDisplay\IEStoreDisplayRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.EStore.IEStoreRepository">
+    <Position X="53.25" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAQBIAAAQBAAAAAAAAAAAAgAAAAAEAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\EStore\IEStoreRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.FactureRepositories.IFactureRepository">
+    <Position X="49.25" Y="16.5" Width="2" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAoAAEAQAAAAAEBAAAAAAAAAAAAAAAwAQAEAAAI=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\FactureRepositories\IFactureRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.Safety.ISafetyPointGroupsRepository">
+    <Position X="52" Y="13.25" Width="2.5" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAEAAABACAAAAIAAAAAAAAAAAgIAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\Safety\ISafetyPointGroupsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.Safety.ISafetyPointRepository">
+    <Position X="58.5" Y="8.5" Width="2" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAABAAAAAAAAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\Safety\ISafetyPointRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.Safety.ITypesOfSafetyPointsRepository">
+    <Position X="55.25" Y="11.25" Width="2.5" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\Safety\ITypesOfSafetyPointsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.Store.IComplaintRepository">
+    <Position X="52.75" Y="11" Width="1.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAAAAAQ=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\Store\IComplaintRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.Store.IStoreRepository">
+    <Position X="56.75" Y="14.5" Width="1.5" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\Store\IStoreRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.Currencies.ICurrencyRepository">
+    <Position X="58" Y="10.25" Width="1.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAACAAAAAAACAAAAAAAAAAAgAAQAAAACA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\Currencies\ICurrencyRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.InventaryRepositories.IAttributeTypeRepository">
+    <Position X="57.75" Y="12.75" Width="2" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\InventaryRepositories\IAttributeTypeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.SupplyRepositories.ISupplyRepository">
+    <Position X="57.75" Y="16.25" Width="1.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAKAAAAAACAABgAABAQAAAAAAEAAAAAEAATAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\SupplyRepositories\ISupplyRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.TaxRepositories.ITaxRepository">
+    <Position X="52.25" Y="16.75" Width="1.5" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IgAAAAAAAAAAAAEAAAAAAAAAAAkAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\TaxRepositories\ITaxRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.IDistributionRepository">
+    <Position X="55" Y="16.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAgAABAAAAAAAAAAAAAAAgCAgAAAAAAAAQ=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\IDistributionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.IProductWarehouseRepository">
+    <Position X="60.75" Y="10.5" Width="2.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAAAABAAAAAAAAAAAAAAAACAgEAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\IProductWarehouseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.IServiceWarehouseRepository">
+    <Position X="49" Y="10.5" Width="2.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAABAAAAAgAAAAAAAAAAAAgAAQAACAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\IServiceWarehouseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.IWarehouseRepository">
+    <Position X="60.5" Y="16.25" Width="3" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAQAAAAABAAAAAAAAAQAAAQAAAAgJgQAAEAAQ=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\IWarehouseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.IItemRepository">
+    <Position X="49.25" Y="13.25" Width="1.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAIQAAAAAAAAAAAAADAAAAAAAAAAAAgAATACAAEA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\IItemRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.IProductTypeRepository">
+    <Position X="64.25" Y="10.75" Width="2" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\IProductTypeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.IRoleDataBaseRepository">
+    <Position X="55.75" Y="7.75" Width="2" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAEAAAAAAAAAAAAAAAAAAABAAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\IRoleDataBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.ISaleTypeRepository">
+    <Position X="62" Y="8.25" Width="1.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAQACAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\ISaleTypeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.IUserDataBaseRepository">
+    <Position X="60.75" Y="13.25" Width="2.75" />
+    <Members>
+      <Property Name="DataBaseContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAQAAAAAAABAAAAAAAAAIAAAAEEAAQAEAAgA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\IUserDataBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Database.Entities.WarehouseEntities.IAttributeType" Collapsed="true">
+    <Position X="69.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Database.Entities.WarehouseEntities.IItem" Collapsed="true">
+    <Position X="71.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Database.Entities.WarehouseEntities.IItemType" Collapsed="true">
+    <Position X="73" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="Database.Entities.WarehouseEntities.DistributionState" Collapsed="true">
+    <Position X="70.5" Y="17" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="Database.Entities.WarehouseEntities.ItemState" Collapsed="true">
+    <Position X="72.5" Y="17" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="BussinessLogic.DTOs.WarehouseDtos.Items.ItemTypeEnum" Collapsed="true">
+    <Position X="0.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\WarehouseDtos\Items\ItemTypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

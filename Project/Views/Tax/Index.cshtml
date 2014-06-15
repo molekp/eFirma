@@ -1,0 +1,51 @@
+﻿@using ResourceLibrary
+@model IEnumerable<BussinessLogic.DTOs.WarehouseDtos.Taxes.TaxDto>
+@{
+　　Layout = "~/Views/Tax/_LayoutTax.cshtml";
+}
+@{
+    ViewBag.Title = "Tax";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>    
+    <table>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                @Html.LabelFor(m => Model.First().TaxName)
+            </td>
+            <td>
+                @Html.LabelFor(m => Model.First().TaxValue)
+            </td>
+        </tr>
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>
+                @item.IdTax
+            </td>
+            <td>
+                @item.TaxName
+            </td>
+            <td>
+                @item.TaxValue
+            </td>
+            <td>
+                @Ajax.ActionLink("Edit", "EditTax", new { idTax = item.IdTax }, new AjaxOptions { HttpMethod = "POST" })
+            </td>
+            <td>
+                @Ajax.ActionLink("Delete", "DeleteTax", new { idTax = item.IdTax }, new AjaxOptions { HttpMethod = "POST" })
+            </td>
+            
+        </tr>
+        }
+    </table>   
+   
+</article>

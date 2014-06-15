@@ -1,0 +1,30 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.EStore.EStoreShipmentType.EStoreShipmentTypeManageDto
+@{
+    ViewBag.Title = "ManageCategoryEStore";
+    Layout = "~/Views/Shared/_LayoutEStore.cshtml";
+}
+
+<a href="#" onclick="history.go(-1)"> Go Back</a>
+@Html.ActionLink("Add shipment type", "AddEStoreShipmentType", "EStore", new { a_idEStore = Model.IdEStore}, null)
+
+@if (Model.EStoreShipmentTypeDto.Any())
+{
+    <table>
+        <tr>
+            <td>Name</td>  
+            <td>Sort order</td>          
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        @foreach (var item in Model.EStoreShipmentTypeDto)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.SortOrder</td>
+                <td>@Html.ActionLink(Resource.EditButton, "EditEStoreShipmentType", new { a_idEStore = Model.IdEStore,  a_shipmentType = item.IdEStoreShipmentType })</td>
+                <td>@Html.ActionLink(Resource.DeleteButton, "DeleteEStoreShipmentType", new { a_idEStore = Model.IdEStore, a_shipmentType = item.IdEStoreShipmentType })</td>
+            </tr>
+        }
+    </table>
+}

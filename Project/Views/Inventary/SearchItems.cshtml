@@ -1,0 +1,93 @@
+﻿@using BussinessLogic.DTOs
+@using ResourceLibrary
+@model IEnumerable<SearchItemDto>
+@{
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+@{
+    ViewBag.Title = "Inventary";
+}
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var mydata = new Array();
+
+        @foreach (SearchItemDto item in Model)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@item.IdItem",
+                    itemName: "@item.ItemName",
+                    itemTypeName: "@item.ItemTypeName",
+                    itemPrice: "@item.ItemPrice",
+                    itemState: "@item.ItemState",
+                    warehouseName: "@item.WarehouseName",
+                    typeOfSpecyficWarehouse: "@item.TypeOfSpecyficWarehouse",
+                    specyficwarehouseId: "@item.IdSpecyficWarehouse",
+                    specyficWarehouseName: "@item.SpecyficWarehouseName"
+                });
+            
+            </text>
+        };
+
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            data: mydata,
+            colNames: ['Id', 'Item Name','Item type Name', 'Price', 'State', 'Warehouse name', 'Type of specyfic warehouse','Id', 'specyfic warehouse name','details','remove'],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 60, align: "right", sorttype: "text", searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'itemName', index: 'itemName', width: 200, align: "center", sorttype: "text", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']} },
+                { name: 'itemTypeName', index: 'itemTypeName', width: 150, align: "center", sorttype: "text", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']} },
+                { name: 'itemPrice', index: 'itemPrice', width: 80, align: "right", sorttype: "float", searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'itemState', index: 'itemState', width: 150, align: "center", sorttype: "text", searchoptions: { sopt: ['eq', 'bw', 'bn', 'cn', 'nc', 'ew', 'en'] } },
+                { name: 'warehouseName', index: 'warehouseName', width: 200, sorttype: "text", align: "center", searchoptions: { sopt: ['eq', 'bw', 'bn', 'cn', 'nc', 'ew', 'en'] } },
+                { name: 'typeOfSpecyficWarehouse', index: 'typeOfSpecyficWarehouse', width: 150, sorttype: 'text', align: "center", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']} },
+                { name: 'specyficwarehouseId',hidden : true, index: 'specyficwarehouseId', width: 20, sorttype: 'text', align: "center", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']} },
+                { name: 'specyficWarehouseName', index: 'specyficWarehouseName', width: 200, align: "center", sorttype: "text", searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']} },
+                { name: 'details', width: 50,search: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            return '<a href="/Inventary/DisplayItem?a_itemId=' + rowObject.itemId + '">' + "details" + '</a>';
+                        } 
+                    },
+                { name: 'remove', width: 50,search: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            return '<a href="/Inventary/RemoveItemFrom'+rowObject.typeOfSpecyficWarehouse+'?a_itemId=' + rowObject.itemId + '&a_specyficWarehouse='+rowObject.specyficwarehouseId+'">' + "remove" + '</a>';
+                        } 
+                    }
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'itemId',
+            sortorder: "asc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Items"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false, view: true }, {}, {}, {},
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+         jQuery("#list1").jqGrid('filterToolbar',{searchOperators : true,stringResult: true, searchOnEnter: false, defaultSearch : "cn"});
+       
+    });
+    
+</script>
+
+<div id="pager" ></div>
+    <br />
+    <br />
+<table id="list1" ></table>
+<div id="pager1" ></div>

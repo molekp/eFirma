@@ -1,0 +1,92 @@
+﻿@model BussinessLogic.DTOs.Store.SimpleDisplayStoreDto
+
+@{
+    ViewBag.Title = "Welcome in store "+Model.Name+"!";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+ 
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Sell id', 'State',  'Execution time', 'Manage' ],
+            colModel: [
+                { name: 'distributionId', index: 'distributionId', width: 150, align: "center", sorttype: "text" },
+                { name: 'state', index: 'state', width: 80, align: "center", sorttype: "float"  },
+                { name: 'executionTime', index: 'executionTime', width: 80, align: "center", sorttype: "text"  },
+                { name: 'Open', width: 80,align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="/Store/ManageSell?a_storeId=' + @Model.IdStore + '&a_distributionId='+ rowObject.distributionId+'">' + "manage" + '</a>';
+                    },
+                }
+            ],
+            editurl: "clientArray",
+            loadonce: true,
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            cellEdit: false,
+            cellsubmit: "clientArray",
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Sells"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true, }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (var distribution in Model.Sells)
+        {
+            <text>
+                mydata.push({
+                    distributionId: "@distribution.DistributionId",
+                    state: "@distribution.DistributionState",
+                    executionTime: "@distribution.ExecuteTime",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+    });
+    
+</script>
+
+
+
+
+
+
+
+<nav>
+    <ul id="menu">
+        <li>@Html.ActionLink("New sell", "NewSell", "Store", new {a_storeId = Model.IdStore},null)</li>
+        <li>@Html.ActionLink("Sold items", "Sold", "Store", new {a_storeId = Model.IdStore},null)</li>
+    </ul>
+</nav>
+
+
+<article>
+    <table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>

@@ -1,0 +1,18 @@
+﻿<div class="font-size-085" style="z-index:1001;position: absolute; top: 0;  height:22px; width:100%; color: #fff; background: #000">
+    <div class="width-950 margin-center text-align-right">
+        @*@if(Request.IsAuthenticated) {
+            <span class="span01">@Html.ActionLink("wyloguj", "LogOff", "Account", null, new { @class = "color-font-fff" })</span>
+            <span style="width: 20px; display: inline-block"></span>
+        }
+        else
+        {
+            <span class="span01">@Html.ActionLink("logowanie", "Login", "Account", new { returnUrl = "/Bargain/Index" }, new { @class = "color-font-fff" })</span>
+            <span style="width: 20px; display: inline-block"></span>
+            <span class="span01">@Html.ActionLink("załóż konto", "Register", "Account", null, new { @class = "color-font-fff" })</span>
+            <span style="width: 20px; display: inline-block"></span>
+        }*@
+                    
+        <span class="span02"><a href="/ShoppingCart" class="color-font-fff display-inline-block" title="Pokaż koszyk">koszyk <label id="basketValue" >@*@{Html.RenderAction("BasketTotal", "ShoppingCart");}*@ PLN</label> </a>                   
+        </span>
+    </div>
+</div>  

@@ -1,0 +1,47 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Store.ComplaintDto
+
+@{
+    ViewBag.Title = "Complaint";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+@using (Html.BeginForm())
+{
+     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x=>x.DistributionId)
+    @Html.HiddenFor(x=>x.ItemId)
+    @Html.HiddenFor(x=>x.ItemType)
+    @Html.HiddenFor(x=>x.StoreId)
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @if (Model.CustomerName != null)
+                {
+                    @Html.LabelFor(m => m.CustomerName)
+                    @Html.TextBoxFor(m => m.CustomerName)
+                }
+                else
+                {
+                    @Html.LabelFor(x=>x.ChoicesCustomer)
+                    @Html.DropDownListFor(x => x.SelectedCustomer, Model.ChoicesCustomer)                                                                  
+                }
+                
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ComplaintDescription)
+                @Html.EditorFor(m => m.ComplaintDescription)
+                @Html.ValidationMessageFor(m => m.ComplaintDescription)
+            </li>
+        </ol>
+        <input type="submit" value="@Resource.createButton" />
+    </fieldset>
+}

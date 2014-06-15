@@ -1,0 +1,54 @@
+﻿@model BussinessLogic.DTOs.Factures.FirmAddDto
+
+ 
+@{
+    Layout = "~/Views/Shared/_LayoutFacture.cshtml";
+    ViewBag.Title = "Edit Firm";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>    
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+        <fieldset>
+            <legend>Add Firm form</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.Name)
+                    @Html.EditorFor(m => m.Name)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Address)
+                    @Html.EditorFor(m => Model.Address)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.NIP)
+                    @Html.EditorFor(m => m.NIP)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Phone)
+                    @Html.EditorFor(m => Model.Phone)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Info)
+                    @Html.EditorFor(m => Model.Info)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.BankAccountNumber)
+                    @Html.EditorFor(m => Model.BankAccountNumber)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.BankInfo)
+                    @Html.EditorFor(m => Model.BankInfo)
+                </li>
+                <input type="submit" value="Save" />
+            </ol>
+        </fieldset>
+    }
+
+</article>

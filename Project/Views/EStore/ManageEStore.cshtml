@@ -1,0 +1,18 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.EStore.EStoreDto
+@{
+    ViewBag.Title = "ManageEStore";
+    Layout = "~/Views/Shared/_LayoutEStore.cshtml";
+}
+
+<a href="#" onclick="history.go(-1)"> Go Back</a>
+
+@Html.ActionLink("Warehouse", "ManageWarehouseEStore", "EStore", new { a_idEStore = Model.IdEStore }, null)
+
+@Html.ActionLink("ShipmentType", "ManageShipmentTypeEStore", "EStore", new { a_idEStore = Model.IdEStore }, null)
+
+@*@Html.ActionLink("Order", "OrderEStore", "EStore")
+
+@Html.ActionLink("Customer", "AddEStore", "EStore")
+
+@Html.ActionLink("Discount", "AddEStore", "EStore")*@

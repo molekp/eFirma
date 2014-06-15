@@ -1,0 +1,129 @@
+﻿@model BussinessLogic.DTOs.WarehouseDtos.Distributions.DisplayDistributionDto
+
+@{
+    ViewBag.Title = "Display Distribution";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Item Name','Item type', 'Price', 'Quantity', 'Vin','Item state','Expiration time','Sale type'],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 20, align: "right", sorttype: "text" },
+                { name: 'itemName', index: 'itemName', width: 200, align: "center", sorttype: "text" },
+                { name: 'itemType', index: 'itemType', width: 80, align: "center", sorttype: "float" },
+                { name: 'price', index: 'price', width: 80, sorttype: "float", align: "center" },
+                { name: 'quantity', index: 'quantity', width: 80, sorttype: 'text', align: "center" },
+                { name: 'vin', index: 'vin', width: 110, sorttype: 'text', align: "center" },
+                { name: 'itemState', index: 'itemState', width: 80, sorttype: 'text', align: "center" },
+                { name: 'expirationTime', index: 'expirationTime', width: 120, align: "center", sorttype: "text" },
+                { name: 'saleType', index: 'saleType', width: 80, align: "center", sorttype: "text" },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Supplies"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (var item in Model.Items)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@item.IdItem",
+                    itemName: "@item.Name",
+                    itemType: "@item.ItemType",
+                    price: "@item.Price",
+                    quantity: "@item.Quantity",
+                    vin: "@item.Vin",
+                    itemState: "@item.ItemState",
+                    expirationTime: "@item.ExpirationTime",
+                    saleType: "@item.SaleType",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+<article>
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x=>x.IdDistribution)</td>
+            <td>@Html.DisplayTextFor(x=>x.IdDistribution)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.State)</td>
+            <td>@Html.DisplayTextFor(x=>x.State)</td>
+            <td></td>
+        </tr>
+        @if (Model.Customer != null)
+        {
+            <tr>
+                <td>@Html.LabelFor(x=>x.Customer.Name)</td>
+                <td>@Html.DisplayTextFor(x => x.Customer.Name)</td>
+                <td>@Html.ActionLink("details","DisplayCustomer","Customer",new {a_idCustomer = Model.Customer.IdCustomer},null)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.Customer.Address)</td>
+                <td>@Html.DisplayTextFor(x => x.Customer.Address)</td>
+                <td></td>
+            </tr>
+        }
+        <tr>
+            <td>@Html.LabelFor(x=>x.DistributionCreatorName)</td>
+            <td>@Html.DisplayTextFor(x => x.DistributionCreatorName)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.DistributionCreateTime)</td>
+            <td>@Html.DisplayTextFor(x => x.DistributionCreateTime)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.DistributionTime)</td>
+            <td>@Html.DisplayTextFor(x => x.DistributionTime)</td>
+            <td></td>
+        </tr>
+        @Html.ActionLink("Edit", "EditDistribution",new {a_distributionId = Model.IdDistribution})
+    </table>
+    <div id="pager" ></div>
+    <br />
+    <br />
+    <table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>

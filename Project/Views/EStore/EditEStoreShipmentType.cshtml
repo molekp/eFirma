@@ -1,0 +1,51 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.EStore.EStoreShipmentType.AddOrEditEStoreShipmentTypeDto
+
+@{
+    ViewBag.Title = "AddEStore";
+    Layout = "~/Views/Shared/_LayoutEStore.cshtml";
+}
+
+<h2>You can edit category of eStore.</h2>
+
+<a href="#" onclick="history.go(-1)"> Go Back</a>
+
+ @using (Html.BeginForm("EditEStoreShipmentTypWithModel","EStore"))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset id="formFieldset">
+            <legend><b>Edytuj wysyłkę</b></legend>
+            <table id="formTable">
+<tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Sortorder)</td>
+                    <td>@Html.EditorFor(model => model.Sortorder)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Sortorder)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Info)</td>
+                    <td>@Html.EditorFor(model => model.Info)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Info)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.PriceShipment)</td>
+                    <td>@Html.EditorFor(model => model.PriceShipment)</td>
+                    <td>@Html.ValidationMessageFor(model => model.PriceShipment)</td>
+                </tr>
+                <tr>
+                    <td>@Html.HiddenFor(model => model.IdEStoreShipmentType)</td>
+                    <td>@Html.HiddenFor(model => model.IdEStore)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="button" value="@Resource.saveChanges" /></td>
+                    <td></td>
+                </tr>
+            </table>
+             @*@Html.ValidationMessage("AddEStore")*@
+        </fieldset>
+    }

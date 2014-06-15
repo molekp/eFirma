@@ -1,0 +1,37 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.WarehouseDtos.Taxes.TaxAddDto
+@{
+　　Layout = "~/Views/Tax/_LayoutTax.cshtml";
+}
+@{
+    ViewBag.Title = "Add Tax";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>    
+    
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+        <fieldset>
+            <legend>Add Tax form</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.TaxName)
+                    @Html.TextBoxFor(m => m.TaxName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.TaxValue)
+                    @Html.TextBoxFor(m => m.TaxValue)
+                </li>
+            </ol>
+            <input type="submit" value="Add" />
+        </fieldset>
+    }
+   
+</article>

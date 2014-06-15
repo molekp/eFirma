@@ -1,0 +1,86 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Admin.EditSafetyPointGroupDto
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $("#editButton").click(function () {
+            $("#editButton").attr("hidden", true);
+            $("#saveButton").attr("hidden", false);
+            $("#editName").attr("readonly", false);
+        });
+
+        $("#AddSafetyPoint").bind("change", function () {
+            $("#saveButton").attr("hidden", false);
+        });
+    });
+</script>
+
+
+
+<h2>Manage your Safety Point Group</h2>
+
+@Html.ActionLink("<--- Back", "SafetyPointGroups", "Admin")
+
+ @using (Html.BeginForm())
+ {
+        @Html.ValidationSummary(true)
+     <fieldset id="formFieldset">
+         @Html.HiddenFor(x=>x.IdSafetyPointGroup)
+         <legend><b>Dodaj użytkownika</b></legend>
+         <table id="formTable">
+             <tr>
+                 <td>@Html.LabelFor(model => model.NameOfsafetyPointGroup)</td>
+                 <td>@Html.TextBoxFor(model => model.NameOfsafetyPointGroup,htmlAttributes:new {@readonly="readonly", id="editName"})</td>
+                 <td>@Html.ValidationMessageFor(model => model.NameOfsafetyPointGroup)</td>
+                 <td><input type="button" value=@Resource.EditButton id="editButton"/></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+             @if (Model.SafetyPoints.Any())
+             {
+                 <tr>
+                     <td>@Html.LabelFor(model => model.SafetyPoints.First().NameOfsafetyPoint)</td>
+                     <td>@Html.LabelFor(model => model.SafetyPoints.First().NameTypeOfSafetyPoint)</td>
+                     <td>@Html.LabelFor(model => model.SafetyPoints.First().NameRecordInTable)</td>
+                     <td>@Html.LabelFor(model => model.SafetyPoints.First().Read)</td>
+                     <td>@Html.LabelFor(model => model.SafetyPoints.First().Write)</td>
+                     <td></td>
+                 </tr>
+                 foreach (var displaySafetyPointDto in Model.SafetyPoints)
+                 {
+                     <tr>
+                         <td>@displaySafetyPointDto.NameOfsafetyPoint</td>
+                         <td>@displaySafetyPointDto.NameTypeOfSafetyPoint</td>
+                         <td>@displaySafetyPointDto.NameRecordInTable</td>
+                         <td>@displaySafetyPointDto.Read</td>
+                         <td>@displaySafetyPointDto.Write</td>
+                         <td>@Html.ActionLink(Resource.RemoveSafetyPointFromGroup, "RemoveSafetyPointFromGroup", new { a_idSafetyPointGroup = Model.IdSafetyPointGroup, a_idSafetyPoint =displaySafetyPointDto.IdSafetyPoint})</td>
+                     </tr>
+                 }
+             }
+             else
+             {
+                 <tr>
+                     <td>No Safety Points in this Group</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+             }
+             <tr>
+                 <td>@Html.LabelFor(model => model.ChoicesToAddSafetyPointToGroup)</td>
+                 <td>@Html.DropDownListFor(model => model.IdNewAddSafetyPoint, Model.ChoicesToAddSafetyPointToGroup, htmlAttributes: new { id = "AddSafetyPoint" }) </td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td><input type="submit" class="button" hidden="true" id="saveButton"value=@Resource.saveChanges/></td>
+             </tr>
+         </table>
+     </fieldset>
+ }
+

@@ -1,0 +1,39 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Account.DetailsUserDto
+
+@{
+    ViewBag.Title = "title";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+
+<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+
+@Html.Partial("BackButtonPartial")
+
+<fieldset>
+        <legend>Change Password Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.DisplayFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.DisplayFor(m => m.Email)
+            </li>
+            <li>
+                @if (Request.Url != null)
+                {
+                    @Html.ActionLink("Manage", "Manage", new {a_returnUrl = Request.Url.PathAndQuery})
+                }
+                else
+                {
+                    @Html.ActionLink("Manage", "Manage");
+                }
+            </li>
+        </ol>
+    </fieldset>

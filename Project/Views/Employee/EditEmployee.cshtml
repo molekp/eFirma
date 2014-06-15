@@ -1,0 +1,68 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Employee.EditEmployeeDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+<article>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        @Html.HiddenFor(x=>x.IdEmployee)
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.Password)</td>
+                <td>@Html.PasswordFor(m => m.Password)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.ConfirmPassword)</td>
+                <td>@Html.PasswordFor(m => m.ConfirmPassword)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.FirstName)</td>
+                <td>@Html.EditorFor(x => x.FirstName)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.LastName)</td>
+                <td>@Html.EditorFor(x => x.LastName)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.Address)</td>
+                <td>@Html.EditorFor(x => x.Address)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.EMail)</td>
+                <td>@Html.EditorFor(x => x.EMail)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.Phone)</td>
+                <td>@Html.EditorFor(x => x.Phone)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.Salary)</td>
+                <td>@Html.EditorFor(x => x.Salary)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.BankAccountNumber)</td>
+                <td>@Html.EditorFor(x => x.BankAccountNumber)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.ChoicesRoles)</td>
+                <td>@Html.DropDownListFor(x => x.SelectedRole, Model.ChoicesRoles)</td>
+            </tr>
+            <tr>
+                <td><input type="submit" class="button" value=@Resource.EditButton /></td>
+                <td></td>
+            </tr>
+        </table>
+    }
+</article>

@@ -1,0 +1,37 @@
+﻿@using ResourceLibrary
+@model IEnumerable<BussinessLogic.DTOs.Admin.DisplaySafetyPointDto>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>This page shows all your safety points. You can add new or edit.</h2>
+
+@Html.ActionLink("Add new Safety Point", "AddSafetyPoint", "Admin")
+
+@if (Model.Any())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => Model.First().NameOfsafetyPoint)</td>
+            <td>@Html.LabelFor(m => Model.First().NameTypeOfSafetyPoint)</td>
+            <td>@Html.LabelFor(m => Model.First().NameRecordInTable)</td>
+            <td>@Html.LabelFor(m => Model.First().Read)</td>
+            <td>@Html.LabelFor(m => Model.First().Write)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var safetyPoint in Model)
+        {
+            <tr>
+                <td>@safetyPoint.NameOfsafetyPoint</td>
+                <td>@safetyPoint.NameTypeOfSafetyPoint</td>
+                <td>@safetyPoint.NameRecordInTable</td>
+                <td>@safetyPoint.Read</td>
+                <td>@safetyPoint.Write</td>
+                <td>@Html.ActionLink(Resource.DeleteButton, "DeleteSafetyPoint", new { a_idSafetyPoint=safetyPoint.IdSafetyPoint })</td>
+                <td>@Html.ActionLink(Resource.EditButton, "EditSafetyPoint", new { a_idSafetyPoint = safetyPoint.IdSafetyPoint })</td>
+            </tr>
+        }
+    </table>
+}
+

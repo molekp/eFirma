@@ -1,0 +1,96 @@
+﻿@using ResourceLibrary
+@using System.Web.Mvc.Html
+@model BussinessLogic.DTOs.WarehouseDtos.ManageProductWarehouseDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+@*<script src="/Scripts/multiselect/jquery.multiselect.js" type="text/javascript"></script>
+<link href="/Scripts/multiselect/jquery.multiselect.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/Scripts/multiselect/jquery-ui-1.8.21.custom.css" />*@
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+
+        $("#editButton").click(function () {
+            $("#editName").attr("readonly", false);
+            $("#saveButton").attr("hidden", false);
+        });
+
+    });
+</script>
+<h2>Manage Warehouse</h2>
+
+@Html.Partial("BackButtonPartial")
+
+@using (Html.BeginForm())
+ {
+        @Html.ValidationSummary(true)
+     <fieldset id="formFieldset">
+         @Html.HiddenFor(x=>x.IdProductWarehouse)
+         @Html.HiddenFor(x=>x.IdWarehouse)
+         <legend><b>Dodaj użytkownika</b></legend>
+         <table id="formTable">
+             <tr>
+                 <td>@Html.LabelFor(model => model.Name)</td>
+                 <td>@Html.TextBoxFor(model => model.Name,htmlAttributes:new {@readonly="readonly", id="editName"})</td>
+                 <td>@Html.ValidationMessageFor(model => model.Name)</td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+             @if (Model.ProductItems.Any())
+             {
+                 <tr>
+                     <td>@Html.LabelFor(model => model.ProductItems.First().Name)</td>
+                     <td>@Html.LabelFor(model => model.ProductItems.First().Quantity)</td>
+                     <td>Manage</td>
+                     <td>Remove</td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+                 foreach (var productItem in Model.ProductItems)
+                 {
+                     <tr>
+                         <td>@productItem.Name</td>
+                         <td>@productItem.Quantity</td>
+                         <td>@if (Request.Url != null)
+                             {
+                                 @Html.ActionLink(Resource.Manage, "ManageProduct", "Inventary", new { a_idProduct = productItem.IdProduct, a_returnUrl = Request.Url.PathAndQuery }, null)
+                             }
+                             else
+                             {
+                                 @Html.ActionLink(Resource.Manage, "ManageProduct", "Inventary", new { a_idProduct = productItem.IdProduct }, null)
+                             }
+                         </td>
+                         <td>@Html.ActionLink(Resource.Remove, "RemoveItemFromProductWarehouse", new { a_itemId = productItem.IdProduct, a_idProductWarehouse = Model.IdProductWarehouse, a_idWarehouse = Model.IdWarehouse }, null)</td>
+                         <td></td>
+                         <td></td>
+                     </tr>
+                 }
+             }
+             else
+             {
+                 <tr>
+                     <td>No Product items in this Warehouse</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+             }
+             <tr><td><input type="button" id="editButton" value=@Resource.EditButton></td>
+                 <td></td>
+                 <td><input type="submit" class="button" hidden="true" id="saveButton" value=@Resource.saveChanges/></td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+         </table>
+         @Html.ValidationMessage("ManageWarehouse")
+     </fieldset>
+ }

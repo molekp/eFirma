@@ -1,0 +1,38 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.WarehouseDtos.Taxes.TaxEditDto
+@{
+　　Layout = "~/Views/Tax/_LayoutTax.cshtml";
+}
+@{
+    ViewBag.Title = "Edit Tax";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>    
+    
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+        <fieldset>
+            <legend>Edit Tax form</legend>
+            <ol>
+                @Html.HiddenFor(m => m.IdTax)
+                <li>
+                    @Html.LabelFor(m => m.TaxName)
+                    @Html.EditorFor(m => m.TaxName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.TaxValue)
+                    @Html.EditorFor(m => m.TaxValue)
+                </li>
+            </ol>
+            <input type="submit" value="Confirm" />
+        </fieldset>
+    }
+   
+</article>

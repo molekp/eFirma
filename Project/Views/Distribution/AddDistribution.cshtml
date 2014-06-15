@@ -1,0 +1,183 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.WarehouseDtos.Distributions.AddDistributionDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+
+
+ @Styles.Render("~/Content/multiselect")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+
+@Scripts.Render("~/bundles/jqGrid")
+
+
+ 
+<script type="text/javascript">
+
+     $(document).ready(function () {
+           var mydata = new Array();
+
+        @foreach (var distribution in Model.Items)
+        {
+            <text>
+                mydata.push({
+                    itemId: "@distribution.IdItem",
+                    itemName: "@distribution.Name",
+                    vin: "@distribution.Vin",
+                    itemType: "@distribution.ItemType",
+                    saleType: "@distribution.SaleType",
+                    price: "@distribution.Price",
+                    quantity: "@distribution.Quantity",
+                    warehouseName: "@distribution.WarehouseName",
+                    warehouseAddress: "@distribution.WarehouseAddress",
+                    itemWarehouseName: "@distribution.ItemWarehouseName",
+                });
+            
+            </text>
+        };
+         
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            data: mydata,
+            colNames: ['Id', 'Item name', 'Item type','Vin', 'Sale type', 'Price','Quantity', 'Warehouse name','Warehouse address','Item warehouse name' ],
+            colModel: [
+                { name: 'itemId', index: 'itemId', width: 60, align: "right", sorttype: "integer", editable: false, searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'itemName', index: 'itemName', width: 120, align: "center", sorttype: "text", editable: false, searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'itemType', index: 'itemType', width: 100, align: "center", sorttype: "text", editable: false, searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'vin', index: 'vin', width: 110, align: "center", sorttype: "integer", editable: false, searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}  },
+                { name: 'saleType', index: 'saleType', width: 80, sorttype: "text", align: "center", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'price', index: 'price', width: 80, sorttype: 'float', align: "center", editable: false , searchoptions:{sopt:['eq','ne','le','lt','gt','ge']}  },
+                { name: 'quantity', index: 'quantity', width: 80, sorttype: 'float', align: "center", editable: true, searchoptions:{sopt:['eq','ne','le','lt','gt','ge']} },
+                { name: 'warehouseName', index: 'warehouseName', width: 150, align: "center", sorttype: "text", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'warehouseAddress', index: 'warehouseAddress', width: 250, align: "center", sorttype: "text", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                { name: 'itemWarehouseName', index: 'itemWarehouseName', width: 150, align: "center", sorttype: "text", editable: false,searchoptions:{sopt:['eq','bw','bn','cn','nc','ew','en']}  },
+                
+            ],
+            editurl: "clientArray",
+            loadonce: true,
+            multiselect: true,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            cellEdit: true,
+            cellsubmit: "clientArray",
+            sortname: 'itemId',
+            sortorder: "asc",
+            viewrecords: true,
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Items"
+        });
+        
+        
+       jQuery("#list1").jqGrid('filterToolbar',{searchOperators : true,stringResult: true, searchOnEnter: false, defaultSearch : "cn"});
+        
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true, search: true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+      
+
+        $('#submit').click(function() {
+            var s = jQuery("#list1").jqGrid('getGridParam', 'selarrrow');
+            if (s.length == 0) {
+                alert("@Resource.distributionChooseItemsError");
+                return;
+            }
+            var SelectedItems = [];
+            $.each(s, function(index, value) {
+                var SelectedItem = {};
+                SelectedItem.ItemQuantity = jQuery("#list1").jqGrid('getCell', value, 'quantity');
+                SelectedItem.ItemId = jQuery("#list1").jqGrid('getCell', value, 'itemId');
+                SelectedItem.ItemTypeEnum = jQuery("#list1").jqGrid('getCell', value, 'itemType');
+                SelectedItems.push(SelectedItem);
+            });
+            var SelectedCustomer = $("#SelectedCustomer").val();
+            var DistributionDate = $("#DistributionDate").val();
+            var DistributionTime = $("#DistributionTime").val();
+            var SelectedProvider = $("#SelectedProvider").val();
+            var AddDistributionDto = {};
+            AddDistributionDto.DistributionDate = DistributionDate;
+            AddDistributionDto.DistributionTime = DistributionTime;
+            AddDistributionDto.SelectedCustomer = SelectedCustomer;
+            AddDistributionDto.SelectedItems = SelectedItems;
+            AddDistributionDto.SelectedProvider = SelectedProvider;
+            var DTO = { 'a_distributionDto' : AddDistributionDto };
+            $.ajax({
+                dataType: "json",
+                contentType: "application/json",
+                type: 'POST',
+                url: '/Distribution/AddDistribution',
+                data: JSON.stringify(DTO),
+                success: function(response) {
+                    if (response == null) {
+                        alert("@Resource.distributionAddError");
+                    } else {
+                        var returnUrl = "@ViewBag.ReturnUrl";
+                        if (returnUrl != null && returnUrl != "") {
+                            response.RedirectUrl = updateQueryStringParameter(returnUrl, "a_distributionId", response.DistributionId);
+                        }
+
+                    window.location.replace(response.RedirectUrl);
+                         
+                     }
+                },
+                error: function(response) {
+                    alert("@Resource.distributionAddError");
+                }
+            });
+        });
+        
+        function updateQueryStringParameter(uri, key, value) {
+  var re = new RegExp("([?|&])" + key + "=.*?(&|$)", "i");
+  separator = uri.indexOf('?') !== -1 ? "&" : "?";
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + "=" + value + '$2');
+  }
+  else {
+    return uri + separator + key + "=" + value;
+  }
+}
+
+        
+    });
+    
+</script>
+
+<article>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <table>
+            <tr>
+                <td>@Html.LabelFor(x => x.ChoicesCustomer)</td>
+                <td>@Html.DropDownListFor(x =>x.SelectedCustomer, Model.ChoicesCustomer, new { id = "SelectedCustomer" })</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.ChoicesProvider)</td>
+                <td>@Html.DropDownListFor(x =>x.SelectedProvider, Model.ChoicesProvider, new { id = "SelectedProvider" })</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.DistributionDate)</td>
+                <td>@Html.EditorFor(x => x.DistributionDate, new { id = "DistributionDate" })</td>
+                <td></td>
+            </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.DistributionTime)</td>
+            <td>@Html.EditorFor(x => x.DistributionTime, new { id = "DistributionTime" })</td>
+            <td></td>
+        </tr>
+        </table>
+                @Html.LabelFor(x => x.Items)
+                <table id="list1" ><tr><td></td></tr></table>
+                 <div id="pager1" ></div>
+            <input type="button" class="EditButton" value=@Resource.createButton id="submit" />
+                
+        @Html.ValidationMessage("AddDistribution")
+    }
+</article>
+

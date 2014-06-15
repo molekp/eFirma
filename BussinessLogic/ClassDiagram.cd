@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Warehouse.WarehouseLogic">
+    <Position X="1" Y="6" Width="3.25" />
+    <Members>
+      <Method Name="AddWarehouse" Hidden="true" />
+      <Method Name="EditProductWarehouse" Hidden="true" />
+      <Method Name="EditWarehouse" Hidden="true" />
+      <Method Name="GetAllWarehouses" Hidden="true" />
+      <Method Name="GetProductWarehouseForManage" Hidden="true" />
+      <Method Name="GetWarehouseForManage" Hidden="true" />
+      <Method Name="RemoveProductItemFromProductWarehouse" Hidden="true" />
+      <Method Name="RemoveProductWarehouseFromWarehouse" Hidden="true" />
+      <Method Name="RemoveServiceWarehouseFromWarehouse" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABABACCIIIAA0AAAAgIAAIAAQAAAQBAAAAAAABAEAAg=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Warehouse\WarehouseLogic.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProductWarehouseRepository" />
+    </ShowAsAssociation>
+    <Lollipop Position="1.637" />
+  </Class>
+  <Class Name="BussinessLogic.DatabaseLogic.Repositories.WarehouseRepositories.ProductWarehouseRepository">
+    <Position X="10.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAAAABAAAAAAAAAAAAAAAACAgEAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\WarehouseRepositories\ProductWarehouseRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BussinessLogic.DatabaseLogic.RepositoriesLogic.Interfaces.Warehouse.IWarehouseLogic" Collapsed="true">
+    <Position X="2.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABABACAAIIAA0AAAAgAAAIAAQAAAQBAAAAAAABAEAAg=</HashCode>
+      <FileName>DatabaseLogic\RepositoriesLogic\Interfaces\Warehouse\IWarehouseLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLogic.DatabaseLogic.Repositories.Interfaces.WarehouseRepositories.IProductWarehouseRepository">
+    <Position X="6.25" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAAAABAAAAAAAAAAAAAAAACAgEAQAAAAAA=</HashCode>
+      <FileName>DatabaseLogic\Repositories\Interfaces\WarehouseRepositories\IProductWarehouseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

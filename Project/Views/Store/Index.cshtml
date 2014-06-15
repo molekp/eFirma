@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BussinessLogic.DTOs.Store.DisplayStoreDto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+ 
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Store name', 'Warehouse name', 'Warehouse address', 'Select' ],
+            colModel: [
+                { name: 'storeId', index: 'storeId', width: 20, align: "right", sorttype: "text" },
+                { name: 'storeName', index: 'storeName', width: 120, align: "center", sorttype: "text"  },
+                { name: 'warehouseName', index: 'warehouseName', width: 110, align: "center", sorttype: "text"  },
+                { name: 'warehouseAddress', index: 'warehouseAddress', width: 80, sorttype: "float", align: "center"  },
+                { name: 'Open', width: 80,align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="/Store/ConcreteStore?a_storeId=' + rowObject.storeId + '">' + "select" + '</a>';
+                    },
+                },
+            ],
+            editurl: "clientArray",
+            loadonce: true,
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            cellEdit: false,
+            cellsubmit: "clientArray",
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Supplies"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true, }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (var distribution in Model)
+        {
+            <text>
+                mydata.push({
+                    storeId: "@distribution.IdStore",
+                    storeName: "@distribution.Name",
+                    warehouseName: "@distribution.WarehouseName",
+                    warehouseAddress: "@distribution.WarehouseAddress"
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+    });
+    
+</script>
+
+<article>
+    <table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>

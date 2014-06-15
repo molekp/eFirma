@@ -1,0 +1,93 @@
+﻿@model IEnumerable<BussinessLogic.DTOs.Factures.FactureViewDto>
+@using BussinessLogic.DTOs
+@using BussinessLogic.DTOs.Factures
+
+@{
+    Layout = "~/Views/Shared/_LayoutFacture.cshtml";
+}
+@{
+    ViewBag.Title = "Invoices";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            colNames: ['Id', 'Nr', 'Client', 'Realization Time', 'Creation Time', 'Expiration Time', 'details'],
+            colModel: [
+                { name: 'IdFacture', index: 'IdFacture', width: 20, align: "right", sorttype: "int" },
+                { name: 'FactureNr', index: 'FactureNr', width: 50, align: "center", sorttype: "text" },
+                { name: 'ClientName', index: 'ClientName', width: 200, align: "center", sorttype: "text" },
+                { name: 'RealizationTime', index: 'RealizationTime', width: 110, align: "right", sorttype: "text" },
+                { name: 'CreationTime', index: 'CreationTime', width: 110, sorttype: "text", align: "center" },
+                { name: 'ExpirationTime', index: 'ExpirationTime', width: 110, sorttype: 'text', align: "center" },
+                { name: 'Open', width: 50,
+        formatter: function (cellvalue, options, rowObject) {
+            return '<a href="/Facture/ViewFacture?idFacture=' + rowObject.IdFacture + '">' + "details" + '</a>';
+        } 
+    },
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Factures"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+
+        var mydata = new Array();
+
+        @foreach (FactureViewDto facture in Model)
+        {
+            <text>
+                mydata.push({
+                    IdFacture: "@facture.IdFacture",
+                    FactureNr: "@facture.FactureNr",
+                    ClientName: "@facture.ClientName",
+                    RealizationTime: "@facture.RealizationTime",
+                    CreationTime: "@facture.CreationTime",
+                    ExpirationTime: "@facture.ExpirationTime",
+                });
+            
+            </text>
+        };
+        
+        for (var i = 0; i <= mydata.length; i++)
+            jQuery("#list1").jqGrid('addRowData', i + 1, mydata[i]);
+
+        $('#list1').trigger( 'reloadGrid' );
+    });
+    
+</script>
+
+
+<article>
+    
+<div id="pager" ></div>
+    <br />
+    <br />
+<table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>

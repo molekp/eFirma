@@ -1,0 +1,36 @@
+﻿@using ResourceLibrary
+@model IEnumerable<BussinessLogic.DTOs.Admin.AdminDisplayUserDto>
+
+@{
+    
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>This is the page with all Users. You can search user, display his details, manage some data and add user to Safety Point Group</h2>
+
+@if (Model.Any())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => Model.First().IdUser)</td>
+            <td>@Html.LabelFor(m => Model.First().UserName)</td>
+            <td>@Html.LabelFor(m => Model.First().EMail)</td>
+            <td>@Html.LabelFor(m => Model.First().RoleName)</td>
+            <td>Details</td>
+            <td>Manage</td>
+            <td>Manage user's Safety Point Groups</td>
+        </tr>
+        @foreach (var safetyPoint in Model)
+        {
+            <tr>
+                <td>@safetyPoint.IdUser</td>
+                <td>@safetyPoint.UserName</td>
+                <td>@safetyPoint.EMail</td>
+                <td>@safetyPoint.RoleName</td>
+                <td></td>
+                <td></td>
+                <td>@Html.ActionLink(Resource.manageButton, "ManageUserSafetyPointGroups",  new { a_idUser = safetyPoint.IdUser})</td>
+            </tr>
+        }
+    </table>
+}

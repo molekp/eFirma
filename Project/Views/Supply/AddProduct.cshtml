@@ -1,0 +1,76 @@
+﻿@using System.Web.Mvc.Html
+@model BussinessLogic.DTOs.WarehouseDtos.Supplies.ProductAddDto
+@{
+    Layout = "~/Views/Shared/_LayoutSupply.cshtml";
+}
+@{
+    ViewBag.Title = "Add Supply";
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $("#ProductTypesDD").bind("change", function() {
+            window.location.href = window.location.href.split("?")[0] + "?a_idProductType=" + $(this).val() + "&idSupply=" + @Model.IdSupply.ToString();
+        });
+
+    });
+
+</script>
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>    
+    
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+        <fieldset>
+            <legend>Add Item form</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.ProductTypes)
+                    @Html.DropDownListFor(m => m.IdProductType, Model.ProductTypes,htmlAttributes:new { id = "ProductTypesDD"})
+
+                </li>
+                @if(Model.IdProductType != 0)
+                {
+                    <li>
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Price)
+                        @Html.TextBoxFor(m => m.Price)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.SaleTypes)
+                        @Html.DropDownListFor(m => m.IdSaleType, Model.SaleTypes)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Quantity)
+                        @Html.TextBoxFor(m => m.Quantity)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.ExpirationTime)
+                        @Html.EditorFor(m => m.ExpirationTime)
+                    </li>
+                    foreach(var attr in Model.Attributes)
+                    {
+                        <li>
+                            @Html.LabelFor(m => attr.Name)
+                            @Html.TextBoxFor(m => attr.Value)
+                        </li>
+                    }
+                    
+                    <input type="submit" value="Add" />
+                }
+
+            </ol>
+        </fieldset>
+    }
+   
+</article>

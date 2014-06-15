@@ -1,0 +1,120 @@
+﻿@using ResourceLibrary
+@model BussinessLogic.DTOs.Inventary.ManageProductDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_LayoutWarehouse.cshtml";
+}
+
+<h2>Manage product</h2>
+@Html.Partial("BackButtonPartial");
+
+@using (Html.BeginForm())
+ {
+     @Html.ValidationSummary(true)
+     @Html.HiddenFor(x => x.IdProduct)
+     <table>
+         <tr>
+             <td>@Html.LabelFor(x => x.IdProduct)</td>
+             <td>@Html.DisplayTextFor(x => x.IdProduct)</td>
+             <td></td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.Name)</td>
+             <td>@Html.EditorFor(x => x.Name)</td>
+             <td>@Html.ValidationMessageFor(x => x.Name)</td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.Price)</td>
+             <td>@Html.EditorFor(x => x.Price)</td>
+             <td>@Html.ValidationMessageFor(x => x.Price)</td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.ItemState)</td>
+             <td>@Html.DisplayTextFor(x => x.ItemState)</td>
+             <td></td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.ExpirationDate)</td>
+             <td>@Html.EditorFor(x => x.ExpirationDate)</td>
+             <td>@Html.ValidationMessageFor(x => x.ExpirationDate)</td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.ExpirationTime)</td>
+             <td>@Html.EditorFor(x => x.ExpirationTime)</td>
+             <td>@Html.ValidationMessageFor(x => x.ExpirationTime)</td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.Quantity)</td>
+             <td>@Html.EditorFor(x => x.Quantity)</td>
+             <td>@Html.ValidationMessageFor(x => x.Quantity)</td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.ProductTypeName)</td>
+             <td>@Html.DisplayTextFor(x => x.ProductTypeName)</td>
+             <td>@Html.LabelFor(x => x.ChoicesProductTypes)</td>
+             <td>@Html.DropDownListFor(x => x.SelectedChoiceIdProductType, Model.ChoicesProductTypes) </td>
+         </tr>
+         
+         <tr>
+             <td>@Html.LabelFor(x => x.TaxName)</td>
+             <td>@Html.DisplayTextFor(x => x.TaxName)</td>
+             <td></td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.TaxValue)</td>
+             <td>@Html.DisplayTextFor(x => x.TaxValue)</td>
+             <td></td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>@Html.LabelFor(x => x.SaleTypeName)</td>
+             <td>@Html.DisplayTextFor(x => x.SaleTypeName)</td>
+             <td>@Html.LabelFor(x => x.ChoicesSaleTypes)</td>
+             <td>@Html.DropDownListFor(x => x.SelectedChoiceIdSaleType, Model.ChoicesSaleTypes)</td>
+         </tr>
+         @if (Model.ManageProductAttributeDtos.Any())
+         {
+             foreach (var attribute in Model.ManageProductAttributeDtos)
+             {
+                 <tr>
+                     <td>@Html.LabelFor(x => attribute.AttributeTypeName)</td>
+                     <td>@Html.DisplayTextFor(x => attribute.AttributeTypeName)</td>
+                     <td>@Html.LabelFor(x => attribute.AttributeValue)</td>
+                     <td>@Html.DisplayTextFor(x => attribute.AttributeValue)</td>
+                     <td>@Html.ActionLink(Resource.DeleteButton,"RemoveAttributeFromProduct",new{a_idProduct=Model.IdProduct,a_idAttribute = attribute.IdAttribute})</td>
+                 </tr>
+             }
+         }
+         else
+         {
+             <tr>
+                 <td>Product don't have any attribute</td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+         }
+         <tr>
+             <td>@Html.LabelFor(x => x.AddAttributeDto)</td>
+             <td>@Html.DropDownListFor(x => x.AddAttributeDto.SelectedChoiceIdAttributeType, Model.AddAttributeDto.AttributeTypes)</td>
+             <td>@Html.LabelFor(x => x.AddAttributeDto.Value)</td>
+             <td>@Html.EditorFor(x => x.AddAttributeDto.Value)</td>
+             </tr>
+         <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td><input type="submit" class="EditButton" value=@Resource.saveChanges/></td>
+         </tr>
+     </table>
+      @Html.ValidationMessage("ManageProduct")
+ }

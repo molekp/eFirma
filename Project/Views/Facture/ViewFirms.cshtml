@@ -1,0 +1,110 @@
+﻿@model IEnumerable<BussinessLogic.DTOs.Factures.FirmViewDto>
+@using BussinessLogic.DTOs
+@using BussinessLogic.DTOs.Factures
+
+@{
+    Layout = "~/Views/Shared/_LayoutFacture.cshtml";
+}
+@{
+    ViewBag.Title = "Firms";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+
+@Scripts.Render("~/bundles/jqGrid")
+ @Styles.Render("~/Content/jqGrid")
+@Scripts.Render("~/bundles/multiselect")
+ @Styles.Render("~/Content/multiselect")
+
+
+<script type="text/javascript">
+    
+    function remove(id) {
+        if (confirm('Are you sure to remove Firm Id : ' + id + ' ?')) {
+            window.location.href = "@Url.Action("DeleteFirm", "Facture")" + "?idFirm=" + id;
+        }
+    }
+
+
+    $(document).ready(function () {
+        
+        var mydata = new Array();
+
+        @foreach (FirmViewDto firm in Model)
+        {
+            <text>
+        mydata.push({
+            IdFirm: "@firm.IdFirm",
+                    Name: "@firm.Name",
+                    Address: "@firm.Address",
+                    Phone: "@firm.Phone",
+                    Info: "@firm.Info",
+                });
+
+        </text>
+        };
+
+        jQuery("#list1").jqGrid({
+            datatype: "local",
+            data: mydata,
+            colNames: ['Id', 'Name', 'Address', 'Phone', 'Info', 'Details', "Edit", 'Remove'],
+            colModel: [
+                { name: 'IdFirm', index: 'IdFirm', width: 20, align: "right", sorttype: "int" },
+                { name: 'Name', index: 'Name', width: 80, align: "center", sorttype: "text" },
+                { name: 'Address', index: 'Address', width: 200, align: "center", sorttype: "text" },
+                { name: 'Phone', index: 'Phone', width: 100, align: "center", sorttype: "text" },
+                { name: 'Info', index: 'Info', width: 300, sorttype: "text", align: "center" },
+                {
+                    name: 'Open', width: 50,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="@Url.Action("ViewFirm", "Facture")' + '?idFirm=' + rowObject.IdFirm + '">' + "details" + '</a>';
+                    }
+                },
+                {
+                    name: 'Edit', width: 50,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="@Url.Action("EditFirm", "Facture")' + '?idFirm=' + rowObject.IdFirm + '">' + "edit" + '</a>';
+                    }
+                },
+                {
+                    name: 'Remove', width: 70,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<button onclick="remove(' + rowObject.IdFirm + ')">remove</button>';
+                    }
+                },
+                
+            ],
+
+            multiselect: false,
+            rowNum: 20,
+            pager: jQuery('#pager1'),
+            sortname: 'Data',
+            sortorder: "desc",
+            viewrecords: true,
+            subGrid: false,
+            height: "auto",
+            hidegrid: false,
+            align: "center",
+            rowList: [5, 10, 20],
+            caption: "Factures"
+        });
+        jQuery("#list1").jqGrid('navGrid', '#pager1', { del: false, add: false, edit: false,view : true }, { }, { }, { },
+            { closeOnEscape: true, multipleSearch: true, closeAfterSearch: true, width: "auto" });
+        
+    });
+    
+</script>
+
+
+<article>
+    <br/>
+<div id="pager" ></div>
+    <br />
+    <br />
+<table id="list1" ></table>
+    <div id="pager1" ></div>
+</article>

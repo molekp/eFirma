@@ -1,0 +1,8 @@
+﻿@model BussinessLogic.DTOs.EStore.EStoreDisplayDto.EStoreDisplayMenuDto
+<ul>
+    @foreach (var item in Model.ItemTypes)
+    {
+        <li class="=font-size-110"><a href="@Url.Action("Index", "EStoreDisplay", new { eStore = Model.IdEStore, type = Model.Type, category = @item.IdItemType })" >@item.Name</a>
+        </li>            
+    }
+</ul>
