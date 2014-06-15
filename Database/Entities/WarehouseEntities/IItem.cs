@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Database.Entities.WarehouseEntities
 {
+    [Serializable]
     public interface IItem
     {
         int IdItem { get; set; }
