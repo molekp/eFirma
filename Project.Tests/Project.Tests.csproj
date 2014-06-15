@@ -175,11 +175,6 @@
     <Compile Include="Mappers\Warehouse\AddSafetyPointGroupMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Selenium\LoginTest.cs" />
-    <Compile Include="Selenium\Login\Login.cs" />
-    <Compile Include="Selenium\Login\Logins.cs" />
-    <Compile Include="Selenium\SeleniumConfiguration.cs" />
-    <Compile Include="Selenium\WarehouseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
