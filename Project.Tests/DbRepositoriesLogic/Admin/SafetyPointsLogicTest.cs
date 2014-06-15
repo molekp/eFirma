@@ -125,16 +125,16 @@ namespace Project.Tests.DbRepositoriesLogic.Admin
             result.ChoicesToAddSafetyPointToGroup.First().Value.Should().Be("0");
         }
 
-        [Test]
-        public void AddSafetyPointToGroup_dla_istniejacego_safetyPointa__zwraca_prawde()
-        {
+        //[Test]
+        //public void AddSafetyPointToGroup_dla_istniejacego_safetyPointa__zwraca_prawde()
+        //{
 
-            Mokuj_pod_metode_AddSafetyPointToGroup_zwracajac_odpowiednio(SafetyPointGroupList()[0], SafetyPointList()[0], true);
-            //
-            var result = m_safetyPointsLogic.AddSafetyPointToGroup(1,1);
-            //
-            result.Should().BeTrue();
-        }
+        //    Mokuj_pod_metode_AddSafetyPointToGroup_zwracajac_odpowiednio(SafetyPointGroupList()[0], SafetyPointList()[0], true);
+        //    //
+        //    var result = m_safetyPointsLogic.AddSafetyPointToGroup(1,1);
+        //    //
+        //    result.Should().BeTrue();
+        //}
 
         [Test]
         public void AddSafetyPointToGroup_dla_nie_istniejacego_safetyPointa__zwraca_falsz()
