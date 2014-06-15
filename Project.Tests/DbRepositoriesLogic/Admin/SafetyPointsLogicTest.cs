@@ -146,16 +146,16 @@ namespace Project.Tests.DbRepositoriesLogic.Admin
             result.Should().BeFalse();
         }
 
-        [Test]
-        public void AddSafetyPointToGroup_dla_istniejacej_grupy__zwraca_prawde()
-        {
+        //[Test]
+        //public void AddSafetyPointToGroup_dla_istniejacej_grupy__zwraca_prawde()
+        //{
 
-            Mokuj_pod_metode_AddSafetyPointToGroup_zwracajac_odpowiednio(SafetyPointGroupList()[0], SafetyPointList()[0], true);
-            //
-            var result = m_safetyPointsLogic.AddSafetyPointToGroup(1, 1);
-            //
-            result.Should().BeTrue();
-        }
+        //    Mokuj_pod_metode_AddSafetyPointToGroup_zwracajac_odpowiednio(SafetyPointGroupList()[0], SafetyPointList()[0], true);
+        //    //
+        //    var result = m_safetyPointsLogic.AddSafetyPointToGroup(1, 1);
+        //    //
+        //    result.Should().BeTrue();
+        //}
 
         [Test]
         public void AddSafetyPointToGroup_dla_nie_istniejacej_grupy__zwraca_falsz()

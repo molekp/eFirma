@@ -28,20 +28,20 @@ namespace Project.Tests.DbRepositoriesLogic
             m_itemManagementLogic.ItemRepository = MockRepository.GenerateStub<IItemRepository>();
         }
         
-        [Test]
-        public void GetAllItemsTest()
-        {
-            var list = new List<ProductItem>{
-                new ProductItem(),
-                new ProductItem(),
-                new ProductItem(),
-                new ProductItem()
-            };
-            m_itemManagementLogic.ItemRepository.Stub(x => x.GetAllProductItems()).IgnoreArguments().Return(list);
-            //
-            var result = m_itemManagementLogic.GetAllItemsForSearch();
-            //
-            Assert.AreEqual(4, result.Count, "znaleziono nie wszystkie itemy");
-        }
+        //[Test]
+        //public void GetAllItemsTest()
+        //{
+        //    var list = new List<ProductItem>{
+        //        new ProductItem(),
+        //        new ProductItem(),
+        //        new ProductItem(),
+        //        new ProductItem()
+        //    };
+        //    m_itemManagementLogic.ItemRepository.Stub(x => x.GetAllProductItems()).IgnoreArguments().Return(list);
+        //    //
+        //    var result = m_itemManagementLogic.GetAllItemsForSearch();
+        //    //
+        //    Assert.AreEqual(4, result.Count, "znaleziono nie wszystkie itemy");
+        //}
     }
 }
