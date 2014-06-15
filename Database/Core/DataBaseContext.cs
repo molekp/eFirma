@@ -13,6 +13,7 @@ using Database.Entities.WarehouseEntities;
 using Database.Entities.WarehouseEntities.Currencies;
 using Database.Entities.WarehouseEntities.Product;
 using Database.Entities.WarehouseEntities.Service;
+using Database.Migrations;
 
 namespace Database.Core
 {
@@ -57,7 +58,7 @@ namespace Database.Core
 
         public void SetModified(object a_entity)
         {
-            Entry(a_entity).State = EntityState.Modified;
+            Entry(a_entity).State = System.Data.Entity.EntityState.Modified;
         }
 
         public new void SaveChanges()
@@ -67,6 +68,7 @@ namespace Database.Core
 
         protected override void OnModelCreating(DbModelBuilder a_modelBuilder)
         {
+            System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataBaseContext, Configuration>());
 
             Configuration.LazyLoadingEnabled = false;// wylaczylem lazy loading entitow bo tylko problemy byly z tym
             a_modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
