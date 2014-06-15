@@ -364,7 +364,7 @@ namespace Database.Core
         /// Metoda używana do wypełniania bazy danych podstawowymi i przykładowymi informacjami.
         /// </summary>
         /// <param name="a_context"> Obiekt DataBaseContext</param>
-        protected override void Seed(DataBaseContext a_context)
+        protected  void Seed(DataBaseContext a_context)
         {
             List<RoleEntity> roles = CreateListWithRoles();
             roles.ForEach(r => a_context.Roles.Add(r));
