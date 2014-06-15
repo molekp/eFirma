@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>FluentAssertions.Silverlight</name>
+        <name>FluentAssertions</name>
     </assembly>
     <members>
         <member name="M:FluentAssertions.AndConstraint`1.#ctor(`0)">
@@ -13,12 +13,34 @@
             <summary>
             Contains extension methods for custom assertions in unit tests.
             </summary>
+            <summary>
+              Provides extension methods for monitoring and querying events.
+            </summary>
         </member>
         <member name="M:FluentAssertions.AssertionExtensions.Invoking``1(``0,System.Action{``0})">
             <summary>
             Invokes the specified action on an subject so that you can chain it with any of the ShouldThrow or ShouldNotThrow 
             overloads.
             </summary>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ExecutionTimeOf``1(``0,System.Linq.Expressions.Expression{System.Action{``0}})">
+            <summary>
+            Provides methods for asserting the execution time of a method or property.
+            </summary>
+            <param name="subject">The object that exposes the method or property.</param>
+            <param name="action">A reference to the method or property to measure the execution time of.</param>
+            <returns>
+            Returns an object for asserting that the execution time matches certain conditions.
+            </returns>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ExecutionTime(System.Action)">
+            <summary>
+            Provides methods for asserting the execution time of a method or property.
+            </summary>
+            <param name="action">A reference to the method or property to measure the execution time of.</param>
+            <returns>
+            Returns an object for asserting that the execution time matches certain conditions.
+            </returns>
         </member>
         <member name="M:FluentAssertions.AssertionExtensions.Should(System.Xml.Linq.XDocument)">
             <summary>
@@ -37,54 +59,6 @@
             Returns an <see cref="T:FluentAssertions.Xml.XAttributeAssertions"/> object that can be used to assert the
             current <see cref="T:System.Xml.Linq.XAttribute"/>.
             </summary>
-        </member>
-        <member name="M:FluentAssertions.AssertionExtensions.ShouldThrow``1(System.Action,System.String,System.Object[])">
-            <summary>
-            Asserts that the <paramref name="action"/> throws an exception.
-            </summary>
-            <param name="action">A reference to the method or property.</param>
-            <typeparam name="TException">
-            The type of the exception it should throw.
-            </typeparam>
-            <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
-            </param>
-            <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
-            </param>
-            <returns>
-            Returns an object that allows asserting additional members of the thrown exception.
-            </returns>
-        </member>
-        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotThrow``1(System.Action,System.String,System.Object[])">
-            <summary>
-            Asserts that the <paramref name="action"/> does not throw a particular exception.
-            </summary>
-            <param name="action">The current method or property.</param>
-            <typeparam name="TException">
-            The type of the exception it should not throw. Any other exceptions are ignored and will satisfy the assertion.
-            </typeparam>
-            <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
-            </param>
-            <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
-            </param>
-        </member>
-        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotThrow(System.Action,System.String,System.Object[])">
-            <summary>
-            Asserts that the <paramref name="action"/> does not throw any exception at all.
-            </summary>
-            <param name="action">The current method or property.</param>
-            <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
-            </param>
-            <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
-            </param>
         </member>
         <member name="M:FluentAssertions.AssertionExtensions.Enumerating(System.Func{System.Collections.IEnumerable})">
             <summary>
@@ -137,6 +111,12 @@
         <member name="M:FluentAssertions.AssertionExtensions.Should``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Returns an <see cref="T:FluentAssertions.Collections.GenericCollectionAssertions`1"/> object that can be used to assert the
+            current <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.Should(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Returns an <see cref="T:FluentAssertions.Collections.StringCollectionAssertions"/> object that can be used to assert the
             current <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </summary>
         </member>
@@ -362,6 +342,250 @@
             </remarks>
             <typeparam name="TTo"></typeparam>
         </member>
+        <member name="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)">
+            <summary>
+              Starts monitoring an object for its events.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if eventSource is Null.</exception>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldRaise(System.Object,System.String)">
+            <summary>
+            Asserts that an object has raised a particular event at least once.
+            </summary>
+            <param name="eventSource">The object exposing the event.</param>
+            <param name="eventName">The name of the event that should have been raised.</param>
+            <returns></returns>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldRaise(System.Object,System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that an object has raised a particular event at least once.
+            </summary>
+            <param name="eventSource">The object exposing the event.</param>
+            <param name="eventName">
+            The name of the event that should have been raised.
+            </param>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotRaise(System.Object,System.String)">
+            <summary>
+            Asserts that an object has not raised a particular event.
+            </summary>
+            <param name="eventSource">The object exposing the event.</param>
+            <param name="eventName">
+            The name of the event that should not be raised.
+            </param>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotRaise(System.Object,System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that an object has not raised a particular event.
+            </summary>
+            <param name="eventSource">The object exposing the event.</param>
+            <param name="eventName">
+            The name of the event that should not be raised.
+            </param>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Asserts that an object has raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
+            </summary>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String,System.Object[])">
+            <summary>
+            Asserts that an object has raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
+            </summary>
+            <param name="eventSource">The object exposing the event.</param>
+            <param name="propertyExpression">
+            A lambda expression referring to the property for which the property changed event should have been raised, or
+            <c>null</c> to refer to all properties.
+            </param>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Asserts that an object has not raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
+            </summary>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String,System.Object[])">
+            <summary>
+            Asserts that an object has not raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
+            </summary>
+            <param name="eventSource">The object exposing the event.</param>
+            <param name="propertyExpression">
+            A lambda expression referring to the property for which the property changed event should have been raised.
+            </param>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+            <remarks>
+            You must call <see cref="M:FluentAssertions.AssertionExtensions.MonitorEvents(System.Object)"/> on the same object prior to this call so that Fluent Assertions can
+            subscribe for the events of the object.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.GetRecorderForEvent``1(``0,System.String)">
+            <summary>
+            Obtains the <see cref="T:FluentAssertions.Events.EventRecorder"/> for a particular event of the <paramref name="eventSource"/>.
+            </summary>
+            <param name="eventSource">The object for which to get an event recorder.</param>
+            <param name="eventName">The name of the event.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.WithSender(FluentAssertions.Events.IEventRecorder,System.Object)">
+            <summary>
+            Asserts that all occurences of the event originated from the <param name="expectedSender"/>.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.WithArgs``1(FluentAssertions.Events.IEventRecorder,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Asserts that at least one occurrence of the event had an <see cref="T:System.EventArgs"/> object matching a predicate.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldThrow``1(System.Action,System.String,System.Object[])">
+            <summary>
+            Asserts that the <paramref name="action"/> throws an exception.
+            </summary>
+            <param name="action">A reference to the method or property.</param>
+            <typeparam name="TException">
+            The type of the exception it should throw.
+            </typeparam>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+            <returns>
+            Returns an object that allows asserting additional members of the thrown exception.
+            </returns>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotThrow``1(System.Action,System.String,System.Object[])">
+            <summary>
+            Asserts that the <paramref name="action"/> does not throw a particular exception.
+            </summary>
+            <param name="action">The current method or property.</param>
+            <typeparam name="TException">
+            The type of the exception it should not throw. Any other exceptions are ignored and will satisfy the assertion.
+            </typeparam>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotThrow(System.Action,System.String,System.Object[])">
+            <summary>
+            Asserts that the <paramref name="action"/> does not throw any exception at all.
+            </summary>
+            <param name="action">The current method or property.</param>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldThrow``1(System.Func{System.Threading.Tasks.Task},System.String,System.Object[])">
+            <summary>
+            Asserts that the <paramref name="asyncAction"/> throws an exception.
+            </summary>
+            <param name="asyncAction">A reference to the method or property.</param>
+            <typeparam name="TException">
+            The type of the exception it should throw.
+            </typeparam>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+            <returns>
+            Returns an object that allows asserting additional members of the thrown exception.
+            </returns>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotThrow``1(System.Func{System.Threading.Tasks.Task},System.String,System.Object[])">
+            <summary>
+            Asserts that the <paramref name="asyncAction"/> does not throw a particular exception.
+            </summary>
+            <param name="asyncAction">The current method or property.</param>
+            <typeparam name="TException">
+            The type of the exception it should not throw. Any other exceptions are ignored and will satisfy the assertion.
+            </typeparam>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.AssertionExtensions.ShouldNotThrow(System.Func{System.Threading.Tasks.Task},System.String,System.Object[])">
+            <summary>
+            Asserts that the <paramref name="asyncAction"/> does not throw any exception at all.
+            </summary>
+            <param name="asyncAction">The current method or property.</param>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+        </member>
         <member name="T:FluentAssertions.Collections.CollectionAssertions`2">
             <summary>
             Contains a number of methods to assert that an <see cref="T:System.Collections.IEnumerable"/> is in the expected state.
@@ -372,11 +596,50 @@
             Contains a number of methods to assert that a reference type object is in the expected state.
             </summary>
         </member>
+        <member name="M:FluentAssertions.Primitives.ReferenceTypeAssertions`2.BeNull(System.String,System.Object[])">
+            <summary>
+            Asserts that the current object has not been initialized yet.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.ReferenceTypeAssertions`2.NotBeNull(System.String,System.Object[])">
+            <summary>
+            Asserts that the current object has been initialized.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="M:FluentAssertions.Primitives.ReferenceTypeAssertions`2.BeOfType``1(System.String,System.Object[])">
             <summary>
             Asserts that the object is of the specified type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The expected type of the object.</typeparam>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.ReferenceTypeAssertions`2.BeOfType(System.Type,System.String,System.Object[])">
+            <summary>
+            Asserts that the object is of the specified type <paramref name="expectedType"/>.
+            </summary>
+            <param name="expectedType">
+            The type that the subject is supposed to be of.
+            </param>
             <param name="reason">
             A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
             is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
@@ -417,31 +680,10 @@
             Gets the object which value is being asserted.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Collections.CollectionAssertions`2.HaveCount(System.Int32,System.String,System.Object[])">
+        <member name="P:FluentAssertions.Primitives.ReferenceTypeAssertions`2.Context">
             <summary>
-            Asserts that the number of items in the collection matches the supplied <paramref name="expected"/> amount.
+            Returns the type of the subject the assertion applies on.
             </summary>
-            <param name="expected">The expected number of items in the collection.</param>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
-        </member>
-        <member name="M:FluentAssertions.Collections.CollectionAssertions`2.HaveCount(System.Linq.Expressions.Expression{System.Func{System.Int32,System.Boolean}},System.String,System.Object[])">
-            <summary>
-            Asserts that the number of items in the collection matches a condition stated by the <paramref name="countPredicate"/>.
-            </summary>
-            <param name="countPredicate">A predicate that yields the number of items that is expected to be in the collection.</param>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
         </member>
         <member name="M:FluentAssertions.Collections.CollectionAssertions`2.BeEmpty(System.String,System.Object[])">
             <summary>
@@ -711,30 +953,6 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Collections.CollectionAssertions`2.BeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that the current collection has not been initialized yet with an actual collection.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
-        </member>
-        <member name="M:FluentAssertions.Collections.CollectionAssertions`2.NotBeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that the current collection has been initialized with an actual collection.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
-        </member>
         <member name="M:FluentAssertions.Collections.CollectionAssertions`2.HaveElementAt(System.Int32,System.Object,System.String,System.Object[])">
             <summary>
             Asserts that the current collection has the supplied <paramref name="element"/> at the 
@@ -789,10 +1007,41 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="P:FluentAssertions.Collections.CollectionAssertions`2.Context">
+            <summary>
+            Returns the type of the subject the assertion applies on.
+            </summary>
+        </member>
         <member name="T:FluentAssertions.Collections.GenericCollectionAssertions`1">
             <summary>
             Contains a number of methods to assert that an <see cref="T:System.Collections.Generic.IEnumerable`1"/> is in the expectation state.
             </summary>
+        </member>
+        <member name="M:FluentAssertions.Collections.GenericCollectionAssertions`1.HaveCount(System.Int32,System.String,System.Object[])">
+            <summary>
+            Asserts that the number of items in the collection matches the supplied <paramref name="expected"/> amount.
+            </summary>
+            <param name="expected">The expected number of items in the collection.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.GenericCollectionAssertions`1.HaveCount(System.Linq.Expressions.Expression{System.Func{System.Int32,System.Boolean}},System.String,System.Object[])">
+            <summary>
+            Asserts that the number of items in the collection matches a condition stated by the <paramref name="countPredicate"/>.
+            </summary>
+            <param name="countPredicate">A predicate that yields the number of items that is expected to be in the collection.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
         </member>
         <member name="M:FluentAssertions.Collections.GenericCollectionAssertions`1.Equal(System.Collections.Generic.IEnumerable{`0},System.Func{`0,`0,System.Boolean},System.String,System.Object[])">
             <summary>
@@ -889,30 +1138,6 @@
             <summary>
             Contains a number of methods to assert that an <see cref="T:System.Collections.Generic.IDictionary`2"/> is in the expected state.
             </summary>
-        </member>
-        <member name="M:FluentAssertions.Collections.GenericDictionaryAssertions`2.BeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that the current dictionary has not been initialized yet with an actual dictionary.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
-        </member>
-        <member name="M:FluentAssertions.Collections.GenericDictionaryAssertions`2.NotBeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that the current dictionary has been initialized with an actual dictionary.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
         </member>
         <member name="M:FluentAssertions.Collections.GenericDictionaryAssertions`2.HaveCount(System.Int32,System.String,System.Object[])">
             <summary>
@@ -1149,15 +1374,41 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="P:FluentAssertions.Collections.GenericDictionaryAssertions`2.Subject">
+        <member name="P:FluentAssertions.Collections.GenericDictionaryAssertions`2.Context">
             <summary>
-            Gets the object which value is being asserted.
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Collections.NonGenericCollectionAssertions">
             <summary>
             Contains a number of methods to assert that an <see cref="T:System.Collections.IEnumerable"/> is in the expected state.
             </summary>
+        </member>
+        <member name="M:FluentAssertions.Collections.NonGenericCollectionAssertions.HaveCount(System.Int32,System.String,System.Object[])">
+            <summary>
+            Asserts that the number of items in the collection matches the supplied <paramref name="expected"/> amount.
+            </summary>
+            <param name="expected">The expected number of items in the collection.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.NonGenericCollectionAssertions.HaveCount(System.Linq.Expressions.Expression{System.Func{System.Int32,System.Boolean}},System.String,System.Object[])">
+            <summary>
+            Asserts that the number of items in the collection matches a condition stated by the <paramref name="countPredicate"/>.
+            </summary>
+            <param name="countPredicate">A predicate that yields the number of items that is expected to be in the collection.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
         </member>
         <member name="M:FluentAssertions.Collections.NonGenericCollectionAssertions.Contain(System.Object,System.String,System.Object[])">
             <summary>
@@ -1173,9 +1424,143 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.Equal(System.String[])">
+            <summary>
+            Expects the current collection to contain all the same elements in the same order as the collection identified by 
+            <paramref name="expected"/>. Elements are compared using their <see cref="M:System.Object.Equals(System.Object)"/>.
+            </summary>
+            <param name="expected">An <see cref="!:IEnumerable"/> with the expected elements.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.Equal(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Expects the current collection to contain all the same elements in the same order as the collection identified by 
+            <paramref name="expected"/>. Elements are compared using their <see cref="M:System.Object.Equals(System.Object)"/>.
+            </summary>
+            <param name="expected">An <see cref="!:IEnumerable"/> with the expected elements.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.BeEquivalentTo(System.String[])">
+            <summary>
+            Expects the current collection to contain all elements of the collection identified by <paramref name="elements"/>,
+            regardless of the order. Elements are compared using their <see cref="M:System.Object.Equals(System.Object)"/>.
+            </summary>
+            <param name="elements">A params array with the expected elements.</param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.BeEquivalentTo(System.Collections.Generic.IEnumerable{System.String},System.String,System.Object[])">
+            <summary>
+            Expects the current collection to contain all elements of the collection identified by <paramref name="expected"/>,
+            regardless of the order. Elements are compared using their <see cref="M:System.Object.Equals(System.Object)"/>.
+            </summary>
+            <param name="expected">An <see cref="!:IEnumerable"/> with the expected elements.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.ContainInOrder(System.String[])">
+            <summary>
+            Expects the current collection to contain the specified elements in the exact same order. Elements are compared
+            using their <see cref="M:System.Object.Equals(System.Object)"/> implementation.
+            </summary>
+            <param name="expected">An <see cref="!:IEnumerable"/> with the expected elements.</param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.ContainInOrder(System.Collections.Generic.IEnumerable{System.String},System.String,System.Object[])">
+            <summary>
+            Expects the current collection to contain the specified elements in the exact same order. Elements are compared
+            using their <see cref="M:System.Object.Equals(System.Object)"/> implementation.
+            </summary>
+            <param name="expected">An <see cref="!:IEnumerable"/> with the expected elements.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.Contain(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Expects the current collection to contain the specified elements in any order. Elements are compared
+            using their <see cref="M:System.Object.Equals(System.Object)"/> implementation.
+            </summary>
+            <param name="expected">An <see cref="!:IEnumerable"/> with the expected elements.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.Contain(System.Collections.Generic.IEnumerable{System.String},System.String,System.Object,System.Object[])">
+            <summary>
+            Expects the current collection to contain the specified elements in any order. Elements are compared
+            using their <see cref="M:System.Object.Equals(System.Object)"/> implementation.
+            </summary>
+            <param name="expected">An <see cref="!:IEnumerable"/> with the expected elements.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.Contain(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Asserts that the collection contains some extra items in addition to the original items.
+            </summary>
+            <param name="expectedItemsList">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of expectation items.</param>
+            <param name="additionalExpectedItems">Additional items that are expectation to be contained by the collection.</param>
+        </member>
+        <member name="M:FluentAssertions.Collections.StringCollectionAssertions.Contain(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Asserts that the collection contains some extra items in addition to the original items.
+            </summary>
+            <param name="expectedItemsList">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of expectation items.</param>
+            <param name="additionalExpectedItems">Additional items that are expectation to be contained by the collection.</param>
+        </member>
+        <member name="P:FluentAssertions.Common.Configuration.Current">
+            <summary>
+            Gets the active configuration,
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Common.Configuration.ValueFormatterDetectionMode">
+            <summary>
+            Gets or sets the mode on how Fluent Assertions will find custom implementations of 
+            <see cref="!:IValueFormatter"/>.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Common.Configuration.ValueFormatterAssembly">
+            <summary>
+            Gets or sets the assembly name to scan for custom value formatters in case <see cref="P:FluentAssertions.Common.Configuration.ValueFormatterDetectionMode"/>
+            is set to <see cref="!:ValueFormatterDetectionMode.Specific"/>.
+            </summary>
+        </member>
         <member name="M:FluentAssertions.Common.ExpressionExtensions.GetPropertyPath``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
             Gets a dotted path of property names representing the property expression. E.g. Parent.Child.Sibling.Name.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Common.Services">
+            <summary>
+            Maintains the framework-specific services.
             </summary>
         </member>
         <member name="M:FluentAssertions.Common.StringExtensions.IndexOfFirstMismatch(System.String,System.String)">
@@ -1208,12 +1593,17 @@
             Any string that is empty (including the original string) is ignored. 
             </remarks>
         </member>
+        <member name="M:FluentAssertions.Common.StringExtensions.Capitalize(System.String)">
+            <summary>
+            Changes the first character of a string to uppercase.
+            </summary>
+        </member>
         <member name="M:FluentAssertions.Common.TypeExtensions.IsEquivalentTo(System.Reflection.PropertyInfo,System.Reflection.PropertyInfo)">
             <summary>
             Determines whether two <see cref="T:System.Reflection.PropertyInfo"/> objects refer to the same property.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Common.TypeExtensions.FindProperty(System.Type,System.String)">
+        <member name="M:FluentAssertions.Common.TypeExtensions.FindProperty(System.Type,System.String,System.Type)">
             <summary>
             Finds the property by a case-sensitive name.
             </summary>
@@ -1221,7 +1611,7 @@
             Returns <c>null</c> if no such property exists.
             </returns>
         </member>
-        <member name="M:FluentAssertions.Common.TypeExtensions.HasAttribute``1(System.Reflection.MethodInfo)">
+        <member name="M:FluentAssertions.Common.TypeExtensions.HasAttribute``1(System.Reflection.MemberInfo)">
             <summary>
             Determines whether the specified method has been annotated with a specific attribute.
             </summary>
@@ -1229,85 +1619,92 @@
               <c>true</c> if the specified method has attribute; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="T:FluentAssertions.EventMonitoringExtensions">
+        <member name="T:FluentAssertions.Common.ValueFormatterDetectionMode">
             <summary>
-              Provides extension methods for monitoring and querying events.
+            Defines the modes in which custom implementations of <see cref="!:IValueFormatter"/> are detected as configured
+            through <see cref="P:FluentAssertions.Common.Configuration.ValueFormatterDetectionMode"/>.
             </summary>
         </member>
-        <member name="M:FluentAssertions.EventMonitoringExtensions.MonitorEvents(System.ComponentModel.INotifyPropertyChanged)">
+        <member name="F:FluentAssertions.Common.ValueFormatterDetectionMode.Disabled">
             <summary>
-              Starts monitoring an object for its <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> events.
+            Detection is disabled.
             </summary>
-            <exception cref="T:System.ArgumentNullException">Thrown if eventSource is Null.</exception>
         </member>
-        <member name="M:FluentAssertions.EventMonitoringExtensions.ShouldRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="F:FluentAssertions.Common.ValueFormatterDetectionMode.Specific">
             <summary>
-            Asserts that an object has raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
+            Only custom value formatters exposed through the assembly set in <see cref="P:FluentAssertions.Common.Configuration.ValueFormatterAssembly"/>
+            are detected.
+            </summary>
+        </member>
+        <member name="F:FluentAssertions.Common.ValueFormatterDetectionMode.Scan">
+            <summary>
+            All custom value formatters in any assembly loaded in the current <see cref="!:AppDomain"/> will be detected.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Equivalency.AssertionResultSet">
+            <summary>
+            Represents a collection of assertion results obtained through a <see cref="T:FluentAssertions.Execution.AssertionScope"/>.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.AssertionResultSet.AddSet(System.Object,System.String[])">
+            <summary>
+            Adds the failures (if any) resulting from executing an assertion within a
+             <see cref="T:FluentAssertions.Execution.AssertionScope"/> identified by a key. 
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.AssertionResultSet.SelectClosestMatchFor(System.Object)">
+            <summary>
+            Returns  the closest match compared to the set identified by the provided <paramref name="key"/> or
+            an empty array if one of the results represents a succesful assertion. 
             </summary>
             <remarks>
-            You must call <see cref="M:FluentAssertions.EventMonitoringExtensions.MonitorEvents(System.ComponentModel.INotifyPropertyChanged)"/> on the same object prior to this call so that Fluent Assertions can
-            subscribe for the events of the object.
+             The closest match is the set that contains the least amount of failures, or no failures at all, and preferably 
+            the set that is identified by the <paramref name="key"/>.        
             </remarks>
         </member>
-        <member name="M:FluentAssertions.EventMonitoringExtensions.ShouldRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String,System.Object[])">
+        <member name="P:FluentAssertions.Equivalency.AssertionResultSet.ContainsSuccessfulSet">
             <summary>
-            Asserts that an object has raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
+            Gets a value indicating whether this collection contains a set without any failures at all.
             </summary>
-            <param name="eventSource">The object exposing the event.</param>
-            <param name="propertyExpression">
-            A lambda expression referring to the property for which the property changed event should have been raised, or
-            <c>null</c> to refer to all properties.
-            </param>
-            <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
-            </param>
-            <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
-            </param>
+        </member>
+        <member name="T:FluentAssertions.Equivalency.IEquivalencyStep">
+            <summary>
+            Defines a step in the process of comparing two object graphs for structural equivalency.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.IEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
+            <summary>
+            Gets a value indicating whether this step can handle the current subject and/or expectation.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.IEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
+            <summary>
+            Applies a step as part of the task to compare two objects for structural equality.
+            </summary>
+            <value>
+            Should return <c>true</c> if the subject matches the expectation or if no additional assertions
+            have to be executed. Should return <c>false</c> otherwise.
+            </value>
             <remarks>
-            You must call <see cref="M:FluentAssertions.EventMonitoringExtensions.MonitorEvents(System.ComponentModel.INotifyPropertyChanged)"/> on the same object prior to this call so that Fluent Assertions can
-            subscribe for the events of the object.
+            May throw when preconditions are not met or if it detects mismatching data.
             </remarks>
         </member>
-        <member name="M:FluentAssertions.EventMonitoringExtensions.ShouldNotRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="M:FluentAssertions.Equivalency.DictionaryEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
-            Asserts that an object has not raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
+            Gets a value indicating whether this step can handle the current subject and/or expectation.
             </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.DictionaryEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
+            <summary>
+            Applies a step as part of the task to compare two objects for structural equality.
+            </summary>
+            <value>
+            Should return <c>true</c> if the subject matches the expectation or if no additional assertions
+            have to be executed. Should return <c>false</c> otherwise.
+            </value>
             <remarks>
-            You must call <see cref="M:FluentAssertions.EventMonitoringExtensions.MonitorEvents(System.ComponentModel.INotifyPropertyChanged)"/> on the same object prior to this call so that Fluent Assertions can
-            subscribe for the events of the object.
+            May throw when preconditions are not met or if it detects mismatching data.
             </remarks>
-        </member>
-        <member name="M:FluentAssertions.EventMonitoringExtensions.ShouldNotRaisePropertyChangeFor``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String,System.Object[])">
-            <summary>
-            Asserts that an object has not raised the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event for a particular property.
-            </summary>
-            <param name="eventSource">The object exposing the event.</param>
-            <param name="propertyExpression">
-            A lambda expression referring to the property for which the property changed event should have been raised.
-            </param>
-            <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
-            </param>
-            <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
-            </param>
-            <remarks>
-            You must call <see cref="M:FluentAssertions.EventMonitoringExtensions.MonitorEvents(System.ComponentModel.INotifyPropertyChanged)"/> on the same object prior to this call so that Fluent Assertions can
-            subscribe for the events of the object.
-            </remarks>
-        </member>
-        <member name="M:FluentAssertions.EventMonitoringExtensions.WithSender(FluentAssertions.Events.IEventRecorder,System.Object)">
-            <summary>
-            Asserts that all occurences of the event originated from the <param name="expectedSender"/>.
-            </summary>
-        </member>
-        <member name="M:FluentAssertions.EventMonitoringExtensions.WithArgs``1(FluentAssertions.Events.IEventRecorder,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            Asserts that at least one occurrence of the event had an <see cref="T:System.EventArgs"/> object matching a predicate.
-            </summary>
         </member>
         <member name="T:FluentAssertions.Events.EventHandlerFactory">
             <summary>
@@ -1424,48 +1821,143 @@
             Parameters for the event
             </summary>
         </member>
+        <member name="T:FluentAssertions.Execution.IAssertionStrategy">
+            <summary>
+            Defines a strategy for handling failures in a <see cref="T:FluentAssertions.Execution.AssertionScope"/>.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.IAssertionStrategy.HandleFailure(System.String)">
+            <summary>
+            Instructs the strategy to handle a assertion failure.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.IAssertionStrategy.DiscardFailures">
+            <summary>
+            Discards and returns the failure messages that happened up to now.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.IAssertionStrategy.ThrowIfAny(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Will throw a combined exception for any failures have been collected since <see cref="!:StartCollecting"/> was called.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Execution.IAssertionStrategy.FailureMessages">
+            <summary>
+            Returns the messages for the assertion failures that happened until now.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.CollectingAssertionStrategy.DiscardFailures">
+            <summary>
+            Discards and returns the failure messages that happened up to now.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.CollectingAssertionStrategy.ThrowIfAny(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Will throw a combined exception for any failures have been collected since <see cref="!:StartCollecting"/> was called.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.CollectingAssertionStrategy.HandleFailure(System.String)">
+            <summary>
+            Instructs the strategy to handle a assertion failure.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Execution.CollectingAssertionStrategy.FailureMessages">
+            <summary>
+            Returns the messages for the assertion failures that happened until now.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(System.String)">
+            <summary>
+            Instructs the strategy to handle a assertion failure.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.DefaultAssertionStrategy.DiscardFailures">
+            <summary>
+            Discards and returns the failure messages that happened up to now.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.DefaultAssertionStrategy.ThrowIfAny(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Will throw a combined exception for any failures have been collected since <see cref="!:StartCollecting"/> was called.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Execution.DefaultAssertionStrategy.FailureMessages">
+            <summary>
+            Returns the messages for the assertion failures that happened until now.
+            </summary>
+        </member>
         <member name="T:FluentAssertions.Execution.Execute">
             <summary>
             Helper class for verifying a condition and/or throwing a test harness specific exception representing an assertion failure.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Execution.Execute.Verification">
+        <member name="P:FluentAssertions.Execution.Execute.Assertion">
             <summary>
-            Gets an object that wraps and executes a conditional or unconditional verification.
+            Gets an object that wraps and executes a conditional or unconditional assertion.
             </summary>
         </member>
-        <member name="T:FluentAssertions.Execution.Verification">
+        <member name="T:FluentAssertions.Execution.FallbackTestFramework">
             <summary>
-            Provides a fluent API for verifying an arbitrary condition.
+            Throws a generic exception in case no other test harness is detected.
             </summary>
         </member>
-        <member name="F:FluentAssertions.Execution.Verification.ReasonTag">
+        <member name="T:FluentAssertions.Execution.ITestFramework">
             <summary>
-            Represents the phrase that can be used in <see cref="M:FluentAssertions.Execution.Verification.FailWith(System.String,System.Object[])"/> as a placeholder for the reason of an assertion.
+            Represents an abstraction of a particular test framework such as MSTest, nUnit, etc.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Execution.Verification.#ctor">
+        <member name="M:FluentAssertions.Execution.ITestFramework.Throw(System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:FluentAssertions.Execution.Verification"/> class.
+            Throws a framework-specific exception to indicate a failing unit test.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Execution.Verification.SubjectNameOr(System.String)">
+        <member name="P:FluentAssertions.Execution.ITestFramework.IsAvailable">
             <summary>
-            Gets the name or identifier of the current subject, or a default value if the subject is not known.
+            Gets a value indicating whether the corresponding test framework is currently available.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Execution.Verification.ForCondition(System.Boolean)">
+        <member name="M:FluentAssertions.Execution.FallbackTestFramework.Throw(System.String)">
+            <summary>
+            Throws a framework-specific exception to indicate a failing unit test.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Execution.FallbackTestFramework.IsAvailable">
+            <summary>
+            Gets a value indicating whether the corresponding test framework is currently available.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.GallioTestFramework.Throw(System.String)">
+            <summary>
+            Throws a framework-specific exception to indicate a failing unit test.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Execution.GallioTestFramework.IsAvailable">
+            <summary>
+            Gets a value indicating whether the corresponding test framework is currently available.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Execution.AssertionScope">
+            <summary>
+            Represents an implicit or explicit scope within which multiple assertions can be collected.
+            </summary>
+        </member>
+        <member name="F:FluentAssertions.Execution.AssertionScope.ReasonTag">
+            <summary>
+            Represents the phrase that can be used in <see cref="M:FluentAssertions.Execution.AssertionScope.FailWith(System.String,System.Object[])"/> as a placeholder for the reason of an assertion.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.AssertionScope.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:FluentAssertions.Execution.AssertionScope"/> class.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.AssertionScope.ForCondition(System.Boolean)">
             <summary>
             Specify the condition that must be satisfied.
             </summary>
-            <param name="condition">If <c>true</c> the verification will be succesful.</param>
+            <param name="condition">If <c>true</c> the assertion will be succesful.</param>
         </member>
-        <member name="M:FluentAssertions.Execution.Verification.ForCondition(System.Func{System.Boolean})">
-            <summary>
-            Specify a predicate that with the condition that must be satisfied.
-            </summary>
-        </member>
-        <member name="M:FluentAssertions.Execution.Verification.BecauseOf(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Execution.AssertionScope.BecauseOf(System.String,System.Object[])">
             <summary>
             Specify the reason why you expect the condition to be <c>true</c>.
             </summary>
@@ -1477,27 +1969,61 @@
             Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
             </param>
         </member>
-        <member name="M:FluentAssertions.Execution.Verification.FailWith(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Execution.AssertionScope.FailWith(System.String,System.Object[])">
             <summary>
-            Define the failure message for the verification.
+            Define the failure message for the assertion.
             </summary>
             <remarks>
             If the <paramref name="failureMessage"/> contains the text "{reason}", this will be replaced by the reason as
-            defined through <see cref="M:FluentAssertions.Execution.Verification.BecauseOf(System.String,System.Object[])"/>. Only 10 <paramref name="failureArgs"/> are supported in combination with
+            defined through <see cref="M:FluentAssertions.Execution.AssertionScope.BecauseOf(System.String,System.Object[])"/>. Only 10 <paramref name="failureArgs"/> are supported in combination with
             a {reason}.
             </remarks>
             <param name="failureMessage">The format string that represents the failure message.</param>
             <param name="failureArgs">Optional arguments for the <paramref name="failureMessage"/></param>
         </member>
-        <member name="P:FluentAssertions.Execution.Verification.UsingLineBreaks">
+        <member name="M:FluentAssertions.Execution.AssertionScope.Discard">
             <summary>
-            Indicates that every argument passed into <see cref="M:FluentAssertions.Execution.Verification.FailWith(System.String,System.Object[])"/> is displayed on a separate line.
+            Discards and returns the failures that happened up to now.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Execution.Verification.SubjectName">
+        <member name="M:FluentAssertions.Execution.AssertionScope.Dispose">
             <summary>
-            Gets or sets the name of the subject for the next verification.
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.AssertionScope.Get``1(System.String)">
+            <summary>
+            Gets data associated with the current scope and identified by <paramref name="key"/>.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Execution.AssertionScope.UsingLineBreaks">
+            <summary>
+            Indicates that every argument passed into <see cref="M:FluentAssertions.Execution.AssertionScope.FailWith(System.String,System.Object[])"/> is displayed on a separate line.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Execution.Reportability">
+            <summary>
+            Determines whether data associated with an <see cref="T:FluentAssertions.Execution.AssertionScope"/> should be included in the assertion failure.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Execution.ContextDataItems">
+            <summary>
+            Represents a collection of data items that are associated with an <see cref="T:FluentAssertions.Execution.AssertionScope"/>.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Execution.ICloneable2">
+            <summary>
+            Custom version of ICloneable that works on all frameworks.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Execution.ICloneable2.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
         </member>
         <member name="T:FluentAssertions.FluentDateTimeExtensions">
             <summary>
@@ -1747,6 +2273,32 @@
             A <see cref="T:System.String"/> that represents this instance.
             </returns>
         </member>
+        <member name="M:FluentAssertions.Formatting.ExceptionValueFormatter.CanHandle(System.Object)">
+            <summary>
+            Indicates whether the current <see cref="T:FluentAssertions.Formatting.IValueFormatter"/> can handle the specified <paramref name="value"/>.
+            </summary>
+            <param name="value">The value for which to create a <see cref="T:System.String"/>.</param>
+            <returns>
+            <c>true</c> if the current <see cref="T:FluentAssertions.Formatting.IValueFormatter"/> can handle the specified value; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FluentAssertions.Formatting.ExceptionValueFormatter.ToString(System.Object,System.Boolean,System.Collections.Generic.IList{System.Object},System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <param name="value">The value for which to create a <see cref="T:System.String"/>.</param>
+            <param name="useLineBreaks"> </param>
+            <param name="processedObjects">
+            A collection of objects that 
+            </param>
+            <param name="nestedPropertyLevel">
+            The level of nesting for the supplied value. This is used for indenting the format string for objects that have
+            no <see cref="M:System.Object.ToString"/> override.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
         <member name="M:FluentAssertions.Formatting.ExpressionValueFormatter.CanHandle(System.Object)">
             <summary>
             Indicates whether the current <see cref="T:FluentAssertions.Formatting.IValueFormatter"/> can handle the specified <paramref name="value"/>.
@@ -1798,6 +2350,11 @@
             <returns>
             A <see cref="T:System.String"/> that represents this instance.
             </returns>
+        </member>
+        <member name="M:FluentAssertions.Formatting.Formatter.AddFormatter(FluentAssertions.Formatting.IValueFormatter)">
+            <summary>
+            Ensures a custom formatter is included in the chain, just before the default formatter is executed.
+            </summary>
         </member>
         <member name="M:FluentAssertions.Formatting.GuidValueFormatter.CanHandle(System.Object)">
             <summary>
@@ -1861,6 +2418,32 @@
             </returns>
         </member>
         <member name="M:FluentAssertions.Formatting.NumericValueFormatter.ToString(System.Object,System.Boolean,System.Collections.Generic.IList{System.Object},System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <param name="value">The value for which to create a <see cref="T:System.String"/>.</param>
+            <param name="useLineBreaks"> </param>
+            <param name="processedObjects">
+            A collection of objects that 
+            </param>
+            <param name="nestedPropertyLevel">
+            The level of nesting for the supplied value. This is used for indenting the format string for objects that have
+            no <see cref="M:System.Object.ToString"/> override.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:FluentAssertions.Formatting.PropertyInfoFormatter.CanHandle(System.Object)">
+            <summary>
+            Indicates whether the current <see cref="T:FluentAssertions.Formatting.IValueFormatter"/> can handle the specified <paramref name="value"/>.
+            </summary>
+            <param name="value">The value for which to create a <see cref="T:System.String"/>.</param>
+            <returns>
+            <c>true</c> if the current <see cref="T:FluentAssertions.Formatting.IValueFormatter"/> can handle the specified value; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FluentAssertions.Formatting.PropertyInfoFormatter.ToString(System.Object,System.Boolean,System.Collections.Generic.IList{System.Object},System.Int32)">
             <summary>
             Returns a <see cref="T:System.String"/> that represents this instance.
             </summary>
@@ -2048,7 +2631,7 @@
         </member>
         <member name="M:FluentAssertions.NumericAssertionsExtensions.BeApproximately(FluentAssertions.Numeric.NullableNumericAssertions{System.Double},System.Double,System.Double,System.String,System.Object[])">
             <summary>
-            Asserts a floating point value approximates another value as close as possible.
+            Asserts a double value approximates another value as close as possible.
             </summary>
             <param name="parent">The <see cref="T:FluentAssertions.Numeric.NumericAssertions`1"/> object that is being extended.</param>
             <param name="expectedValue">
@@ -2067,7 +2650,45 @@
         </member>
         <member name="M:FluentAssertions.NumericAssertionsExtensions.BeApproximately(FluentAssertions.Numeric.NumericAssertions{System.Double},System.Double,System.Double,System.String,System.Object[])">
             <summary>
-            Asserts a floating point value approximates another value as close as possible.
+            Asserts a double value approximates another value as close as possible.
+            </summary>
+            <param name="parent">The <see cref="T:FluentAssertions.Numeric.NumericAssertions`1"/> object that is being extended.</param>
+            <param name="expectedValue">
+            The expected value to compare the actual value with.
+            </param>
+            <param name="precision">
+            The maximum amount of which the two values may differ.
+            </param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.NumericAssertionsExtensions.BeApproximately(FluentAssertions.Numeric.NullableNumericAssertions{System.Decimal},System.Decimal,System.Decimal,System.String,System.Object[])">
+            <summary>
+            Asserts a decimal value approximates another value as close as possible.
+            </summary>
+            <param name="parent">The <see cref="T:FluentAssertions.Numeric.NumericAssertions`1"/> object that is being extended.</param>
+            <param name="expectedValue">
+            The expected value to compare the actual value with.
+            </param>
+            <param name="precision">
+            The maximum amount of which the two values may differ.
+            </param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.NumericAssertionsExtensions.BeApproximately(FluentAssertions.Numeric.NumericAssertions{System.Decimal},System.Decimal,System.Decimal,System.String,System.Object[])">
+            <summary>
+            Asserts a decimal value approximates another value as close as possible.
             </summary>
             <param name="parent">The <see cref="T:FluentAssertions.Numeric.NumericAssertions`1"/> object that is being extended.</param>
             <param name="expectedValue">
@@ -2200,33 +2821,9 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Numeric.ComparableTypeAssertions`1.NotBeNull(System.String,System.Object[])">
+        <member name="P:FluentAssertions.Numeric.ComparableTypeAssertions`1.Context">
             <summary>
-            Asserts that a nullable numeric value is not <c>null</c>.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>      
-        </member>
-        <member name="M:FluentAssertions.Numeric.ComparableTypeAssertions`1.BeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that a nullable numeric value is <c>null</c>.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>  
-        </member>
-        <member name="P:FluentAssertions.Numeric.ComparableTypeAssertions`1.Subject">
-            <summary>
-            Gets the object which value is being asserted.
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Numeric.NumericAssertions`1">
@@ -2496,6 +3093,9 @@
         <member name="F:FluentAssertions.ComparisonMode.StartWith">
             <summary>
             The message must start with the exact text, including the casing of the characters..
+            </summary>
+            <summary>
+            The message must match exactly, including the casing of the characters.
             </summary>
         </member>
         <member name="F:FluentAssertions.ComparisonMode.StartWithEquivalent">
@@ -2871,6 +3471,30 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Primitives.NullableBooleanAssertions.NotBeFalse(System.String,System.Object[])">
+            <summary>
+            Asserts that the value is not <c>false</c>.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.NullableBooleanAssertions.NotBeTrue(System.String,System.Object[])">
+            <summary>
+            Asserts that the value is not <c>true</c>.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="T:FluentAssertions.Primitives.NullableDateTimeAssertions">
             <summary>
             Contains a number of methods to assert that a nullable <see cref="T:System.DateTime"/> is in the expected state.
@@ -3079,6 +3703,31 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Primitives.SimpleTimeSpanAssertions.BeCloseTo(System.TimeSpan,System.Int32,System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.TimeSpan"/> is within the specified number of milliseconds (default = 20 ms)
+            from the specified <paramref name="nearbyTime"/> value.
+            </summary>
+            <remarks>
+            Use this assertion when, for example the database truncates datetimes to nearest 20ms. If you want to assert to the exact datetime,
+            use <see cref="M:FluentAssertions.Primitives.SimpleTimeSpanAssertions.Be(System.TimeSpan,System.String,System.Object[])"/>.
+            </remarks>
+            <param name="expected"></param>
+            <param name="i"></param>
+            <param name="nearbyTime">
+            The expected time to compare the actual value with.
+            </param>
+            <param name="precision">
+            The maximum amount of milliseconds which the two values may differ.
+            </param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="P:FluentAssertions.Primitives.SimpleTimeSpanAssertions.Subject">
             <summary>
             Gets the object which value is being asserted.
@@ -3107,6 +3756,19 @@
             <param name="reasonArgs">
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>      
+        </member>
+        <member name="M:FluentAssertions.Primitives.NullableSimpleTimeSpanAssertions.Be(System.Nullable{System.TimeSpan},System.String,System.Object[])">
+            <summary>
+            Asserts that the value is equal to the specified <paramref name="expected"/> value.
+            </summary>
+            <param name="expected">The expected value</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
         </member>
         <member name="T:FluentAssertions.Primitives.ObjectAssertions">
             <summary>
@@ -3165,29 +3827,49 @@
             Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
             </param>
         </member>
-        <member name="M:FluentAssertions.Primitives.ObjectAssertions.BeNull(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Primitives.ObjectAssertions.BeBinarySerializable(System.String,System.Object[])">
             <summary>
-            Asserts that the object is <c>null</c>.
+            Asserts that an object can be serialized and deserialized using the binary serializer and that it stills retains
+            the values of all properties.
             </summary>
             <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
             </param>
             <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Primitives.ObjectAssertions.NotBeNull(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Primitives.ObjectAssertions.BeBinarySerializable``1(System.Func{FluentAssertions.Equivalency.EquivalencyAssertionOptions{``0},FluentAssertions.Equivalency.EquivalencyAssertionOptions{``0}},System.String,System.Object[])">
             <summary>
-            Asserts that the object is not <c>null</c>.
+            Asserts that an object can be serialized and deserialized using the binary serializer and that it stills retains
+            the values of all properties.
             </summary>
             <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
             </param>
             <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.ObjectAssertions.BeXmlSerializable(System.String,System.Object[])">
+            <summary>
+            Asserts that an object can be serialized and deserialized using the XML serializer and that it stills retains
+            the values of all properties.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="P:FluentAssertions.Primitives.ObjectAssertions.Context">
+            <summary>
+            Returns the type of the subject the assertion applies on.
+            </summary>
         </member>
         <member name="T:FluentAssertions.Primitives.StringAssertions">
             <summary>
@@ -3325,12 +4007,56 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.MatchRegex(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that a string matches a regular expression.
+            </summary>
+            <param name="regularExpression">
+            The regular expression with which the subject is matched.
+            </param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.NotMatchRegex(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that a string does not match a regular expression.
+            </summary>
+            <param name="regularExpression">
+            The regular expression with which the subject is matched.
+            </param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="M:FluentAssertions.Primitives.StringAssertions.StartWith(System.String,System.String,System.Object[])">
             <summary>
             Asserts that a string starts exactly with the specified <paramref name="expected"/> value,
             including the casing and any leading or trailing whitespace.
             </summary>
             <param name="expected">The string that the subject is expected to start with.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.NotStartWith(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that a string does not start with the specified <paramref name="unexpected"/> value,
+            including the casing and any leading or trailing whitespace.
+            </summary>
+            <param name="unexpected">The string that the subject is not expected to start with.</param>
             <param name="reason">
             A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
             is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
@@ -3353,6 +4079,20 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.NotStartWithEquivalentOf(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that a string does not start with the specified <paramref name="unexpected"/> value,
+            including any leading or trailing whitespace, with the exception of the casing.
+            </summary>
+            <param name="unexpected">The string that the subject is not expected to start with.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="M:FluentAssertions.Primitives.StringAssertions.EndWith(System.String,System.String,System.Object[])">
             <summary>
             Asserts that a string ends exactly with the specified <paramref name="expected"/>,
@@ -3367,12 +4107,40 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.NotEndWith(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that a string does not end exactly with the specified <paramref name="unexpected"/>,
+            including the casing and any leading or trailing whitespace.
+            </summary>
+            <param name="unexpected">The string that the subject is not expected to end with.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="M:FluentAssertions.Primitives.StringAssertions.EndWithEquivalent(System.String,System.String,System.Object[])">
             <summary>
             Asserts that a string ends with the specified <paramref name="expected"/>,
             including any leading or trailing whitespace, with the exception of the casing.
             </summary>
             <param name="expected">The string that the subject is expected to end with.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.NotEndWithEquivalentOf(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that a string does not end with the specified <paramref name="unexpected"/>,
+            including any leading or trailing whitespace, with the exception of the casing.
+            </summary>
+            <param name="unexpected">The string that the subject is not expected to end with.</param>
             <param name="reason">
             A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
             is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
@@ -3476,30 +4244,6 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Primitives.StringAssertions.BeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that a string is <c>null</c>.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
-        </member>
-        <member name="M:FluentAssertions.Primitives.StringAssertions.NotBeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that a string is not <c>null</c>.
-            </summary>
-            <param name="reason">
-            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
-            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
-            </param>
-            <param name="reasonArgs">
-            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
-            </param>
-        </member>
         <member name="M:FluentAssertions.Primitives.StringAssertions.NotBeNullOrEmpty(System.String,System.Object[])">
             <summary>
             Asserts that a string is neither <c>null</c> nor <see cref="F:System.String.Empty"/>.
@@ -3524,9 +4268,33 @@
             Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
             </param>
         </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.NotBeNullOrWhiteSpace(System.String,System.Object[])">
+            <summary>
+            Asserts that a string is neither <c>null</c> nor <see cref="F:System.String.Empty"/> nor white space
+            </summary>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+        </member>
         <member name="M:FluentAssertions.Primitives.StringAssertions.NotBeBlank(System.String,System.Object[])">
             <summary>
             Asserts that a string is neither <c>null</c> nor <see cref="F:System.String.Empty"/> nor white space
+            </summary>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Primitives.StringAssertions.BeNullOrWhiteSpace(System.String,System.Object[])">
+            <summary>
+            Asserts that a string is either <c>null</c> or <see cref="F:System.String.Empty"/> or white space
             </summary>
             <param name="reason">
             A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
@@ -3548,9 +4316,9 @@
             Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
             </param>
         </member>
-        <member name="P:FluentAssertions.Primitives.StringAssertions.Subject">
+        <member name="P:FluentAssertions.Primitives.StringAssertions.Context">
             <summary>
-            Gets the object which value is being asserted.
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Primitives.StringValidator">
@@ -3653,9 +4421,9 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="P:FluentAssertions.Specialized.ActionAssertions.Subject">
+        <member name="P:FluentAssertions.Specialized.ActionAssertions.Context">
             <summary>
-            Gets the <see cref="T:System.Action"/> that is being asserted.
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Specialized.ExceptionAssertions`1">
@@ -3760,6 +4528,50 @@
               Gets the exception object of the exception thrown.
             </summary>
         </member>
+        <member name="P:FluentAssertions.Specialized.ExceptionAssertions`1.Context">
+            <summary>
+            Returns the type of the subject the assertion applies on.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Specialized.ExecutionTimeAssertions">
+            <summary>
+            Provides methods for asserting that the execution time of an <see cref="T:System.Action"/> satifies certain conditions.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Specialized.ExecutionTimeAssertions.#ctor(System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:FluentAssertions.Specialized.ExecutionTimeAssertions"/> class.
+            </summary>
+            <param name="action">The action of which the execution time must be asserted.</param>
+        </member>
+        <member name="M:FluentAssertions.Specialized.ExecutionTimeAssertions.ShouldNotExceed(System.TimeSpan,System.String,System.Object[])">
+            <summary>
+            Asserts that the execution time of the operation does not exceed a specified amount of time.
+            </summary>
+            <param name="maxDuration">
+            The maximum allowed duration.
+            </param>
+            <param name="reason">
+            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
+            start with the word <i>because</i>, it is prepended to the message.
+            </param>
+            <param name="reasonArgs">
+            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            </param>
+        </member>
+        <member name="T:FluentAssertions.Specialized.MemberExecutionTimeAssertions`1">
+            <summary>
+            Provides methods for asserting that the execution time of an object member satifies certain conditions.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:FluentAssertions.Specialized.MemberExecutionTimeAssertions`1.#ctor(`0,System.Linq.Expressions.Expression{System.Action{`0}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:FluentAssertions.Specialized.MemberExecutionTimeAssertions`1"/> class.
+            </summary>
+            <param name="subject">The object that exposes the method or property.</param>
+            <param name="action">A reference to the method or property to measure the execution time of.</param>
+        </member>
         <member name="T:FluentAssertions.Equivalency.AllDeclaredPublicPropertiesSelectionRule">
             <summary>
             Selection rule that adds all public properties of the subject as far as they are defined on the declared
@@ -3832,29 +4644,12 @@
             </returns>
             <filterpriority>2</filterpriority>
         </member>
-        <member name="M:FluentAssertions.Equivalency.IEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext)">
+        <member name="M:FluentAssertions.Equivalency.ApplyAssertionRulesEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Gets a value indicating whether this step can handle the current subject and/or expectation.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.IEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator)">
-            <summary>
-            Applies a step as part of the task to compare two objects for structural equality.
-            </summary>
-            <value>
-            Should return <c>true</c> if the subject matches the expectation or if no additional assertions
-            have to be executed. Should return <c>false</c> otherwise.
-            </value>
-            <remarks>
-            May throw when preconditions are not met or if it detects mismatching data.
-            </remarks>
-        </member>
-        <member name="M:FluentAssertions.Equivalency.ApplyAssertionRulesEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext)">
-            <summary>
-            Gets a value indicating whether this step can handle the current subject and/or expectation.
-            </summary>
-        </member>
-        <member name="M:FluentAssertions.Equivalency.ApplyAssertionRulesEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator)">
+        <member name="M:FluentAssertions.Equivalency.ApplyAssertionRulesEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Applies a step as part of the task to compare two objects for structural equality.
             </summary>
@@ -3910,6 +4705,15 @@
             Returns <c>false</c> if this rule doesn't support the subject's type.
             Throws if the rule did support the data type but assertion fails.
             </returns>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.AssertionRule`1.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+            <filterpriority>2</filterpriority>
         </member>
         <member name="T:FluentAssertions.Equivalency.IAssertionContext`1">
             <summary>
@@ -4066,16 +4870,27 @@
             Gets or sets a value indicating whether or not the assertion must perform a deep comparison.
             </summary>
         </member>
-        <member name="F:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Default">
+        <member name="P:FluentAssertions.Equivalency.IEquivalencyAssertionOptions.CyclicReferenceHandling">
             <summary>
-            Gets a configuration that compares all declared properties of the subject with equally named properties of the expectation,
-            and includes the entire object graph. The names of the properties between the subject and expectation must match.
+            Gets value indicating how cyclic references should be handled. By default, it will throw an exception.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Equivalency.IEquivalencyAssertionOptions.OrderingRules">
+            <summary>
+            Gets an ordered collection of rules that determine whether or not the order of collections is important. By default,
+            ordering is irrelevant.
             </summary>
         </member>
         <member name="F:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Empty">
             <summary>
             Gets a configuration that by default doesn't include any of the subject's properties and doesn't consider any nested objects
             or collections.
+            </summary>
+        </member>
+        <member name="F:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Default">
+            <summary>
+            Gets a configuration that compares all declared properties of the subject with equally named properties of the expectation,
+            and includes the entire object graph. The names of the properties between the subject and expectation must match.
             </summary>
         </member>
         <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.IncludingAllDeclaredProperties">
@@ -4128,6 +4943,14 @@
             Causes the structural equality check to include nested collections and complex types.
             </summary>
         </member>
+        <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.ExcludingNestedObjects">
+            <summary>
+            Causes the structural equality check to exclude nested collections and complex types.
+            </summary>
+            <remarks>
+            Behaves similarly to the old property assertions API.
+            </remarks>
+        </member>
         <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.IgnoringCyclicReferences">
             <summary>
             Causes the structural equality check to ignore any cyclic references.
@@ -4148,17 +4971,34 @@
         </member>
         <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Using(FluentAssertions.Equivalency.ISelectionRule)">
             <summary>
-            Adds a selection rule to the ones allready added by default and which is evaluated after all existing rules.
+            Adds a selection rule to the ones already added by default, and which is evaluated after all existing rules.
             </summary>
         </member>
         <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Using(FluentAssertions.Equivalency.IMatchingRule)">
             <summary>
-            Adds a matching rule to the ones allready added by default and which is evaluated before all existing rules.
+            Adds a matching rule to the ones already added by default, and which is evaluated before all existing rules.
             </summary>
         </member>
         <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Using(FluentAssertions.Equivalency.IAssertionRule)">
             <summary>
-            Adds a matching rule to the ones allready added by default and which is evaluated before all existing rules
+            Adds a matching rule to the ones already added by default, and which is evaluated before all existing rules
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.WithStrictOrdering">
+            <summary>
+            Causes all collections to be compared in the order in which the items appear in the expectation.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.WithStrictOrderingFor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Causes the collection identified by <paramref name="propertyExpression"/> to be compared in the order 
+            in which the items appear in the expectation.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.WithStrictOrderingFor(System.Linq.Expressions.Expression{System.Func{FluentAssertions.Equivalency.ISubjectInfo,System.Boolean}})">
+            <summary>
+            Causes the collection identified by the provided <paramref name="predicate"/> to be compared in the order 
+            in which the items appear in the expectation.
             </summary>
         </member>
         <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.ToString">
@@ -4170,29 +5010,35 @@
             </returns>
             <filterpriority>2</filterpriority>
         </member>
-        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.SelectionRules">
+        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.FluentAssertions#Equivalency#IEquivalencyAssertionOptions#SelectionRules">
             <summary>
             Gets an ordered collection of selection rules that define what properties are included.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.MatchingRules">
+        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.FluentAssertions#Equivalency#IEquivalencyAssertionOptions#MatchingRules">
             <summary>
             Gets an ordered collection of matching rules that determine which subject properties are matched with which
             expectation properties.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.AssertionRules">
+        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.FluentAssertions#Equivalency#IEquivalencyAssertionOptions#AssertionRules">
             <summary>
             Gets an ordered collection of assertion rules that determine how subject properties are compared for equality with
             expectation properties.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.IsRecursive">
+        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.FluentAssertions#Equivalency#IEquivalencyAssertionOptions#OrderingRules">
+            <summary>
+            Gets an ordered collection of rules that determine whether or not the order of collections is important. By default,
+            ordering is irrelevant.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.FluentAssertions#Equivalency#IEquivalencyAssertionOptions#IsRecursive">
             <summary>
             Gets value indicating whether the equality check will include nested collections and complex types.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.CyclicReferenceHandling">
+        <member name="P:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.FluentAssertions#Equivalency#IEquivalencyAssertionOptions#CyclicReferenceHandling">
             <summary>
             Gets value indicating how cyclic references should be handled. By default, it will throw an exception.
             </summary>
@@ -4207,7 +5053,7 @@
             Allows overriding the way structural equality is applied to (nested) objects of tyoe <typeparamref name="TPropertyType"/>
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Restriction`1.When(System.Func{FluentAssertions.Equivalency.ISubjectInfo,System.Boolean})">
+        <member name="M:FluentAssertions.Equivalency.EquivalencyAssertionOptions`1.Restriction`1.When(System.Linq.Expressions.Expression{System.Func{FluentAssertions.Equivalency.ISubjectInfo,System.Boolean}})">
             <summary>
             Allows overriding the way structural equality is applied to particular properties.
             </summary>
@@ -4216,12 +5062,77 @@
             override applies.
             </param>
         </member>
-        <member name="M:FluentAssertions.Equivalency.ComplexTypeEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext)">
+        <member name="T:FluentAssertions.Equivalency.IOrderingRule">
+            <summary>
+            Defines a rule that is used to determine whether the order of items in collections is relevant or not.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.IOrderingRule.AppliesTo(FluentAssertions.Equivalency.ISubjectInfo)">
+            <summary>
+            Determines if ordering of the property refered to by the current <paramref name="subjectInfo"/> is relevant.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.PredicateBasedOrderingRule.AppliesTo(FluentAssertions.Equivalency.ISubjectInfo)">
+            <summary>
+            Determines if ordering of the property refered to by the current <paramref name="subjectInfo"/> is relevant.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Equivalency.MatchAllOrderingRule">
+            <summary>
+            An ordering rule that basically states that the order of items in all collections is important.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.MatchAllOrderingRule.AppliesTo(FluentAssertions.Equivalency.ISubjectInfo)">
+            <summary>
+            Determines if ordering of the property refered to by the current <paramref name="subjectInfo"/> is relevant.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Equivalency.PropertyPathOrderingRule">
+            <summary>
+            Represents a rule for determining whether or not a certain collection within the object graph should be compared using
+            strict ordering.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.PropertyPathOrderingRule.AppliesTo(FluentAssertions.Equivalency.ISubjectInfo)">
+            <summary>
+            Determines if ordering of the property refered to by the current <paramref name="subjectInfo"/> is relevant.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Equivalency.OrderingRuleCollection">
+            <summary>
+            Collection of <see cref="T:FluentAssertions.Equivalency.PropertyPathOrderingRule"/>s.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.OrderingRuleCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.OrderingRuleCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.OrderingRuleCollection.IsOrderingStrictFor(FluentAssertions.Equivalency.ISubjectInfo)">
+            <summary>
+            Determines whether the rules in this collection dictate strict ordering during the equivalency assertion on
+            the collection pointed to by <paramref name="subjectInfo"/>.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.ComplexTypeEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Gets a value indicating whether this step can handle the current subject and/or expectation.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.ComplexTypeEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator)">
+        <member name="M:FluentAssertions.Equivalency.ComplexTypeEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Applies a step as part of the task to compare two objects for structural equality.
             </summary>
@@ -4248,12 +5159,12 @@
             Cyclic references will result in an exception.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.EnumerableEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext)">
+        <member name="M:FluentAssertions.Equivalency.EnumerableEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
-            Gets a value indicating whether this step can handle the current subject and/or expectation.
+            Gets a value indicating whether this step can handle the verificationScope subject and/or expectation.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.EnumerableEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator)">
+        <member name="M:FluentAssertions.Equivalency.EnumerableEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Applies a step as part of the task to compare two objects for structural equality.
             </summary>
@@ -4265,12 +5176,17 @@
             May throw when preconditions are not met or if it detects mismatching data.
             </remarks>
         </member>
-        <member name="M:FluentAssertions.Equivalency.SimpleEqualityEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext)">
+        <member name="T:FluentAssertions.Equivalency.EnumerableEquivalencyValidator">
+            <summary>
+            Executes a single equivalency assertion on two collections, optionally recursive and with or without strict ordering.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.SimpleEqualityEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Gets a value indicating whether this step can handle the current subject and/or expectation.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.SimpleEqualityEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator)">
+        <member name="M:FluentAssertions.Equivalency.SimpleEqualityEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Applies a step as part of the task to compare two objects for structural equality.
             </summary>
@@ -4366,15 +5282,9 @@
             Provides information on a particular property during an assertion for structural equality of two object graphs.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.MatchingExpectationProperty">
-            <summary>
-            Gets the property of the <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Expectation"/> that was matched against the <see cref="!:SubjectProperty"/>, 
-            or <c>null</c> if <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.IsRoot"/> is <c>true</c>.
-            </summary>
-        </member>
         <member name="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Expectation">
             <summary>
-            Gets the value of the <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.MatchingExpectationProperty"/>.
+            Gets the value of the <see cref="!:MatchingExpectationProperty"/>.
             </summary>
         </member>
         <member name="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Reason">
@@ -4386,11 +5296,6 @@
         <member name="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.ReasonArgs">
             <summary>
             Zero or more objects to format using the placeholders in <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Reason"/>.
-            </summary>
-        </member>
-        <member name="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Verification">
-            <summary>
-            Gets a verification object associated with the current <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Reason"/> and <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.ReasonArgs"/>.
             </summary>
         </member>
         <member name="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.IsRoot">
@@ -4513,12 +5418,12 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Equivalency.ReferenceEqualityEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext)">
+        <member name="M:FluentAssertions.Equivalency.ReferenceEqualityEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Gets a value indicating whether this step can handle the current subject and/or expectation.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.ReferenceEqualityEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator)">
+        <member name="M:FluentAssertions.Equivalency.ReferenceEqualityEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Applies a step as part of the task to compare two objects for structural equality.
             </summary>
@@ -4551,15 +5456,9 @@
             Gets the value of the <see cref="P:FluentAssertions.Equivalency.ISubjectInfo.PropertyInfo"/>
             </summary>
         </member>
-        <member name="P:FluentAssertions.Equivalency.EquivalencyValidationContext.MatchingExpectationProperty">
-            <summary>
-            Gets the property of the <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Expectation"/> that was matched against the <see cref="P:FluentAssertions.Equivalency.ISubjectInfo.PropertyInfo"/>, 
-            or <c>null</c> if <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.IsRoot"/> is <c>true</c>.
-            </summary>
-        </member>
         <member name="P:FluentAssertions.Equivalency.EquivalencyValidationContext.Expectation">
             <summary>
-            Gets the value of the <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.MatchingExpectationProperty"/>.
+            Gets the value of the <see cref="!:IEquivalencyValidationContext.MatchingExpectationProperty"/>.
             </summary>
         </member>
         <member name="P:FluentAssertions.Equivalency.EquivalencyValidationContext.Reason">
@@ -4589,22 +5488,70 @@
             Gets the run-time type of the current object.
             </summary>
         </member>
-        <member name="P:FluentAssertions.Equivalency.EquivalencyValidationContext.Verification">
-            <summary>
-              Gets a verification object associated with the current <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.Reason"/> and <see cref="P:FluentAssertions.Equivalency.IEquivalencyValidationContext.ReasonArgs"/>.
-            </summary>
-        </member>
         <member name="T:FluentAssertions.Equivalency.EquivalencyValidator">
             <summary>
             Is responsible for validating the equality of one or more properties of a subject with another object.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.TryConversionEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext)">
+        <member name="P:FluentAssertions.Equivalency.EquivalencyValidator.Steps">
+            <summary>
+            Provides access the list of steps that are executed in the order of appearance during an equivalency test.
+            </summary>
+        </member>
+        <member name="T:FluentAssertions.Equivalency.ObjectTracker">
+            <summary>
+            Keeps track of objects and their location within an object graph so that cyclic references can be detected
+            and handled upon.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.ObjectTracker.IsCyclicReference(FluentAssertions.Equivalency.ObjectReference)">
+            <summary>
+            Determines whether the specified object reference is a cyclic reference to the same object earlier in the 
+            equivalency validation.
+            </summary>
+            <remarks>
+            The behavior of a cyclic reference is determined byt he <see cref="T:FluentAssertions.Equivalency.CyclicReferenceHandling"/> constructor
+            parameter.
+            </remarks>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.ObjectTracker.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="T:FluentAssertions.Equivalency.ObjectReference">
+            <summary>
+            Represents  an object tracked by the <see cref="T:FluentAssertions.Equivalency.ObjectTracker"/> including it's location within an object graph.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.ObjectReference.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+            </returns>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param><filterpriority>2</filterpriority>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.ObjectReference.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type. 
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:FluentAssertions.Equivalency.TryConversionEquivalencyStep.CanHandle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Gets a value indicating whether this step can handle the current subject and/or expectation.
             </summary>
         </member>
-        <member name="M:FluentAssertions.Equivalency.TryConversionEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator)">
+        <member name="M:FluentAssertions.Equivalency.TryConversionEquivalencyStep.Handle(FluentAssertions.Equivalency.EquivalencyValidationContext,FluentAssertions.Equivalency.IEquivalencyValidator,FluentAssertions.Equivalency.IEquivalencyAssertionOptions)">
             <summary>
             Applies a step as part of the task to compare two objects for structural equality.
             </summary>
@@ -4819,9 +5766,30 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Types.MethodInfoAssertions.BeDecoratedWith``1(System.Func{``0,System.Boolean},System.String,System.Object[])">
+            <summary>
+            Asserts that the selected methods are decorated with an attribute of type <typeparamref name="TAttribute"/>
+            that matches the specified <paramref name="isMatchingAttributePredicate"/>.
+            </summary>
+            <param name="isMatchingAttributePredicate">
+            The predicate that the attribute must match.
+            </param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="P:FluentAssertions.Types.MethodInfoAssertions.SubjectMethods">
             <summary>
             Gets the object which value is being asserted.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Types.MethodInfoAssertions.Context">
+            <summary>
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Types.MethodInfoSelector">
@@ -4918,6 +5886,18 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Types.PropertyInfoAssertions.BeWritable(System.String,System.Object[])">
+            <summary>
+            Asserts that the selected properties have a setter.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="M:FluentAssertions.Types.PropertyInfoAssertions.BeDecoratedWith``1(System.String,System.Object[])">
             <summary>
             Asserts that the selected methods are decorated with the specified <typeparamref name="TAttribute"/>.
@@ -4933,6 +5913,11 @@
         <member name="P:FluentAssertions.Types.PropertyInfoAssertions.SubjectProperties">
             <summary>
             Gets the object which value is being asserted.
+            </summary>
+        </member>
+        <member name="P:FluentAssertions.Types.PropertyInfoAssertions.Context">
+            <summary>
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Types.PropertyInfoSelector">
@@ -5088,9 +6073,9 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="P:FluentAssertions.Types.TypeAssertions.Subject">
+        <member name="P:FluentAssertions.Types.TypeAssertions.Context">
             <summary>
-            Gets the object which value is being asserted.
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Types.TypeSelector">
@@ -5240,40 +6225,6 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Xml.XAttributeAssertions.BeNull">
-            <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XAttribute"/> is <c>null</c>.
-            </summary>
-        </member>
-        <member name="M:FluentAssertions.Xml.XAttributeAssertions.BeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XAttribute"/> is <c>null</c>.
-            </summary>
-            <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
-            </param>
-            <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
-            </param>
-        </member>
-        <member name="M:FluentAssertions.Xml.XAttributeAssertions.NotBeNull">
-            <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XAttribute"/> is not <c>null</c>.
-            </summary>
-        </member>
-        <member name="M:FluentAssertions.Xml.XAttributeAssertions.NotBeNull(System.String,System.Object[])">
-            <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XAttribute"/> is not <c>null</c>.
-            </summary>
-            <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
-            </param>
-            <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
-            </param>
-        </member>
         <member name="M:FluentAssertions.Xml.XAttributeAssertions.HaveValue(System.String)">
             <summary>
             Asserts that the current <see cref="T:System.Xml.Linq.XAttribute"/> has the specified <paramref name="expected"/> value.
@@ -5293,9 +6244,9 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="P:FluentAssertions.Xml.XAttributeAssertions.Subject">
+        <member name="P:FluentAssertions.Xml.XAttributeAssertions.Context">
             <summary>
-            Gets the object which value is being asserted.
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Xml.XDocumentAssertions">
@@ -5350,41 +6301,56 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Xml.XDocumentAssertions.BeNull">
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.BeEquivalentTo(System.Xml.Linq.XDocument)">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XDocument"/> is <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XDocument"/> is equivalent to the <paramref name="expected"/> document,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="expected">The expected document</param>
         </member>
-        <member name="M:FluentAssertions.Xml.XDocumentAssertions.BeNull(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.BeEquivalentTo(System.Xml.Linq.XDocument,System.String,System.Object[])">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XDocument"/> is <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XDocument"/> is equivalent to the <paramref name="expected"/> document,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="expected">The expected document</param>
             <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
             </param>
             <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Xml.XDocumentAssertions.NotBeNull">
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.NotBeEquivalentTo(System.Xml.Linq.XDocument)">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XDocument"/> is not <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XDocument"/> is not equivalent to the <paramref name="unexpected"/> document,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="unexpected">The unexpected document</param>
         </member>
-        <member name="M:FluentAssertions.Xml.XDocumentAssertions.NotBeNull(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.NotBeEquivalentTo(System.Xml.Linq.XDocument,System.String,System.Object[])">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XDocument"/> is not <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XDocument"/> is not equivalent to the <paramref name="unexpected"/> document,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="unexpected">The unexpected document</param>
             <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
             </param>
             <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
         <member name="M:FluentAssertions.Xml.XDocumentAssertions.HaveRoot(System.String)">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XDocument"/> has a root element with the specified
+            <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">The name of the expected root element of the current document.</param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.HaveRoot(System.Xml.Linq.XName)">
             <summary>
             Asserts that the current <see cref="T:System.Xml.Linq.XDocument"/> has a root element with the specified
             <paramref name="expected"/> name.
@@ -5405,6 +6371,20 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.HaveRoot(System.Xml.Linq.XName,System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XDocument"/> has a root element with the specified
+            <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">The full name <see cref="T:System.Xml.Linq.XName"/> of the expected root element of the current document.</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
         <member name="M:FluentAssertions.Xml.XDocumentAssertions.HaveElement(System.String)">
             <summary>
             Asserts that the <see cref="P:System.Xml.Linq.XDocument.Root"/> element of the current <see cref="T:System.Xml.Linq.XDocument"/> has a direct
@@ -5412,6 +6392,15 @@
             </summary>
             <param name="expected">
             The name of the expected child element of the current document's Root <see cref="P:System.Xml.Linq.XDocument.Root"/> element.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.HaveElement(System.Xml.Linq.XName)">
+            <summary>
+            Asserts that the <see cref="P:System.Xml.Linq.XDocument.Root"/> element of the current <see cref="T:System.Xml.Linq.XDocument"/> has a direct
+            child element with the specified <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">
+            The full name <see cref="T:System.Xml.Linq.XName"/> of the expected child element of the current document's Root <see cref="P:System.Xml.Linq.XDocument.Root"/> element.
             </param>
         </member>
         <member name="M:FluentAssertions.Xml.XDocumentAssertions.HaveElement(System.String,System.String,System.Object[])">
@@ -5430,9 +6419,25 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="P:FluentAssertions.Xml.XDocumentAssertions.Subject">
+        <member name="M:FluentAssertions.Xml.XDocumentAssertions.HaveElement(System.Xml.Linq.XName,System.String,System.Object[])">
             <summary>
-            Gets the object which value is being asserted.
+            Asserts that the <see cref="P:System.Xml.Linq.XDocument.Root"/> element of the current <see cref="T:System.Xml.Linq.XDocument"/> has a direct
+            child element with the specified <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">
+            The full name <see cref="T:System.Xml.Linq.XName"/> of the expected child element of the current document's Root <see cref="P:System.Xml.Linq.XDocument.Root"/> element.
+            </param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="P:FluentAssertions.Xml.XDocumentAssertions.Context">
+            <summary>
+            Returns the type of the subject the assertion applies on.
             </summary>
         </member>
         <member name="T:FluentAssertions.Xml.XElementAssertions">
@@ -5485,38 +6490,65 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Xml.XElementAssertions.BeNull">
+        <member name="M:FluentAssertions.Xml.XElementAssertions.BeEquivalentTo(System.Xml.Linq.XElement)">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XElement"/> is <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> is equivalent to the <paramref name="expected"/> element,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="expected">The expected element</param>
         </member>
-        <member name="M:FluentAssertions.Xml.XElementAssertions.BeNull(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Xml.XElementAssertions.BeEquivalentTo(System.Xml.Linq.XElement,System.String,System.Object[])">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XElement"/> is <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> is equivalent to the <paramref name="expected"/> element,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="expected">The expected element</param>
             <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
             </param>
             <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Xml.XElementAssertions.NotBeNull">
+        <member name="M:FluentAssertions.Xml.XElementAssertions.NotBeEquivalentTo(System.Xml.Linq.XElement)">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XElement"/> is not <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> is not equivalent to the <paramref name="unexpected"/> element,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="unexpected">The unexpected element</param>
         </member>
-        <member name="M:FluentAssertions.Xml.XElementAssertions.NotBeNull(System.String,System.Object[])">
+        <member name="M:FluentAssertions.Xml.XElementAssertions.NotBeEquivalentTo(System.Xml.Linq.XElement,System.String,System.Object[])">
             <summary>
-            Asserts that the <see cref="T:System.Xml.Linq.XElement"/> is not <c>null</c>.
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> is not equivalent to the <paramref name="unexpected"/> element,
+            using its <see cref="!:XNode.DeepEquals()"/> implementation.
             </summary>
+            <param name="unexpected">The unexpected element</param>
             <param name="reason">
-            A formatted phrase explaining why the assertion should be satisfied. If the phrase does not 
-            start with the word <i>because</i>, it is prepended to the message.
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
             </param>
             <param name="reasonArgs">
-            Zero or more values to use for filling in any <see cref="M:System.String.Format(System.String,System.Object[])"/> compatible placeholders.
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveValue(System.String)">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has the specified <paramref name="expected"/> value.
+            </summary>
+            <param name="expected">The expected value</param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveValue(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has the specified <paramref name="expected"/> value.
+            </summary>
+            <param name="expected">The expected value</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
         <member name="M:FluentAssertions.Xml.XElementAssertions.HaveAttribute(System.String,System.String)">
@@ -5525,6 +6557,14 @@
             and <paramref name="expectedValue"/>.
             </summary>
             <param name="expectedName">The name of the expected attribute</param>
+            <param name="expectedValue">The value of the expected attribute</param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveAttribute(System.Xml.Linq.XName,System.String)">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has an attribute with the specified <paramref name="expectedName"/>
+            and <paramref name="expectedValue"/>.
+            </summary>
+            <param name="expectedName">The name <see cref="T:System.Xml.Linq.XName"/> of the expected attribute</param>
             <param name="expectedValue">The value of the expected attribute</param>
         </member>
         <member name="M:FluentAssertions.Xml.XElementAssertions.HaveAttribute(System.String,System.String,System.String,System.Object[])">
@@ -5542,19 +6582,13 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveElement(System.String)">
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveAttribute(System.Xml.Linq.XName,System.String,System.String,System.Object[])">
             <summary>
-            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has a direct child element with the specified
-            <paramref name="expected"/> name.
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has an attribute with the specified <paramref name="expectedName"/>
+            and <paramref name="expectedValue"/>.
             </summary>
-            <param name="expected">The name of the expected child element</param>
-        </member>
-        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveElement(System.String,System.String,System.Object[])">
-            <summary>
-            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has a direct child element with the specified
-            <paramref name="expected"/> name.
-            </summary>
-            <param name="expected">The name of the expected child element</param>
+            <param name="expectedName">The name <see cref="T:System.Xml.Linq.XName"/> of the expected attribute</param>
+            <param name="expectedValue">The value of the expected attribute</param>
             <param name="reason">
             A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
             is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
@@ -5563,9 +6597,123 @@
             Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
             </param>
         </member>
-        <member name="P:FluentAssertions.Xml.XElementAssertions.Subject">
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveElement(System.String)">
             <summary>
-            Gets the object which value is being asserted.
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has a direct child element with the specified
+            <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">The name of the expected child element</param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveElement(System.Xml.Linq.XName)">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has a direct child element with the specified
+            <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">The name <see cref="T:System.Xml.Linq.XName"/> of the expected child element</param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveElement(System.String,System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has a direct child element with the specified
+            <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">The name <see cref="T:System.Xml.Linq.XName"/> of the expected child element</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Xml.XElementAssertions.HaveElement(System.Xml.Linq.XName,System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.Xml.Linq.XElement"/> has a direct child element with the specified
+            <paramref name="expected"/> name.
+            </summary>
+            <param name="expected">The name <see cref="T:System.Xml.Linq.XName"/> of the expected child element</param>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="P:FluentAssertions.Xml.XElementAssertions.Context">
+            <summary>
+            Returns the type of the subject the assertion applies on.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Formatting.AggregateExceptionValueFormatter.CanHandle(System.Object)">
+            <summary>
+            Indicates whether the current <see cref="T:FluentAssertions.Formatting.IValueFormatter"/> can handle the specified <paramref name="value"/>.
+            </summary>
+            <param name="value">The value for which to create a <see cref="T:System.String"/>.</param>
+            <returns>
+            <c>true</c> if the current <see cref="T:FluentAssertions.Formatting.IValueFormatter"/> can handle the specified value; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FluentAssertions.Formatting.AggregateExceptionValueFormatter.ToString(System.Object,System.Boolean,System.Collections.Generic.IList{System.Object},System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <param name="value">The value for which to create a <see cref="T:System.String"/>.</param>
+            <param name="useLineBreaks"> </param>
+            <param name="processedObjects">
+            A collection of objects that 
+            </param>
+            <param name="nestedPropertyLevel">
+            The level of nesting for the supplied value. This is used for indenting the format string for objects that have
+            no <see cref="M:System.Object.ToString"/> override.
+            </param>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:FluentAssertions.Specialized.AsyncFunctionAssertions">
+            <summary>
+            Contains a number of methods to assert that an asynchronous method yields the expected result.
+            </summary>
+        </member>
+        <member name="M:FluentAssertions.Specialized.AsyncFunctionAssertions.ShouldThrow``1(System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.Func`1"/> throws an exception of type <typeparamref name="TException"/>.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Specialized.AsyncFunctionAssertions.ShouldNotThrow(System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.Func`1"/> does not throw any exception.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="M:FluentAssertions.Specialized.AsyncFunctionAssertions.ShouldNotThrow``1(System.String,System.Object[])">
+            <summary>
+            Asserts that the current <see cref="T:System.Func`1"/> does not throw an exception of type <typeparamref name="TException"/>.
+            </summary>
+            <param name="reason">
+            A formatted phrase as is supported by <see cref="M:System.String.Format(System.String,System.Object[])"/> explaining why the assertion 
+            is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
+            </param>
+            <param name="reasonArgs">
+            Zero or more objects to format using the placeholders in <see cref="!:reason"/>.
+            </param>
+        </member>
+        <member name="P:FluentAssertions.Specialized.AsyncFunctionAssertions.Subject">
+            <summary>
+            Gets the <see cref="T:System.Func`1"/> that is being asserted.
             </summary>
         </member>
     </members>
