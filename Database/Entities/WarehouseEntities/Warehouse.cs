@@ -2,9 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using Database.Entities.WarehouseEntities.Product;
 using Database.Entities.WarehouseEntities.Service;
+using System;
 
 namespace Database.Entities.WarehouseEntities
 {
+    [Serializable]
     public class Warehouse
     {
         [Key]

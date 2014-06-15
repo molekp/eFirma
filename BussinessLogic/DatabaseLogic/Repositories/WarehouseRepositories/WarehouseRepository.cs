@@ -7,6 +7,7 @@ using Database.Core.Interfaces;
 using Database.Entities.WarehouseEntities;
 using Database.Entities.WarehouseEntities.Product;
 using Database.Entities.WarehouseEntities.Service;
+using BussinessLogic.Helpers;
 
 namespace BussinessLogic.DatabaseLogic.Repositories.WarehouseRepositories
 {
@@ -17,7 +18,13 @@ namespace BussinessLogic.DatabaseLogic.Repositories.WarehouseRepositories
 
         public IEnumerable<Warehouse> GetAll()
         {
-            return DataBaseContext.Warehouses.ToList();
+            List<Warehouse> tmp = CacheLayer.Get<List<Warehouse>>("WarehouseRepository_GetAll");
+            if (tmp == null)
+            {
+                tmp = DataBaseContext.Warehouses.ToList();
+                CacheLayer.Add(tmp, "WarehouseRepository_GetAll", 5);
+            }
+            return tmp;
         }
 
         public Warehouse Get(int a_idWarehouse)

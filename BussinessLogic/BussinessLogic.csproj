@@ -236,6 +236,7 @@
     <Compile Include="DTOs\ViewModelsOnly\RemoveSafetyPointFromGroup.cs" />
     <Compile Include="DTOs\ViewModelsOnly\RemoveSafetyPointGroupModel.cs" />
     <Compile Include="DTOs\WarehouseDtos\AddWarehouseDto.cs" />
+    <Compile Include="Helpers\CacheLayer.cs" />
     <Compile Include="Helpers\ConstantsHelper.cs" />
     <Compile Include="Helpers\DatabaseInitializer.cs">
       <SubType>Code</SubType>
@@ -357,6 +358,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\packages\EnyimMemcached.2.12\lib\net35\Enyim.Caching.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.3.3.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

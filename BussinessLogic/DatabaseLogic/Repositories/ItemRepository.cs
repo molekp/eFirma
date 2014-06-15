@@ -7,6 +7,7 @@ using Database.Entities;
 using Database.Entities.WarehouseEntities;
 using Database.Entities.WarehouseEntities.Product;
 using Database.Entities.WarehouseEntities.Service;
+using BussinessLogic.Helpers;
 
 namespace BussinessLogic.DatabaseLogic.Repositories
 {
@@ -69,8 +70,13 @@ namespace BussinessLogic.DatabaseLogic.Repositories
 
         public IEnumerable<IItem> GetAll()
         {
-            var tmp = new List<IItem>(DataBaseContext.ProductItems.ToList());
-            tmp.AddRange(DataBaseContext.ServiceItems.ToList());
+            List<IItem> tmp = CacheLayer.Get<List<IItem>>("GetAll");
+            if (tmp == null) 
+            {
+                tmp = new List<IItem>(DataBaseContext.ProductItems.ToList());
+                tmp.AddRange(DataBaseContext.ServiceItems.ToList());
+                CacheLayer.Add(tmp, "GetAll", 5);
+            }
             return tmp;
         }
 
